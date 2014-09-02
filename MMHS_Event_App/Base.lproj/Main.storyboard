@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="320" id="Q0U-6m-BkC" customClass="FeedTableViewCell" customModule="MMHS_Event_App" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="320" id="Q0U-6m-BkC" customClass="FeedTableViewCell" customModule="MMHS_Event_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q0U-6m-BkC" id="eog-4g-yYP">
@@ -62,6 +62,7 @@
                                         <connections>
                                             <outlet property="eventImageView" destination="aJ2-i0-aMD" id="UUi-wU-JgV"/>
                                             <outlet property="hostImageView" destination="Yir-za-D3z" id="ZK7-qF-qJv"/>
+                                            <segue destination="6h0-I8-6bp" kind="show" id="utm-jV-PKg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -96,6 +97,24 @@
             </objects>
             <point key="canvasLocation" x="1785" y="152"/>
         </scene>
+        <!--Individual Event View Controller-->
+        <scene sceneID="eTK-qG-j0E">
+            <objects>
+                <viewController id="6h0-I8-6bp" customClass="IndividualEventViewController" customModule="MMHS_Event_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xdq-7z-g5G"/>
+                        <viewControllerLayoutGuide type="bottom" id="fGK-Cw-KGh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="umU-No-GE6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jYV-ic-ITH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2515" y="152"/>
+        </scene>
         <!--Create Event View Controller-->
         <scene sceneID="CSG-M8-le2">
             <objects>
@@ -119,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sdY-RK-Rwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3744" y="-514"/>
+            <point key="canvasLocation" x="2460" y="-544"/>
         </scene>
         <!--Invites View Controller-->
         <scene sceneID="Pir-DY-KBE">
@@ -144,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbT-Sv-YcZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2150" y="-716"/>
+            <point key="canvasLocation" x="1684" y="-544"/>
         </scene>
         <!--Home-->
         <scene sceneID="jWX-PZ-o6q">
@@ -277,7 +296,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhb-Fo-HbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1338" y="-716"/>
+            <point key="canvasLocation" x="1656" y="-522"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aal-OK-ljO">
@@ -295,7 +314,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uzu-ZO-Kyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2932" y="-514"/>
+            <point key="canvasLocation" x="2434" y="-522"/>
         </scene>
     </scenes>
     <resources>
