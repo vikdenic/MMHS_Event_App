@@ -32,17 +32,29 @@ class LikeActivity
 class Event
 {
     var host : User!
-    var name : String!
-    var details : String!
+    var name : String! {
+        get {
+            return record.objectForKey("name") as String!
+        }
+        set {
+            record.setObject(newValue, forKey: "name")
+        }
+    }
+    var details : String! {
+        get {
+            return record.objectForKey("details") as String!
+        }
+        set {
+            record.setObject(newValue, forKey: "details")
+        }
+    }
     var date : NSDate!
     var location : CLLocationCoordinate2D!
 
     private var record : CKRecord!
 
-    init(var record : CKRecord)
+    init(var theCKRecord : CKRecord)
     {
-        name = record.objectForKey("name") as String!
-
+        record = theCKRecord
     }
-
 }
