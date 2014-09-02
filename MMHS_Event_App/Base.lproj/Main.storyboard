@@ -110,17 +110,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="S5u-HM-lpE">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rWj-7l-Ii0"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rWj-7l-Ii0">
+                            <connections>
+                                <action selector="onCancelButtonTapped:" destination="lcX-2Z-eXX" id="BNK-MT-7Mr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sdY-RK-Rwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3744" y="-514"/>
         </scene>
-        <!--View Controller-->
+        <!--Invites View Controller-->
         <scene sceneID="Pir-DY-KBE">
             <objects>
-                <viewController id="p78-Rq-adk" sceneMemberID="viewController">
+                <viewController id="p78-Rq-adk" customClass="InvitesViewController" customModule="MMHS_Event_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F2z-Rq-ftW"/>
                         <viewControllerLayoutGuide type="bottom" id="RRf-te-a3O"/>
@@ -131,7 +135,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="6kV-LV-3uj">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="3Sc-5p-AUB"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="3Sc-5p-AUB">
+                            <connections>
+                                <action selector="onDismissButtonTapped:" destination="p78-Rq-adk" id="rbr-1O-9Qd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbT-Sv-YcZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

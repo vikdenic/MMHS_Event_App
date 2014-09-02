@@ -1,5 +1,5 @@
 //
-//  CreateEventViewController.swift
+//  InvitesViewController.swift
 //  MMHS_Event_App
 //
 //  Created by Vik Denic on 9/2/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController {
+class InvitesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,8 +16,7 @@ class CreateEventViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    
-    @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)
+    @IBAction func onDismissButtonTapped(sender: UIBarButtonItem)
     {
         dismissViewControllerAnimated(true, completion: nil)
     }
