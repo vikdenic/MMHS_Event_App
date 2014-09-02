@@ -1,5 +1,5 @@
 //
-//  CreateEventViewController.swift
+//  ProfileViewController.swift
 //  MMHS_Event_App
 //
 //  Created by Vik Denic on 9/2/14.
@@ -8,17 +8,11 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
-    @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)
-    {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
 }

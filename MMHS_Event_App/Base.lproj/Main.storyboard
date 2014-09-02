@@ -165,10 +165,10 @@
             </objects>
             <point key="canvasLocation" x="1048" y="152"/>
         </scene>
-        <!--View Controller-->
+        <!--Explore View Controller-->
         <scene sceneID="WEw-ol-TOW">
             <objects>
-                <viewController id="5Bf-YV-Bvn" sceneMemberID="viewController">
+                <viewController id="5Bf-YV-Bvn" customClass="ExploreViewController" customModule="MMHS_Event_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XvQ-95-Gsr"/>
                         <viewControllerLayoutGuide type="bottom" id="kZe-4d-7VE"/>
