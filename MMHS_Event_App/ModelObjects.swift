@@ -60,7 +60,8 @@ class EventInvite
 {
     var event : Event! {
         get {
-            return record.objectForKey("event") as Event!
+            var ckRecordEvent = record.objectForKey("event") as CKRecord!
+            return Event(theCKRecord: ckRecordEvent)
         }
         set {
             record.setValue(newValue, forKey: "event")
@@ -69,7 +70,8 @@ class EventInvite
 
     var toUser : User! {
         get {
-            return record.objectForKey("toUser") as User!
+            var ckRecordUser = record.objectForKey("toUser") as CKRecord!
+            return User(theCKRecord: ckRecordUser)
         }
         set {
             record.setValue(newValue, forKey: "toUser")
@@ -106,7 +108,8 @@ class Photo
 
     var event : Event! {
         get {
-            return record.objectForKey("event") as Event!
+            var ckRecordEvent = record.objectForKey("event") as CKRecord!
+            return Event(theCKRecord: ckRecordEvent)
         }
         set {
             record.setValue(newValue, forKey: "event")
@@ -115,16 +118,18 @@ class Photo
 
     var photographer : User! {
         get {
-            return record.objectForKey("photographer") as User!
+            var ckRecordUser = record.objectForKey("photographer") as CKRecord!
+            return User(theCKRecord: ckRecordUser)
         }
         set {
-            record.setValue(newValue, forKey: "image")
+            record.setValue(newValue, forKey: "photographer")
         }
     }
 
     var likeActivity : LikeActivity! {
         get {
-            return record.objectForKey("likeActivity") as LikeActivity!
+            var ckRecordLikeActivity = record.objectForKey("likeActivity") as CKRecord!
+            return LikeActivity(theCKRecord: ckRecordLikeActivity)
         }
         set {
             record.setValue(newValue, forKey: "likeActivity")
@@ -143,7 +148,8 @@ class LikeActivity
 {
     var photo : Photo!  {
         get {
-            return record.objectForKey("photo") as Photo!
+            var ckRecordPhoto = record.objectForKey("photo") as CKRecord!
+            return Photo(theCKRecord: ckRecordPhoto)
         }
         set {
             record.setValue(newValue, forKey: "photo")
@@ -152,7 +158,8 @@ class LikeActivity
 
     var fromUser : User! {
         get {
-            return record.objectForKey("fromUser") as User!
+            var ckRecordUser = record.objectForKey("fromUser") as CKRecord!
+            return User(theCKRecord: ckRecordUser)
         }
         set {
             record.setValue(newValue, forKey: "fromUser")
@@ -171,7 +178,8 @@ class Event
 {
     var host : User! {
         get {
-            return record.objectForKey("host") as User!
+            var ckRecordUser = record.objectForKey("user") as CKRecord!
+            return User(theCKRecord: ckRecordUser)
         }
         set {
             record.setValue(newValue, forKey: "host")
@@ -213,7 +221,7 @@ class Event
             record.setObject(newValue, forKey: "location")
         }
     }
-
+    //TODO:
     var usersAttending : [User]! {
         get {
             return record.objectForKey("usersAttending") as [User]!
@@ -222,7 +230,7 @@ class Event
             record.setObject(newValue, forKey: "usersAttending")
         }
     }
-
+    //TODO:
     var usersInvited : [User]! {
         get {
             return record.objectForKey("usersInvited") as [User]!
