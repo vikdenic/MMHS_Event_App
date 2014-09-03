@@ -11,6 +11,7 @@
 		933130BD19B776B900ED4CB9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */; };
 		933130BF19B7908A00ED4CB9 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */; };
 		933130C319B7AEE200ED4CB9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933130C219B7AEE200ED4CB9 /* CloudKit.framework */; };
+		933130C719B7B14800ED4CB9 /* AAPLCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */; };
 		93CDD0D619B60BE5000122F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0D519B60BE5000122F6 /* AppDelegate.swift */; };
 		93CDD0DB19B60BE5000122F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0D919B60BE5000122F6 /* Main.storyboard */; };
 		93CDD0DD19B60BE5000122F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0DC19B60BE5000122F6 /* Images.xcassets */; };
@@ -40,6 +41,9 @@
 		933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredImageView.swift; sourceTree = "<group>"; };
 		933130C219B7AEE200ED4CB9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		933130C419B7B14800ED4CB9 /* MMHS_Event_App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMHS_Event_App-Bridging-Header.h"; sourceTree = "<group>"; };
+		933130C519B7B14800ED4CB9 /* AAPLCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAPLCloudManager.h; path = ../../../../Learning/CloudKitAtlasAnIntroductiontoCloudKit/CloudKitAtlas/AAPLCloudManager.h; sourceTree = "<group>"; };
+		933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAPLCloudManager.m; path = ../../../../Learning/CloudKitAtlasAnIntroductiontoCloudKit/CloudKitAtlas/AAPLCloudManager.m; sourceTree = "<group>"; };
 		93CDD0D019B60BE5000122F6 /* MMHS_Event_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMHS_Event_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CDD0D419B60BE5000122F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93CDD0D519B60BE5000122F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				192213D319B657A4006A23BF /* MMHS_Event_App.entitlements */,
+				933130C519B7B14800ED4CB9 /* AAPLCloudManager.h */,
+				933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */,
 				93CDD0D519B60BE5000122F6 /* AppDelegate.swift */,
 				192213D619B67176006A23BF /* ModelObjects.swift */,
 				93CDD0D919B60BE5000122F6 /* Main.storyboard */,
@@ -107,6 +113,7 @@
 				93D5F21C19B64F12008C6218 /* Profile */,
 				93CDD0DC19B60BE5000122F6 /* Images.xcassets */,
 				93CDD0D319B60BE5000122F6 /* Supporting Files */,
+				933130C419B7B14800ED4CB9 /* MMHS_Event_App-Bridging-Header.h */,
 			);
 			path = MMHS_Event_App;
 			sourceTree = "<group>";
@@ -276,6 +283,7 @@
 				93CDD0F519B62A9A000122F6 /* FeedTableViewCell.swift in Sources */,
 				93D5F21819B64EE2008C6218 /* ExploreViewController.swift in Sources */,
 				93CDD0F319B629E1000122F6 /* HomeViewController.swift in Sources */,
+				933130C719B7B14800ED4CB9 /* AAPLCloudManager.m in Sources */,
 				93D5F21B19B64F09008C6218 /* ProfileViewController.swift in Sources */,
 				93D5F21619B64D46008C6218 /* InvitesViewController.swift in Sources */,
 				192213D719B67176006A23BF /* ModelObjects.swift in Sources */,
@@ -399,6 +407,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MMHS_Event_App/MMHS_Event_App.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -407,6 +416,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MMHS_Event_App/MMHS_Event_App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -415,6 +426,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MMHS_Event_App/MMHS_Event_App.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -423,6 +435,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MMHS_Event_App/MMHS_Event_App-Bridging-Header.h";
 			};
 			name = Release;
 		};
