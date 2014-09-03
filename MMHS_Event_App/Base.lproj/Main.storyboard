@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cwz-eF-3aF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cwz-eF-3aF">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
@@ -204,10 +204,10 @@
             </objects>
             <point key="canvasLocation" x="1771" y="887"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="V3W-ug-Aiu">
             <objects>
-                <viewController id="9fn-GX-EyB" sceneMemberID="viewController">
+                <viewController id="9fn-GX-EyB" customClass="ProfileViewController" customModule="MMHS_Event_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2DJ-pB-nqt"/>
                         <viewControllerLayoutGuide type="bottom" id="LAV-1z-Qsg"/>
@@ -215,13 +215,106 @@
                     <view key="view" contentMode="scaleToFill" id="UtD-wN-p4h">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eventImage" translatesAutoresizingMaskIntoConstraints="NO" id="dm2-gw-1Sp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="4FW-Ql-NQH"/>
+                                    <constraint firstAttribute="height" constant="320" id="p1e-ej-Y2e"/>
+                                </constraints>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="81e-O9-rnC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HxV-lH-BcO" userLabel="View1">
+                                        <rect key="frame" x="320" y="0.0" width="320" height="320"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="This is my short bio about my awesome lyfe" translatesAutoresizingMaskIntoConstraints="NO" id="CiS-wI-nCY">
+                                                <rect key="frame" x="41" y="166" width="240" height="128"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hometown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HwG-Fp-lW8">
+                                                <rect key="frame" x="27" y="116" width="269" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sb3-UW-fU7" userLabel="View1">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="studentImage" translatesAutoresizingMaskIntoConstraints="NO" id="5Qf-Em-Gbt">
+                                                <rect key="frame" x="110" y="172" width="100" height="100"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Last" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjG-XD-872">
+                                                <rect key="frame" x="26" y="103" width="269" height="43"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </view>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dm2-gw-1Sp" firstAttribute="top" secondItem="UtD-wN-p4h" secondAttribute="topMargin" id="E2L-VT-AjO"/>
+                            <constraint firstItem="dm2-gw-1Sp" firstAttribute="leading" secondItem="UtD-wN-p4h" secondAttribute="leadingMargin" constant="-16" id="TMX-VI-UOK"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hFb-s5-Std"/>
+                    <navigationItem key="navigationItem" id="hFb-s5-Std">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="cmP-Zc-wUf">
+                            <connections>
+                                <segue destination="huN-Fp-adN" kind="presentation" id="Oys-je-DnL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bioTextView" destination="CiS-wI-nCY" id="kCf-jP-jTy"/>
+                        <outlet property="coverImageView" destination="dm2-gw-1Sp" id="rg2-Sa-BXL"/>
+                        <outlet property="hometownLabel" destination="HwG-Fp-lW8" id="jUX-BH-bYh"/>
+                        <outlet property="nameLabel" destination="DjG-XD-872" id="R54-b1-cJq"/>
+                        <outlet property="profileImageView" destination="5Qf-Em-Gbt" id="JBW-vG-oiq"/>
+                        <outlet property="scrollView" destination="81e-O9-rnC" id="qiV-1I-PIg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKT-Tr-FKn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1771" y="1652"/>
+        </scene>
+        <!--Edit Profile-->
+        <scene sceneID="6wM-59-f49">
+            <objects>
+                <viewController id="xhf-bW-L8T" customClass="EditProfileViewController" customModule="MMHS_Event_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ajq-Sc-sQD"/>
+                        <viewControllerLayoutGuide type="bottom" id="oeU-TU-FoP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZeH-X1-gHh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Profile" id="aoM-A9-YIT">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="yI1-iZ-bZO">
+                            <connections>
+                                <action selector="onDismissButtonTapped:" destination="xhf-bW-L8T" id="LXK-5i-Z64"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="yfF-PN-N7u">
+                            <connections>
+                                <action selector="onSaveButtonTapped:" destination="xhf-bW-L8T" id="y1n-CS-Zth"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CLg-p7-QJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2649" y="1633"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qeF-61-aOH">
@@ -316,6 +409,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uzu-ZO-Kyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2434" y="-522"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2dh-5R-N2h">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="huN-Fp-adN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="neR-Zh-57N">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xhf-bW-L8T" kind="relationship" relationship="rootViewController" id="VBL-4S-cSP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YXZ-q9-1Ls" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2604" y="1652"/>
         </scene>
     </scenes>
     <resources>

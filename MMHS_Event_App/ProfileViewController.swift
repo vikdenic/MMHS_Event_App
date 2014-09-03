@@ -10,9 +10,21 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var coverImageView: UIImageView!
+    @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
 
-        // Do any additional setup after loading the view.
+    @IBOutlet var hometownLabel: UILabel!
+    @IBOutlet var bioTextView: UITextView!
+
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+    }
+
+    override func viewDidLayoutSubviews()
+    {
+        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 2, 320)
     }
 }
