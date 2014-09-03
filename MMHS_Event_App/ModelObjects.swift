@@ -6,12 +6,54 @@
 //  Copyright (c) 2014 MobileMakers. All rights reserved.
 //
 
+import UIKit
 import CoreLocation
 import CloudKit
 
 class User
 {
+    var profilePhoto : CKAsset! {
+        get {
+            return record.objectForKey("profilePhoto") as CKAsset!
+        }
+        set {
+            record.setObject(newValue, forKey: "profilePhoto")
+        }
+    }
 
+    var coverPhoto : CKAsset! {
+        get {
+            return record.objectForKey("coverPhoto") as CKAsset!
+        }
+        set {
+            record.setObject(newValue, forKey: "coverPhoto")
+        }
+    }
+
+    var bio : String! {
+        get {
+            return record.objectForKey("bio") as String!
+        }
+        set {
+            record.setObject(newValue, forKey: "bio")
+        }
+    }
+
+    var hometown : String! {
+        get {
+            return record.objectForKey("hometown") as String!
+        }
+        set {
+            record.setObject(newValue, forKey: "hometown")
+        }
+    }
+
+    private var record : CKRecord!
+
+    init(var theCKRecord : CKRecord)
+    {
+        record = theCKRecord
+    }
 }
 
 class EventInvite
