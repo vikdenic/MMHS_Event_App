@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import CloudKit
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+    let cloudManager = AAPL
+
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var hometownTextField: UITextField!
+    @IBOutlet var bioTextField: UITextField!
 
     let imagePicker = UIImagePickerController()
     var selectedProfilePic = UIImage()
@@ -21,6 +29,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+
+
     }
 
     //MARK: image picker
@@ -54,12 +64,29 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     //MARK: Bar Button Actions
     @IBAction func onSaveButtonTapped(sender: UIBarButtonItem)
     {
-
+        let currentUser = CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler
+        var eventRecord = CKRecord(recordType: "Event")
+        eventRecord.setObject("Test Event", forKey: "name")
+        publicDatabase.saveRecord(eventRecord, completionHandler: nil)
     }
 
     @IBAction func onDismissButtonTapped(sender: UIBarButtonItem)
     {
-        dismissViewControllerAnimated(true, completion: nil)
+//        dismissViewControllerAnimated(true, completion: nil)
+//
+//        var predicate = NSPredicate(value: true)
+//        var myQuery = CKQuery(recordType: "Event", predicate: predicate)
+//        publicDatabase.performQuery(myQuery, inZoneWithID: nil, completionHandler: {records, error in
+//            if let err = error {
+//                var alert = UIAlertController(title: "iCloud Connection Error", message: err.localizedDescription, preferredStyle: .Alert)
+//                var alertOK = UIAlertAction(title: "Rats!", style: .Default, handler: nil)
+//                alert.addAction(alertOK)
+//                self.presentViewController(alert, animated: true, completion: nil)
+//            }
+//            else {
+//                var myData = records as [CKRecord]
+//                println(myData)
+//            }
+//        })
     }
-
 }

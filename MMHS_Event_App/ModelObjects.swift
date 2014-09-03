@@ -246,4 +246,16 @@ class Event
     {
         record = theCKRecord
     }
+    func initNewEvent(var withName: String)
+    {
+        record = CKRecord(recordType: "Event")
+        record.setObject(withName, forKey: "name")
+    }
+    func saveInBackground(complete:(succees : Bool) -> Void)
+    {
+        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
+            complete(succees: true)
+        })
+    }
 }

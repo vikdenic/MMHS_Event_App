@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		192213D519B657AA006A23BF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192213D419B657AA006A23BF /* CloudKit.framework */; };
 		192213D719B67176006A23BF /* ModelObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192213D619B67176006A23BF /* ModelObjects.swift */; };
 		933130BD19B776B900ED4CB9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */; };
 		933130BF19B7908A00ED4CB9 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */; };
+		933130C319B7AEE200ED4CB9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933130C219B7AEE200ED4CB9 /* CloudKit.framework */; };
 		93CDD0D619B60BE5000122F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0D519B60BE5000122F6 /* AppDelegate.swift */; };
 		93CDD0DB19B60BE5000122F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0D919B60BE5000122F6 /* Main.storyboard */; };
 		93CDD0DD19B60BE5000122F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0DC19B60BE5000122F6 /* Images.xcassets */; };
@@ -36,10 +36,10 @@
 
 /* Begin PBXFileReference section */
 		192213D319B657A4006A23BF /* MMHS_Event_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MMHS_Event_App.entitlements; sourceTree = "<group>"; };
-		192213D419B657AA006A23BF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		192213D619B67176006A23BF /* ModelObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelObjects.swift; sourceTree = "<group>"; };
 		933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredImageView.swift; sourceTree = "<group>"; };
+		933130C219B7AEE200ED4CB9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		93CDD0D019B60BE5000122F6 /* MMHS_Event_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMHS_Event_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CDD0D419B60BE5000122F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93CDD0D519B60BE5000122F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				192213D519B657AA006A23BF /* CloudKit.framework in Frameworks */,
+				933130C319B7AEE200ED4CB9 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +79,7 @@
 		93CDD0C719B60BE5000122F6 = {
 			isa = PBXGroup;
 			children = (
-				192213D419B657AA006A23BF /* CloudKit.framework */,
+				933130C219B7AEE200ED4CB9 /* CloudKit.framework */,
 				93CDD0D219B60BE5000122F6 /* MMHS_Event_App */,
 				93CDD0E519B60BE5000122F6 /* MMHS_Event_AppTests */,
 				93CDD0D119B60BE5000122F6 /* Products */,
