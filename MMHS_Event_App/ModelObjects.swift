@@ -58,22 +58,125 @@ class User
 
 class EventInvite
 {
+    var event : Event! {
+        get {
+            return record.objectForKey("event") as Event!
+        }
+        set {
+            record.setValue(newValue, forKey: "event")
+        }
+    }
 
+    var toUser : User! {
+        get {
+            return record.objectForKey("toUser") as User!
+        }
+        set {
+            record.setValue(newValue, forKey: "toUser")
+        }
+    }
+
+    var statusOfUser : String! {
+        get {
+            return record.objectForKey("statusOfUser") as String!
+        }
+        set {
+            record.setObject(newValue, forKey: "statusOfUser")
+        }
+    }
+
+    private var record : CKRecord!
+
+    init(var theCKRecord : CKRecord)
+    {
+        record = theCKRecord
+    }
 }
 
 class Photo
 {
+    var image : CKAsset! {
+        get {
+            return record.objectForKey("image") as CKAsset!
+        }
+        set {
+            record.setObject(newValue, forKey: "image")
+        }
+    }
 
+    var event : Event! {
+        get {
+            return record.objectForKey("event") as Event!
+        }
+        set {
+            record.setValue(newValue, forKey: "event")
+        }
+    }
+
+    var photographer : User! {
+        get {
+            return record.objectForKey("photographer") as User!
+        }
+        set {
+            record.setValue(newValue, forKey: "image")
+        }
+    }
+
+    var likeActivity : LikeActivity! {
+        get {
+            return record.objectForKey("likeActivity") as LikeActivity!
+        }
+        set {
+            record.setValue(newValue, forKey: "likeActivity")
+        }
+    }
+
+    private var record : CKRecord!
+
+    init(var theCKRecord : CKRecord)
+    {
+        record = theCKRecord
+    }
 }
 
 class LikeActivity
 {
+    var photo : Photo!  {
+        get {
+            return record.objectForKey("photo") as Photo!
+        }
+        set {
+            record.setValue(newValue, forKey: "photo")
+        }
+    }
 
+    var fromUser : User! {
+        get {
+            return record.objectForKey("fromUser") as User!
+        }
+        set {
+            record.setValue(newValue, forKey: "fromUser")
+        }
+    }
+
+    private var record : CKRecord!
+
+    init(var theCKRecord : CKRecord)
+    {
+        record = theCKRecord
+    }
 }
 
 class Event
 {
-    var host : User!
+    var host : User! {
+        get {
+            return record.objectForKey("host") as User!
+        }
+        set {
+            record.setValue(newValue, forKey: "host")
+        }
+    }
 
     var name : String! {
         get {
