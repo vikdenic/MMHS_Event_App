@@ -297,7 +297,43 @@
                     <view key="view" contentMode="scaleToFill" id="ZeH-X1-gHh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oj7-ab-2jZ">
+                                <rect key="frame" x="211" y="248" width="178" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="hometown" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jUM-Zj-Ovk">
+                                <rect key="frame" x="211" y="308" width="178" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="bio" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Rd-fv-UWv">
+                                <rect key="frame" x="211" y="368" width="178" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnc-sW-xM3">
+                                <rect key="frame" x="224" y="128" width="153" height="30"/>
+                                <state key="normal" title="Change Profile Picture">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMm-Ie-KH9">
+                                <rect key="frame" x="228" y="188" width="144" height="30"/>
+                                <state key="normal" title="Change Cover Photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Oj7-ab-2jZ" secondAttribute="centerX" id="Cta-ei-a3w"/>
+                            <constraint firstAttribute="centerX" secondItem="jUM-Zj-Ovk" secondAttribute="centerX" id="E9G-gz-eTh"/>
+                            <constraint firstAttribute="centerX" secondItem="xMm-Ie-KH9" secondAttribute="centerX" id="FBT-b0-CHz"/>
+                            <constraint firstAttribute="centerX" secondItem="5Rd-fv-UWv" secondAttribute="centerX" id="hha-od-0GZ"/>
+                            <constraint firstAttribute="centerX" secondItem="Nnc-sW-xM3" secondAttribute="centerX" id="sOU-nV-azb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Profile" id="aoM-A9-YIT">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="yI1-iZ-bZO">
