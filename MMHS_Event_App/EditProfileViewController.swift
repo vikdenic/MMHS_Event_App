@@ -92,10 +92,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     //MARK: Bar Button Actions
     @IBAction func onSaveButtonTapped(sender: UIBarButtonItem)
     {
-        let currentUser = CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler
-        var eventRecord = CKRecord(recordType: "Event")
-        eventRecord.setObject("Test Event", forKey: "name")
-        publicDatabase.saveRecord(eventRecord, completionHandler: nil)
+//        let currentUser = CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler
+//        var eventRecord = CKRecord(recordType: "Event")
+//        eventRecord.setObject("Test Event", forKey: "name")
+//        publicDatabase.saveRecord(eventRecord, completionHandler: nil)
     }
 
     @IBAction func onDismissButtonTapped(sender: UIBarButtonItem)

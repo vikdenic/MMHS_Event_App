@@ -24,5 +24,4 @@ class BlurredImageView: UIImageView {
         effectView.frame = frame
         addSubview(effectView)
     }
-
 }
