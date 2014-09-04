@@ -84,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93ACD95D19B837ED0056F427 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */,
+				935A082819B8367200AC4346 /* LighterBlurredImageView.swift */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
 		93CDD0C719B60BE5000122F6 = {
 			isa = PBXGroup;
 			children = (
@@ -171,10 +180,9 @@
 		93D5F21C19B64F12008C6218 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				93ACD95D19B837ED0056F427 /* Custom Views */,
 				93D5F21A19B64F09008C6218 /* ProfileViewController.swift */,
 				933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */,
-				933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */,
-				935A082819B8367200AC4346 /* LighterBlurredImageView.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";

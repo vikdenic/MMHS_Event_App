@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CloudKit
 
-class User
+class Users
 {
     var profilePhoto : CKAsset! {
         get {
@@ -50,6 +50,38 @@ class User
 
     private var record : CKRecord!
 
+    func retrieveCurrentUsersRecord(complete:(succeeded : Bool, error : NSError!) -> Void)
+    {
+        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+
+        CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler { (userRecordID, error) -> Void in
+
+            publicDatabase.fetchRecordWithID(userRecordID, completionHandler: { (record, error) -> Void in
+                if error == nil
+                {
+                    complete(succeeded: true, error: error)
+                }
+                else {
+                    complete(succeeded: false, error: error)
+                }
+            })
+        }
+    }
+
+    func save(complete:(succeeded : Bool, error : NSError!) -> Void)
+    {
+        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        publicDatabase.saveRecord(record) { (resultRecord, error) -> Void in
+            if error == nil
+            {
+                complete(succeeded: true, error: error)
+            }
+            else {
+                complete(succeeded: false, error: error)
+            }
+        }
+    }
+
     init(var theCKRecord : CKRecord)
     {
         record = theCKRecord
@@ -68,10 +100,10 @@ class EventInvite
         }
     }
 
-    var toUser : User! {
+    var toUser : Users! {
         get {
             var ckRecordUser = record.objectForKey("toUser") as CKRecord!
-            return User(theCKRecord: ckRecordUser)
+            return Users(theCKRecord: ckRecordUser)
         }
         set {
             record.setValue(newValue, forKey: "toUser")
@@ -116,10 +148,10 @@ class Photo
         }
     }
 
-    var photographer : User! {
+    var photographer : Users! {
         get {
             var ckRecordUser = record.objectForKey("photographer") as CKRecord!
-            return User(theCKRecord: ckRecordUser)
+            return Users(theCKRecord: ckRecordUser)
         }
         set {
             record.setValue(newValue, forKey: "photographer")
@@ -156,10 +188,10 @@ class LikeActivity
         }
     }
 
-    var fromUser : User! {
+    var fromUser : Users! {
         get {
             var ckRecordUser = record.objectForKey("fromUser") as CKRecord!
-            return User(theCKRecord: ckRecordUser)
+            return Users(theCKRecord: ckRecordUser)
         }
         set {
             record.setValue(newValue, forKey: "fromUser")
@@ -176,10 +208,10 @@ class LikeActivity
 
 class Event
 {
-    var host : User! {
+    var host : Users! {
         get {
             var ckRecordUser = record.objectForKey("user") as CKRecord!
-            return User(theCKRecord: ckRecordUser)
+            return Users(theCKRecord: ckRecordUser)
         }
         set {
             record.setValue(newValue, forKey: "host")
@@ -222,18 +254,18 @@ class Event
         }
     }
     //TODO:
-    var usersAttending : [User]! {
+    var usersAttending : [Users]! {
         get {
-            return record.objectForKey("usersAttending") as [User]!
+            return record.objectForKey("usersAttending") as [Users]!
         }
         set {
             record.setObject(newValue, forKey: "usersAttending")
         }
     }
     //TODO:
-    var usersInvited : [User]! {
+    var usersInvited : [Users]! {
         get {
-            return record.objectForKey("usersInvited") as [User]!
+            return record.objectForKey("usersInvited") as [Users]!
         }
         set {
             record.setObject(newValue, forKey: "usersInvited")

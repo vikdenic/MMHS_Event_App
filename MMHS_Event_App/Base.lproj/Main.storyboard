@@ -280,16 +280,16 @@
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HxV-lH-BcO" userLabel="View1">
                                         <rect key="frame" x="320" y="0.0" width="320" height="320"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="This is my short bio about my awesome lyfe" translatesAutoresizingMaskIntoConstraints="NO" id="CiS-wI-nCY" userLabel="bio">
-                                                <rect key="frame" x="41" y="166" width="240" height="128"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hometown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HwG-Fp-lW8" userLabel="hometown">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HwG-Fp-lW8" userLabel="hometown">
                                                 <rect key="frame" x="27" y="116" width="269" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gua-9w-pFz">
+                                                <rect key="frame" x="27" y="151" width="269" height="77"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -325,7 +325,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bioTextView" destination="CiS-wI-nCY" id="kCf-jP-jTy"/>
+                        <outlet property="bioLabel" destination="Gua-9w-pFz" id="aEq-5I-me6"/>
                         <outlet property="coverImageView" destination="dm2-gw-1Sp" id="rg2-Sa-BXL"/>
                         <outlet property="hometownLabel" destination="HwG-Fp-lW8" id="jUX-BH-bYh"/>
                         <outlet property="nameLabel" destination="DjG-XD-872" id="R54-b1-cJq"/>

@@ -21,6 +21,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     let imagePicker = UIImagePickerController()
     var selectedProfilePic = UIImage()
     var selectedCoverPhoto = UIImage()
+
+    var selectedProfileURL = NSURL()
+    var selectedCoverURL = NSURL()
+
     var settingProfilePic = Bool()
 
     override func viewDidLoad()
@@ -52,13 +56,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     func discoveredUserInfo(user : CKDiscoveredUserInfo!)
     {
-        if user != nil
-        {
-            self.nameTextField.text = "\(user.firstName) \(user.lastName)"
-        }
-        else{
-            self.nameTextField.text = "Not signed into iCloud"
-        }
+        self.nameTextField.text = "\(user.firstName) \(user.lastName)"
     }
 
     //MARK: image picker
@@ -82,9 +80,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             if self.settingProfilePic == true
             {
                 self.selectedProfilePic = info[UIImagePickerControllerEditedImage] as UIImage
+                self.selectedProfileURL = info[UIImagePickerControllerReferenceURL] as NSURL
             }
             else{
                 self.selectedCoverPhoto = info[UIImagePickerControllerEditedImage] as UIImage
+                self.selectedCoverURL = info[UIImagePickerControllerReferenceURL] as NSURL
             }
         })
     }
@@ -92,29 +92,28 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     //MARK: Bar Button Actions
     @IBAction func onSaveButtonTapped(sender: UIBarButtonItem)
     {
-//        let currentUser = CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler
-//        var eventRecord = CKRecord(recordType: "Event")
-//        eventRecord.setObject("Test Event", forKey: "name")
-//        publicDatabase.saveRecord(eventRecord, completionHandler: nil)
+        //access users record
+        CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler { (userRecordID, error) -> Void in
+
+            self.publicDatabase.fetchRecordWithID(userRecordID, completionHandler: { (record, error) -> Void in
+
+                //Create Users instance from record
+                let theUser = Users(theCKRecord: record)
+                theUser.hometown = self.hometownTextField.text
+                theUser.bio = self.bioTextField.text
+
+                theUser.save({succeeded, error in
+                    if !succeeded
+                    {
+
+                    }
+                })
+           })
+        }
     }
 
     @IBAction func onDismissButtonTapped(sender: UIBarButtonItem)
     {
         dismissViewControllerAnimated(true, completion: nil)
-//
-//        var predicate = NSPredicate(value: true)
-//        var myQuery = CKQuery(recordType: "Event", predicate: predicate)
-//        publicDatabase.performQuery(myQuery, inZoneWithID: nil, completionHandler: {records, error in
-//            if let err = error {
-//                var alert = UIAlertController(title: "iCloud Connection Error", message: err.localizedDescription, preferredStyle: .Alert)
-//                var alertOK = UIAlertAction(title: "Rats!", style: .Default, handler: nil)
-//                alert.addAction(alertOK)
-//                self.presentViewController(alert, animated: true, completion: nil)
-//            }
-//            else {
-//                var myData = records as [CKRecord]
-//                println(myData)
-//            }
-//        })
     }
 }
