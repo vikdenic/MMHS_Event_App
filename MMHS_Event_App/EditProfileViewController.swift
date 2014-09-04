@@ -100,7 +100,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     @IBAction func onDismissButtonTapped(sender: UIBarButtonItem)
     {
-//        dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
 //
 //        var predicate = NSPredicate(value: true)
 //        var myQuery = CKQuery(recordType: "Event", predicate: predicate)

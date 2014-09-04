@@ -13,6 +13,7 @@
 		933130C319B7AEE200ED4CB9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933130C219B7AEE200ED4CB9 /* CloudKit.framework */; };
 		933130C719B7B14800ED4CB9 /* AAPLCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */; };
 		933130C919B7BCA500ED4CB9 /* NoUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */; };
+		935A082919B8367200AC4346 /* LighterBlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935A082819B8367200AC4346 /* LighterBlurredImageView.swift */; };
 		93CDD0D619B60BE5000122F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0D519B60BE5000122F6 /* AppDelegate.swift */; };
 		93CDD0DB19B60BE5000122F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0D919B60BE5000122F6 /* Main.storyboard */; };
 		93CDD0DD19B60BE5000122F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0DC19B60BE5000122F6 /* Images.xcassets */; };
@@ -46,6 +47,7 @@
 		933130C519B7B14800ED4CB9 /* AAPLCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAPLCloudManager.h; path = ../../../../Learning/CloudKitAtlasAnIntroductiontoCloudKit/CloudKitAtlas/AAPLCloudManager.h; sourceTree = "<group>"; };
 		933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAPLCloudManager.m; path = ../../../../Learning/CloudKitAtlasAnIntroductiontoCloudKit/CloudKitAtlas/AAPLCloudManager.m; sourceTree = "<group>"; };
 		933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoUserViewController.swift; sourceTree = "<group>"; };
+		935A082819B8367200AC4346 /* LighterBlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LighterBlurredImageView.swift; sourceTree = "<group>"; };
 		93CDD0D019B60BE5000122F6 /* MMHS_Event_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMHS_Event_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CDD0D419B60BE5000122F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93CDD0D519B60BE5000122F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				93D5F21A19B64F09008C6218 /* ProfileViewController.swift */,
 				933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */,
 				933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */,
+				935A082819B8367200AC4346 /* LighterBlurredImageView.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				93D5F21819B64EE2008C6218 /* ExploreViewController.swift in Sources */,
 				93CDD0F319B629E1000122F6 /* HomeViewController.swift in Sources */,
 				933130C719B7B14800ED4CB9 /* AAPLCloudManager.m in Sources */,
+				935A082919B8367200AC4346 /* LighterBlurredImageView.swift in Sources */,
 				93D5F21B19B64F09008C6218 /* ProfileViewController.swift in Sources */,
 				93D5F21619B64D46008C6218 /* InvitesViewController.swift in Sources */,
 				192213D719B67176006A23BF /* ModelObjects.swift in Sources */,

@@ -10,10 +10,14 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForAccountAuthentification", name: "opened", object: nil)
+    }
+
+    func checkForAccountAuthentification()
+    {
         var currentiCloudAccountStatus : Void = CKContainer.defaultContainer().accountStatusWithCompletionHandler { (accessibility, error) -> Void in
             if accessibility == CKAccountStatus.Available
             {
@@ -24,13 +28,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-//        if currentiCloudToken != nil
-//        {
-//            requestDiscoverability()
-//        }
-//        else{
-//            performSegueWithIdentifier("NoUserSegue", sender: self)
-//        }
 
     func requestDiscoverability()
     {

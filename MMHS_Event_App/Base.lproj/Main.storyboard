@@ -119,7 +119,7 @@
             </objects>
             <point key="canvasLocation" x="2434" y="152"/>
         </scene>
-        <!--No User View Controller-->
+        <!--iCloud Required-->
         <scene sceneID="nki-EB-cEq">
             <objects>
                 <viewController id="tHA-wH-aFR" customClass="NoUserViewController" customModule="MMHS_Event_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -131,31 +131,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Please Log into iCloud" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u30-bS-wtN">
-                                <rect key="frame" x="214" y="84" width="173" height="56"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cloudsImage" translatesAutoresizingMaskIntoConstraints="NO" id="BfB-1t-h0a" customClass="LighterBlurredImageView" customModule="MMHS_Event_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Please go to Settings &gt; iCloud and Log-in to your Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyy-Xb-hug">
+                                <rect key="frame" x="155" y="244" width="291" height="112"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="pZw-Sq-XxG"/>
+                                    <constraint firstAttribute="width" constant="291" id="vbv-Hf-UQ3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="573-ZC-Lw6">
-                                <rect key="frame" x="251" y="237" width="98" height="33"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Okay">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onButtonTapped:" destination="tHA-wH-aFR" eventType="touchUpInside" id="7uL-nu-SJd"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icloudImage" translatesAutoresizingMaskIntoConstraints="NO" id="Hdh-Mj-lgz">
+                                <rect key="frame" x="238" y="159" width="124" height="84"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="u30-bS-wtN" secondAttribute="centerX" id="Bg7-2c-Cx7"/>
-                            <constraint firstAttribute="centerX" secondItem="573-ZC-Lw6" secondAttribute="centerX" id="IVr-uw-Owh"/>
+                            <constraint firstAttribute="centerX" secondItem="gyy-Xb-hug" secondAttribute="centerX" id="0AM-An-Wyf"/>
+                            <constraint firstItem="gyy-Xb-hug" firstAttribute="centerX" secondItem="Hdh-Mj-lgz" secondAttribute="centerX" id="Ge6-92-Jf1"/>
+                            <constraint firstItem="vx5-df-6BA" firstAttribute="top" secondItem="BfB-1t-h0a" secondAttribute="bottom" id="Pz6-os-WLq"/>
+                            <constraint firstItem="BfB-1t-h0a" firstAttribute="leading" secondItem="mSC-9i-5CH" secondAttribute="leadingMargin" constant="-16" id="ZR1-0k-ds5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5AN-NM-1gc"/>
+                    <navigationItem key="navigationItem" title="iCloud Required" id="5AN-NM-1gc"/>
+                    <connections>
+                        <outlet property="label" destination="gyy-Xb-hug" id="yGf-eZ-Cqi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7f-J8-4yW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -540,7 +546,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cloudsImage" width="320" height="568"/>
         <image name="eventImage" width="160" height="160"/>
+        <image name="icloudImage" width="124" height="84"/>
         <image name="studentImage" width="50" height="50"/>
     </resources>
 </document>

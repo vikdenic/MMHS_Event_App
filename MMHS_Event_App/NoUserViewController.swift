@@ -11,18 +11,17 @@ import UIKit
 class NoUserViewController: UIViewController {
 
     let cloudManager = AAPLCloudManager()
+    @IBOutlet var label: UILabel!
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        requestDiscoverability()
-    }
 
-    @IBAction func onButtonTapped(sender: UIButton)
-    {
         requestDiscoverability()
-    }
+        animateLabel()
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "requestDiscoverability", name: "opened", object: nil)
+    }
 
     func requestDiscoverability()
     {
@@ -45,6 +44,7 @@ class NoUserViewController: UIViewController {
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }
+        println("oh whatup")
     }
 
     func discoveredUserInfo(user : CKDiscoveredUserInfo!)
@@ -54,6 +54,14 @@ class NoUserViewController: UIViewController {
 
         }
         else{
+        }
+    }
+
+    func animateLabel()
+    {
+        label.alpha = 0
+        UIView.animateWithDuration(2) { () -> Void in
+            self.label.alpha = 1;
         }
     }
 }
