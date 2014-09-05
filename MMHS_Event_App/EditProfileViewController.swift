@@ -36,7 +36,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         imagePicker.delegate = self
 
         //MARK: CloudManager
-        cloudManager .requestDiscoverabilityPermission { (discoverable) -> Void in
+        cloudManager.requestDiscoverabilityPermission { (discoverable) -> Void in
             if discoverable
             {
                 self.cloudManager.discoverUserInfo({ (user) -> Void in

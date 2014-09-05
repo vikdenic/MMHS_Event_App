@@ -21,30 +21,22 @@ class ProfileViewController: UIViewController {
     var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
     let cloudManager = AAPLCloudManager()
 
-    override func viewDidLoad()
+    override func viewWillAppear(animated: Bool)
     {
-        super.viewDidLoad()
+        self.accessUserInfo()
+        self.retrieveDataFromCloud()
+    }
 
-        self.discoverUserInfo()
-
+    func retrieveDataFromCloud()
+    {
         CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler { (userRecordID, error) -> Void in
 
             self.publicDatabase.fetchRecordWithID(userRecordID, completionHandler: { (record, error) -> Void in
-                
+
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
-                if error != nil {
-                    // Error Code 11 - Unknown Item: did not find required record type
-                    if (error.code == 11) {
+                    if error != nil {
 
-                        // Since schema is missing, create the schema with demo records and return results
-
-                    }
-                    else {
-                        // In your app, this error needs love and care.
-                        println("An error occured in \(NSStringFromSelector(__FUNCTION__)): \(error)");
-                        abort();
-                    }
                     } else {
                         let theUser = Users(theCKRecord: record)
                         self.hometownLabel.text = theUser.hometown
@@ -55,7 +47,7 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    func discoverUserInfo()
+    func accessUserInfo()
     {
         cloudManager .requestDiscoverabilityPermission { (discoverable) -> Void in
             if discoverable
