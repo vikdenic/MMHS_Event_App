@@ -25,8 +25,10 @@ class ProfileViewController: UIViewController {
     {
         self.accessUserInfo()
         self.retrieveDataFromCloud()
-    }
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveDataFromCloud", name: "savedData", object: nil)
+    }
+    
     func retrieveDataFromCloud()
     {
         CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler { (userRecordID, error) -> Void in

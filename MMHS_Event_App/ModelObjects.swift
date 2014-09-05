@@ -50,23 +50,6 @@ class Users
 
     private var record : CKRecord!
 
-    func retrieveCurrentUsersRecord(complete:(succeeded : Bool, error : NSError!) -> Void)
-    {
-        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-
-        CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler { (userRecordID, error) -> Void in
-
-            publicDatabase.fetchRecordWithID(userRecordID, completionHandler: { (record, error) -> Void in
-                if error == nil
-                {
-                    complete(succeeded: true, error: error)
-                }
-                else {
-                    complete(succeeded: false, error: error)
-                }
-            })
-        }
-    }
 
     func retrieveCurrentUserDataFromCloud(complete:(succeeded : Bool, error : NSError!) -> Void)
     {
@@ -74,10 +57,11 @@ class Users
 
         CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler { (userRecordID, error) -> Void in
 
-            publicDatabase.fetchRecordWithID(userRecordID, completionHandler: { (record, error) -> Void in
+            publicDatabase.fetchRecordWithID(userRecordID, completionHandler: { (theRecord, error) -> Void in
 
                 if error == nil
                 {
+                    self.record = theRecord
                     complete(succeeded: true, error: error)
                 }
                 else {
@@ -104,6 +88,11 @@ class Users
     init(var theCKRecord : CKRecord)
     {
         record = theCKRecord
+    }
+    
+    init()
+    {
+        record = nil
     }
 }
 

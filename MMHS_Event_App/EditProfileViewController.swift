@@ -92,24 +92,33 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     //MARK: Bar Button Actions
     @IBAction func onSaveButtonTapped(sender: UIBarButtonItem)
     {
-        //access users record
-        CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler { (userRecordID, error) -> Void in
+        let theUser = Users()
 
-            self.publicDatabase.fetchRecordWithID(userRecordID, completionHandler: { (record, error) -> Void in
-
-                //Create Users instance from record
-                let theUser = Users(theCKRecord: record)
-                theUser.hometown = self.hometownTextField.text
+        theUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+            //
+            if succeeded
+            {
+                //TODO: SET USER DATA HERE
                 theUser.bio = self.bioTextField.text
+                theUser.hometown = self.hometownTextField.text
 
                 theUser.save({succeeded, error in
-                    if !succeeded
+                    if succeeded
                     {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            NSNotificationCenter.defaultCenter().postNotificationName("savedData", object: self)
+                        })
 
+                    } else{
+                        println("Error saving data")
                     }
                 })
-           })
+            } else{
+                println("Error retreiving user")
+            }
         }
+
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func onDismissButtonTapped(sender: UIBarButtonItem)
