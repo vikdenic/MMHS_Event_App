@@ -28,8 +28,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     var settingProfilePic = Bool()
 
-    var testURL = NSURL()
-
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -42,8 +40,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         cloudManager.requestDiscoverabilityPermission { (discoverable) -> Void in
             if discoverable
             {
-                self.cloudManager.discoverUserInfo({ (user) -> Void in
-                    self.discoveredUserInfo(user)
+                self.cloudManager.discoverUserInfo({ (discoveredUser) -> Void in
+                    self.discoveredUserInfo(discoveredUser)
                 })
             } else{
                 let alert = UIAlertController(title: "CloudKit", message: "Getting your name using Discoverability requires permission", preferredStyle: UIAlertControllerStyle.Alert)
@@ -57,9 +55,18 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
 
-    func discoveredUserInfo(user : CKDiscoveredUserInfo!)
+    func discoveredUserInfo(discoveredUser : CKDiscoveredUserInfo!)
     {
-        self.nameTextField.text = "\(user.firstName) \(user.lastName)"
+        self.nameTextField.text = "\(discoveredUser.firstName) \(discoveredUser.lastName)"
+
+        let user = Users()
+        user.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+            //
+        }
+
+        retrieveAndSetCurrentUserData(user, completed: { (succeeded, error) -> Void in
+            //
+        })
     }
 
     //MARK: image picker
