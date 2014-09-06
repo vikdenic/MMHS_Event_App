@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool)
     {
         self.accessUserInfo()
-//        self.retrieveDataFromCloud()
+
         var theUser = Users()
         theUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
             self.hometownLabel.text = theUser.hometown
@@ -46,11 +46,12 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
 
     func accessUserInfo()
     {
-        cloudManager .requestDiscoverabilityPermission { (discoverable) -> Void in
+        cloudManager.requestDiscoverabilityPermission { (discoverable) -> Void in
             if discoverable
             {
                 self.cloudManager.discoverUserInfo({ (user) -> Void in
                     self.discoveredUserInfo(user)
+                    //block call back
                 })
             } else{
                 let alert = UIAlertController(title: "CloudKit", message: "Getting your name using Discoverability requires permission", preferredStyle: UIAlertControllerStyle.Alert)
