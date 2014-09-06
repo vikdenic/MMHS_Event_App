@@ -25,38 +25,23 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool)
     {
         self.accessUserInfo()
-        self.retrieveDataFromCloud()
+//        self.retrieveDataFromCloud()
+        var theUser = Users()
+        theUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+            self.hometownLabel.text = theUser.hometown
+            self.bioLabel.text = theUser.bio
+
+            if theUser.profilePic != nil
+            {
+                self.profileImageView.image = imageFromAsset(theUser.profilePic as CKAsset)
+            }
+            if theUser.coverPhoto != nil
+            {
+                self.coverImageView.image = imageFromAsset(theUser.coverPhoto as CKAsset)
+            }
+        }
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveDataFromCloud", name: "savedData", object: nil)
-    }
-    
-    func retrieveDataFromCloud()
-    {
-        CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler { (userRecordID, error) -> Void in
-
-            self.publicDatabase.fetchRecordWithID(userRecordID, completionHandler: { (record, error) -> Void in
-
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-
-                    if error != nil {
-
-                    } else {
-                        let theUser = Users(theCKRecord: record)
-                        self.hometownLabel.text = theUser.hometown
-                        self.bioLabel.text = theUser.bio
-                        
-                        if theUser.profilePic != nil
-                        {
-                            self.profileImageView.image = imageFromAsset(theUser.profilePic as CKAsset)
-                        }
-                        if theUser.coverPhoto != nil
-                        {
-                            self.coverImageView.image = imageFromAsset(theUser.coverPhoto as CKAsset)
-                        }
-                    }
-                })
-            })
-        }
     }
 
     func accessUserInfo()
