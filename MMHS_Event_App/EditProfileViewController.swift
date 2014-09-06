@@ -108,43 +108,59 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     {
         let theUser = Users()
 
-        theUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
-            //
-            if succeeded
-            {
-                //TODO: SET USER DATA HERE
-                theUser.bio = self.bioTextField.text
-                theUser.hometown = self.hometownTextField.text
+        retrieveAndSetCurrentUserData(theUser, completed: { (succeeded, error) -> Void in
 
-                if self.selectedProfilePic != nil
+            theUser.save({succeeded, error in
+                if succeeded
                 {
-                    theUser.profilePic = CKAsset(fileURL: self.selectedProfileURL)
-                }
-                if self.selectedCoverPhoto != nil
-                {
-                    theUser.coverPhoto = CKAsset(fileURL: self.selectedCoverURL)
-                }
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        NSNotificationCenter.defaultCenter().postNotificationName("savedData", object: self)
+                    })
 
-                theUser.save({succeeded, error in
-                    if succeeded
-                    {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            NSNotificationCenter.defaultCenter().postNotificationName("savedData", object: self)
-                        })
-
-                    } else{
-                        println("Error saving data")
-                    }
-                })
-            } else{
-                println("Error retreiving user")
-            }
-        }
+                } else{
+                    println("Error saving data")
+                }
+            })
+        })
 
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
-    @IBAction func onDismissButtonTapped(sender: UIBarButtonItem)
+    func retrieveAndSetCurrentUserData(user : Users, completed : (succeeded : Bool, error : NSError!) -> Void)
+    {
+        user.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+            //
+            if succeeded
+            {
+                //TODO: SET USER DATA HERE
+                user.bio = self.bioTextField.text
+                user.hometown = self.hometownTextField.text
+
+                if self.selectedProfilePic != nil
+                {
+                    user.profilePic = CKAsset(fileURL: self.selectedProfileURL)
+                }
+
+                if self.selectedCoverPhoto != nil
+                {
+                    user.coverPhoto = CKAsset(fileURL: self.selectedCoverURL)
+                }
+
+                if error == nil
+                {
+                    completed(succeeded: true, error: error)
+                }
+                else {
+                    completed(succeeded: false, error: error)
+                }
+            }
+            else{
+                println("Error retrieving user's record")
+            }
+        }
+    }
+
+    @IBAction func onDismissButtonTapped(sender : UIBarButtonItem)
     {
         dismissViewControllerAnimated(true, completion: nil)
     }
