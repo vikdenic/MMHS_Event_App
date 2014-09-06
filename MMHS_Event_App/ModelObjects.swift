@@ -12,12 +12,12 @@ import CloudKit
 
 class Users
 {
-    var profilePhoto : CKAsset! {
+    var profilePic : CKAsset! {
         get {
-            return record.objectForKey("profilePhoto") as CKAsset!
+            return record.objectForKey("profilePic") as CKAsset!
         }
         set {
-            record.setObject(newValue, forKey: "profilePhoto")
+            record.setObject(newValue, forKey: "profilePic")
         }
     }
 

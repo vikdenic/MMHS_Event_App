@@ -44,7 +44,15 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
                         let theUser = Users(theCKRecord: record)
                         self.hometownLabel.text = theUser.hometown
                         self.bioLabel.text = theUser.bio
-                        self.profileImageView.image = imageFromAsset(theUser.profilePhoto as CKAsset)
+                        
+                        if theUser.profilePic != nil
+                        {
+                            self.profileImageView.image = imageFromAsset(theUser.profilePic as CKAsset)
+                        }
+                        if theUser.coverPhoto != nil
+                        {
+                            self.coverImageView.image = imageFromAsset(theUser.coverPhoto as CKAsset)
+                        }
                     }
                 })
             })

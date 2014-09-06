@@ -20,7 +20,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     let imagePicker = UIImagePickerController()
 
-    var selectedProfilePic = UIImage()
+    var selectedProfilePic = UIImage?()
+    var selectedCoverPhoto = UIImage?()
 
     var selectedProfileURL = NSURL()
     var selectedCoverURL = NSURL()
@@ -81,12 +82,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
             if self.settingProfilePic == true
             {
-                self.selectedProfilePic = info[UIImagePickerControllerEditedImage] as UIImage
-                self.selectedProfileURL = self.urlWithImage(self.selectedProfilePic)
+                self.selectedProfilePic = info[UIImagePickerControllerEditedImage] as UIImage!
+                self.selectedProfileURL = self.urlWithImage(self.selectedProfilePic!)
             }
             else{
-                let selectedCoverPhoto = info[UIImagePickerControllerEditedImage] as UIImage
-                self.selectedProfileURL = self.urlWithImage(selectedCoverPhoto)
+                self.selectedCoverPhoto = info[UIImagePickerControllerEditedImage] as UIImage!
+                self.selectedCoverURL = self.urlWithImage(self.selectedCoverPhoto!)
             }
         })
     }
@@ -115,9 +116,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 theUser.bio = self.bioTextField.text
                 theUser.hometown = self.hometownTextField.text
 
-                if self.selectedProfileURL.description != nil
+                if self.selectedProfilePic != nil
                 {
-                    theUser.profilePhoto = CKAsset(fileURL: self.selectedProfileURL)
+                    theUser.profilePic = CKAsset(fileURL: self.selectedProfileURL)
+                }
+                if self.selectedCoverPhoto != nil
+                {
+                    theUser.coverPhoto = CKAsset(fileURL: self.selectedCoverURL)
                 }
 
                 theUser.save({succeeded, error in
