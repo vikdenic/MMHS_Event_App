@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var coverImageView: UIImageView!
@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet var hometownLabel: UILabel!
     @IBOutlet var bioLabel: UILabel!
+    @IBOutlet var pageControl: UIPageControl!
 
     var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
     let cloudManager = AAPLCloudManager()
@@ -43,8 +44,7 @@ class ProfileViewController: UIViewController {
                         let theUser = Users(theCKRecord: record)
                         self.hometownLabel.text = theUser.hometown
                         self.bioLabel.text = theUser.bio
-                        var photoAsset = theUser.profilePhoto as CKAsset
-                        self.profileImageView.image = UIImage(contentsOfFile: photoAsset.fileURL.path!)
+                        self.profileImageView.image = imageFromAsset(theUser.profilePhoto as CKAsset)
                     }
                 })
             })
@@ -74,6 +74,12 @@ class ProfileViewController: UIViewController {
     func discoveredUserInfo(user : CKDiscoveredUserInfo!)
     {
         nameLabel.text = "\(user.firstName) \(user.lastName)"
+    }
+
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView)
+    {
+        let pageNumber = roundf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width))
+        self.pageControl.currentPage = Int(pageNumber)
     }
 
     override func viewDidLayoutSubviews()

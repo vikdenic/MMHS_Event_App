@@ -96,6 +96,13 @@ class Users
     }
 }
 
+//Returns UIImage from filePath of a CKAsset
+func imageFromAsset(asset : CKAsset) -> UIImage
+{
+    var photoAsset = asset
+    return UIImage(contentsOfFile: photoAsset.fileURL.path!)
+}
+
 class EventInvite
 {
     var event : Event! {

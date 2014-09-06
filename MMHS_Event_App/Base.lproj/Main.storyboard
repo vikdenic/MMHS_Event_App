@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cwz-eF-3aF">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
@@ -42,7 +43,7 @@
                                                         <constraint firstAttribute="height" constant="128" id="Wox-TO-Hji"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentImage" translatesAutoresizingMaskIntoConstraints="NO" id="Yir-za-D3z">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentImage" translatesAutoresizingMaskIntoConstraints="NO" id="Yir-za-D3z" customClass="ProfilePicImageView" customModule="MMHS_Event_App" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="208" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="Ikn-B7-ecg"/>
@@ -273,7 +274,7 @@
                                     <constraint firstAttribute="height" constant="320" id="p1e-ej-Y2e"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="81e-O9-rnC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81e-O9-rnC">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HxV-lH-BcO" userLabel="View1">
@@ -296,7 +297,7 @@
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sb3-UW-fU7" userLabel="View1">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="studentImage" translatesAutoresizingMaskIntoConstraints="NO" id="5Qf-Em-Gbt">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="studentImage" translatesAutoresizingMaskIntoConstraints="NO" id="5Qf-Em-Gbt" customClass="ProfilePicImageView" customModule="MMHS_Event_App" customModuleProvider="target">
                                                 <rect key="frame" x="110" y="172" width="100" height="100"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Last" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjG-XD-872">
@@ -308,7 +309,13 @@
                                         </subviews>
                                     </view>
                                 </subviews>
+                                <connections>
+                                    <outlet property="delegate" destination="9fn-GX-EyB" id="a0t-gN-esP"/>
+                                </connections>
                             </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="dVd-SX-fFA">
+                                <rect key="frame" x="140" y="287" width="39" height="37"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -328,6 +335,7 @@
                         <outlet property="coverImageView" destination="dm2-gw-1Sp" id="rg2-Sa-BXL"/>
                         <outlet property="hometownLabel" destination="HwG-Fp-lW8" id="jUX-BH-bYh"/>
                         <outlet property="nameLabel" destination="DjG-XD-872" id="R54-b1-cJq"/>
+                        <outlet property="pageControl" destination="dVd-SX-fFA" id="uht-sE-w5g"/>
                         <outlet property="profileImageView" destination="5Qf-Em-Gbt" id="JBW-vG-oiq"/>
                         <outlet property="scrollView" destination="81e-O9-rnC" id="qiV-1I-PIg"/>
                     </connections>

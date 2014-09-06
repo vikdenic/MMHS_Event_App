@@ -114,7 +114,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 //TODO: SET USER DATA HERE
                 theUser.bio = self.bioTextField.text
                 theUser.hometown = self.hometownTextField.text
-                theUser.profilePhoto = CKAsset(fileURL: self.selectedProfileURL)
+
+                if self.selectedProfileURL.description != nil
+                {
+                    theUser.profilePhoto = CKAsset(fileURL: self.selectedProfileURL)
+                }
 
                 theUser.save({succeeded, error in
                     if succeeded

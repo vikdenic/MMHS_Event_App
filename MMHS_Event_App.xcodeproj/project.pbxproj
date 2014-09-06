@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		192213D719B67176006A23BF /* ModelObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192213D619B67176006A23BF /* ModelObjects.swift */; };
+		9316600019BABEF30085B131 /* ProfilePicImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93165FFF19BABEF30085B131 /* ProfilePicImageView.swift */; };
 		933130BD19B776B900ED4CB9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */; };
 		933130BF19B7908A00ED4CB9 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */; };
 		933130C319B7AEE200ED4CB9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933130C219B7AEE200ED4CB9 /* CloudKit.framework */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		192213D319B657A4006A23BF /* MMHS_Event_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MMHS_Event_App.entitlements; sourceTree = "<group>"; };
 		192213D619B67176006A23BF /* ModelObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelObjects.swift; sourceTree = "<group>"; };
+		93165FFF19BABEF30085B131 /* ProfilePicImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePicImageView.swift; sourceTree = "<group>"; };
 		933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredImageView.swift; sourceTree = "<group>"; };
 		933130C219B7AEE200ED4CB9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -87,6 +89,7 @@
 		93ACD95D19B837ED0056F427 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				93165FFF19BABEF30085B131 /* ProfilePicImageView.swift */,
 				933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */,
 				935A082819B8367200AC4346 /* LighterBlurredImageView.swift */,
 			);
@@ -301,6 +304,7 @@
 				933130C719B7B14800ED4CB9 /* AAPLCloudManager.m in Sources */,
 				935A082919B8367200AC4346 /* LighterBlurredImageView.swift in Sources */,
 				93D5F21B19B64F09008C6218 /* ProfileViewController.swift in Sources */,
+				9316600019BABEF30085B131 /* ProfilePicImageView.swift in Sources */,
 				93D5F21619B64D46008C6218 /* InvitesViewController.swift in Sources */,
 				192213D719B67176006A23BF /* ModelObjects.swift in Sources */,
 				933130BF19B7908A00ED4CB9 /* BlurredImageView.swift in Sources */,
