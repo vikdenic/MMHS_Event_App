@@ -55,18 +55,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
 
+    override func viewWillAppear(animated: Bool) {
+        let user = Users()
+        user.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+
+            self.bioTextField.text = user.bio
+            self.hometownTextField.text = user.hometown
+        }
+    }
+
     func discoveredUserInfo(discoveredUser : CKDiscoveredUserInfo!)
     {
         self.nameTextField.text = "\(discoveredUser.firstName) \(discoveredUser.lastName)"
 
         let user = Users()
         user.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
-            //
-        }
 
-        retrieveAndSetCurrentUserData(user, completed: { (succeeded, error) -> Void in
-            //
-        })
+        }
     }
 
     //MARK: image picker

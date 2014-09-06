@@ -62,7 +62,10 @@ class Users
                 if error == nil
                 {
                     self.record = theRecord
-                    complete(succeeded: true, error: error)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
+                        complete(succeeded: true, error: error)
+                    })
                 }
                 else {
                     complete(succeeded: false, error: error)
