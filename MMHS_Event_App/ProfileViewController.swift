@@ -43,6 +43,8 @@ class ProfileViewController: UIViewController {
                         let theUser = Users(theCKRecord: record)
                         self.hometownLabel.text = theUser.hometown
                         self.bioLabel.text = theUser.bio
+                        var photoAsset = theUser.profilePhoto as CKAsset
+                        self.profileImageView.image = UIImage(contentsOfFile: photoAsset.fileURL.path!)
                     }
                 })
             })

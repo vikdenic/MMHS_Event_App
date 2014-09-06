@@ -19,13 +19,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet var bioTextField: UITextField!
 
     let imagePicker = UIImagePickerController()
+
     var selectedProfilePic = UIImage()
-    var selectedCoverPhoto = UIImage()
 
     var selectedProfileURL = NSURL()
     var selectedCoverURL = NSURL()
 
     var settingProfilePic = Bool()
+
+    var testURL = NSURL()
 
     override func viewDidLoad()
     {
@@ -80,13 +82,24 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             if self.settingProfilePic == true
             {
                 self.selectedProfilePic = info[UIImagePickerControllerEditedImage] as UIImage
-                self.selectedProfileURL = info[UIImagePickerControllerReferenceURL] as NSURL
+                self.selectedProfileURL = self.urlWithImage(self.selectedProfilePic)
             }
             else{
-                self.selectedCoverPhoto = info[UIImagePickerControllerEditedImage] as UIImage
-                self.selectedCoverURL = info[UIImagePickerControllerReferenceURL] as NSURL
+                let selectedCoverPhoto = info[UIImagePickerControllerEditedImage] as UIImage
+                self.selectedProfileURL = self.urlWithImage(selectedCoverPhoto)
             }
         })
+    }
+
+    func urlWithImage(image : UIImage) -> NSURL
+    {
+        let data = UIImageJPEGRepresentation(image, 0.75)
+        let cachesDirectory = NSFileManager.defaultManager().URLForDirectory(NSSearchPathDirectory.CachesDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: true, error: nil)
+        let temporaryName = NSUUID.UUID().description.stringByAppendingPathExtension("jpeg")
+        let localURL = cachesDirectory?.URLByAppendingPathComponent(temporaryName!)
+        data.writeToURL(localURL!, atomically: true)
+
+        return localURL!
     }
 
     //MARK: Bar Button Actions
@@ -101,6 +114,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 //TODO: SET USER DATA HERE
                 theUser.bio = self.bioTextField.text
                 theUser.hometown = self.hometownTextField.text
+                theUser.profilePhoto = CKAsset(fileURL: self.selectedProfileURL)
 
                 theUser.save({succeeded, error in
                     if succeeded
