@@ -116,7 +116,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 if succeeded
                 {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        NSNotificationCenter.defaultCenter().postNotificationName("savedData", object: self)
+                        NSNotificationCenter.defaultCenter().postNotificationName("updatedProfile", object: self)
                     })
 
                 } else{

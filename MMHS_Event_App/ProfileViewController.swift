@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         self.accessUserInfo()
         retrieveDataAndSetViews()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveDataAndSetViews", name: "savedData", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveDataAndSetViews", name: "updatedProfile", object: nil)
     }
 
     func retrieveDataAndSetViews()

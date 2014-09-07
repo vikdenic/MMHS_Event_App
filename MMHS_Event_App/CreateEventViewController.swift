@@ -47,16 +47,26 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
 
     @IBAction func onDoneButtonTapped(sender: UIBarButtonItem)
     {
-        let newEvent = Event()
-        newEvent.eventWithCurrentHost()
-//        eventRecord.host =
-        newEvent.title = titleTextField.text
-        newEvent.details = detailsTextField.text
-        newEvent.date = datePicker.date
-        newEvent.eventPhoto = CKAsset(fileURL: selectedImage?.urlWithImage())
+        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
 
-//TODO:        eventRecord.location = location
+//        let currentUser = CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler
+//        eventRecord.setObject("Test Event", forKey: "name")
+
+        let newEvent = Event()
+
+        newEvent.save { (succeeded, error) -> Void in
+            if succeeded
+            {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    NSNotificationCenter.defaultCenter().postNotificationName("savedEvent", object: self)
+                })
+
+            } else{
+                println("Error saving data")
+            }
+        }
     }
+//TODO:        eventRecord.location = location
 
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)
     {

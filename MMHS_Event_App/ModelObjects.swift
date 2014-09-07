@@ -48,9 +48,6 @@ class Users
         }
     }
 
-    private var record : CKRecord!
-
-
     func retrieveCurrentUserDataFromCloud(complete:(succeeded : Bool, error : NSError!) -> Void)
     {
         var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
@@ -88,6 +85,8 @@ class Users
         }
     }
 
+    private var record : CKRecord!
+
     init()
     {
         record = nil
@@ -101,7 +100,6 @@ class Users
 
 class Event
 {
-
     var host : CKReference! {
         get {
             return record.objectForKey("host") as CKReference!
@@ -163,26 +161,47 @@ class Event
         record = theCKRecord
     }
 
-    func saveInBackground(complete:(succees : Bool) -> Void)
+//    func saveInBackground(complete:(succees : Bool) -> Void)
+//    {
+//        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+//        publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
+//            complete(succees: true)
+//        })
+//    }
+
+    func initNewEvent(var withName: String)
     {
-        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-        publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
-            complete(succees: true)
-        })
+
     }
 
     init()
     {
-        record = nil
+        record = CKRecord(recordType: "Event")
     }
 
-    func eventWithCurrentHost()
+    func save(complete:(succeeded : Bool, error : NSError!) -> Void)
     {
-        var currentUser = Users()
-        currentUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        publicDatabase.saveRecord(record) { (resultRecord, error) -> Void in
+            if error == nil
+            {
+                complete(succeeded: true, error: error)
+            }
+            else {
+                complete(succeeded: false, error: error)
+            }
         }
-        host = CKReference(record: currentUser.record, action: CKReferenceAction.None)
     }
+
+//    func eventWithCurrentHost()
+//    {
+//        record = CKRecord(recordType: "Event")
+//
+//        var currentUser = Users()
+//        currentUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+//        }
+//        host = CKReference(record: currentUser.record, action: CKReferenceAction.None)
+//    }
 }
 
 //Returns UIImage from filePath of a CKAsset
