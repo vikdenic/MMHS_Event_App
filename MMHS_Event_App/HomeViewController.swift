@@ -38,6 +38,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if discoverable
             {
                 cloudManager.discoverUserInfo({ (user) -> Void in
+
+                    self.title = "Hi, \(user.firstName)!"
                     
                 })
             } else{
