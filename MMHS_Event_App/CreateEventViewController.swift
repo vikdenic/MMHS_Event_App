@@ -12,7 +12,8 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
 
     @IBOutlet var selectPhotoButton: UIButton!
     let imagePicker = UIImagePickerController()
-    let selectedImage = UIImage()
+    var selectedImage = UIImage?()
+    var selectedImagePath = NSURL?()
 
     override func viewDidLoad()
     {
@@ -30,7 +31,11 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
     {
+        dismissViewControllerAnimated(true, completion: { () -> Void in
 
+            self.selectedImage = info[UIImagePickerControllerEditedImage] as UIImage!
+            self.selectedImagePath = self.selectedImage?.urlWithImage()
+        })
     }
 
 

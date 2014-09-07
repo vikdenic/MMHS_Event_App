@@ -23,8 +23,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     var selectedProfilePic = UIImage?()
     var selectedCoverPhoto = UIImage?()
 
-    var selectedProfileURL = NSURL()
-    var selectedCoverURL = NSURL()
+    var selectedProfilePath = NSURL?()
+    var selectedCoverPath = NSURL?()
 
     var settingProfilePic = Bool()
 
@@ -96,25 +96,25 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             if self.settingProfilePic == true
             {
                 self.selectedProfilePic = info[UIImagePickerControllerEditedImage] as UIImage!
-                self.selectedProfileURL = self.urlWithImage(self.selectedProfilePic!)
+                self.selectedProfilePath = self.selectedProfilePic?.urlWithImage()
             }
             else{
                 self.selectedCoverPhoto = info[UIImagePickerControllerEditedImage] as UIImage!
-                self.selectedCoverURL = self.urlWithImage(self.selectedCoverPhoto!)
+                self.selectedCoverPath = self.selectedCoverPhoto?.urlWithImage()
             }
         })
     }
 
-    func urlWithImage(image : UIImage) -> NSURL
-    {
-        let data = UIImageJPEGRepresentation(image, 0.75)
-        let cachesDirectory = NSFileManager.defaultManager().URLForDirectory(NSSearchPathDirectory.CachesDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: true, error: nil)
-        let temporaryName = NSUUID.UUID().description.stringByAppendingPathExtension("jpeg")
-        let localURL = cachesDirectory?.URLByAppendingPathComponent(temporaryName!)
-        data.writeToURL(localURL!, atomically: true)
-
-        return localURL!
-    }
+//    func urlWithImage(image : UIImage) -> NSURL
+//    {
+//        let data = UIImageJPEGRepresentation(image, 0.75)
+//        let cachesDirectory = NSFileManager.defaultManager().URLForDirectory(NSSearchPathDirectory.CachesDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: true, error: nil)
+//        let temporaryName = NSUUID.UUID().description.stringByAppendingPathExtension("jpeg")
+//        let localURL = cachesDirectory?.URLByAppendingPathComponent(temporaryName!)
+//        data.writeToURL(localURL!, atomically: true)
+//
+//        return localURL!
+//    }
 
     //MARK: Bar Button Actions
     @IBAction func onSaveButtonTapped(sender: UIBarButtonItem)
@@ -151,12 +151,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
                 if self.selectedProfilePic != nil
                 {
-                    user.profilePic = CKAsset(fileURL: self.selectedProfileURL)
+                    user.profilePic = CKAsset(fileURL: self.selectedProfilePath)
                 }
 
                 if self.selectedCoverPhoto != nil
                 {
-                    user.coverPhoto = CKAsset(fileURL: self.selectedCoverURL)
+                    user.coverPhoto = CKAsset(fileURL: self.selectedCoverPath)
                 }
 
                 if error == nil
