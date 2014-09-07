@@ -26,12 +26,11 @@ class NoUserViewController: UIViewController {
     func requestDiscoverability()
     {
         //MARK: CloudManager
-        cloudManager .requestDiscoverabilityPermission { (discoverable) -> Void in
+        cloudManager.requestDiscoverabilityPermission { (discoverable) -> Void in
             if discoverable
             {
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
                         self.cloudManager.discoverUserInfo({ (user) -> Void in
-                            self.discoveredUserInfo(user)
                     })
                 })
             } else{
@@ -45,16 +44,6 @@ class NoUserViewController: UIViewController {
             }
         }
         println("oh whatup")
-    }
-
-    func discoveredUserInfo(user : CKDiscoveredUserInfo!)
-    {
-        if user != nil
-        {
-
-        }
-        else{
-        }
     }
 
     func animateLabel()

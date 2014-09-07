@@ -82,11 +82,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Event App" id="YYh-2G-xyB">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="Yut-T6-WT0">
-                            <connections>
-                                <segue destination="aKG-ge-Ag8" kind="presentation" id="evi-U5-cMK"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ft9-Tv-Qs4">
                             <connections>
                                 <segue destination="ALw-iD-yA0" kind="presentation" id="nma-mn-18t"/>
@@ -231,9 +226,18 @@
                                 <action selector="onCancelButtonTapped:" destination="lcX-2Z-eXX" id="BNK-MT-7Mr"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="abv-qQ-5eR">
+                            <connections>
+                                <action selector="onDoneButtonTapped:" destination="lcX-2Z-eXX" id="B6A-sK-NMu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePicker" destination="jU6-hY-gXD" id="gWL-nI-4Oj"/>
+                        <outlet property="detailsTextField" destination="93z-hi-HFt" id="kQI-2t-CCi"/>
+                        <outlet property="locationTextField" destination="rVT-zz-582" id="P6d-VU-VQx"/>
                         <outlet property="selectPhotoButton" destination="c16-4G-BaA" id="iAF-ke-XY6"/>
+                        <outlet property="titleTextField" destination="wjQ-Oh-tIF" id="WtF-nO-Iey"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sdY-RK-Rwm" userLabel="First Responder" sceneMemberID="firstResponder"/>

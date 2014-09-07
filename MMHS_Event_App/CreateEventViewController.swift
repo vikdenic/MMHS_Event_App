@@ -10,6 +10,11 @@ import UIKit
 
 class CreateEventViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var detailsTextField: UITextField!
+    @IBOutlet var locationTextField: UITextField!
+    @IBOutlet var datePicker: UIDatePicker!
+
     @IBOutlet var selectPhotoButton: UIButton!
     let imagePicker = UIImagePickerController()
     var selectedImage = UIImage?()
@@ -38,6 +43,10 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
 
+    @IBAction func onDoneButtonTapped(sender: UIBarButtonItem)
+    {
+        
+    }
 
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)
     {
