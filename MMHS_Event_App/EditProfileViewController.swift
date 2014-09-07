@@ -58,7 +58,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func viewWillAppear(animated: Bool)
     {
         let user = Users()
-        user.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+        user.setRecordToCurrentUsersRecordWithBlock { (succeeded, error) -> Void in
 
             self.bioTextField.text = user.bio
             self.hometownTextField.text = user.hometown
@@ -70,8 +70,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.nameTextField.text = "\(discoveredUser.firstName) \(discoveredUser.lastName)"
 
         let user = Users()
-        user.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
-
+        user.setRecordToCurrentUsersRecordWithBlock { (succeeded, error) -> Void in
+            //
         }
     }
 
@@ -130,8 +130,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     func retrieveAndSetCurrentUserData(user : Users, completed : (succeeded : Bool, error : NSError!) -> Void)
     {
-        user.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
-            //
+        user.setRecordToCurrentUsersRecordWithBlock { (succeeded, error) -> Void in
+
             if succeeded
             {
                 //TODO: SET USER DATA HERE

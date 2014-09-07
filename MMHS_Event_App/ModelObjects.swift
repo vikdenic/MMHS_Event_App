@@ -48,7 +48,7 @@ class Users
         }
     }
 
-    func retrieveCurrentUserDataFromCloud(complete:(succeeded : Bool, error : NSError!) -> Void)
+    func setRecordToCurrentUsersRecordWithBlock(complete:(succeeded : Bool, error : NSError!) -> Void)
     {
         var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
 
@@ -85,7 +85,7 @@ class Users
         }
     }
 
-    private var record : CKRecord!
+    var record : CKRecord!
 
     init()
     {

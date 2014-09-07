@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     func retrieveDataAndSetViews()
     {
         var theUser = Users()
-        theUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+        theUser.setRecordToCurrentUsersRecordWithBlock { (succeeded, error) -> Void in
             self.hometownLabel.text = theUser.hometown
             self.bioLabel.text = theUser.bio
 

@@ -63,6 +63,8 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
 
+    
+
     func setDataAndSave()
     {
         var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
@@ -84,15 +86,20 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
             showErrorAlert("Oops!", message: "Don't forget to select a photo.")
         }
 
-        newEvent.save { (succeeded, error) -> Void in
-            if succeeded
-            {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    NSNotificationCenter.defaultCenter().postNotificationName("savedEvent", object: self)
-                })
+        var currentUser = Users()
+        currentUser.setRecordToCurrentUsersRecordWithBlock { (succeeded, error) -> Void in
+            newEvent.host = CKReference(record: currentUser.record, action: CKReferenceAction.DeleteSelf)
 
-            } else{
-                self.showErrorAlert("Oops!", message: "Something didn't work. Try again later.")
+            newEvent.save { (succeeded, error) -> Void in
+                if succeeded
+                {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        NSNotificationCenter.defaultCenter().postNotificationName("savedEvent", object: self)
+                    })
+
+                } else{
+                    self.showErrorAlert("Oops!", message: "Something didn't work. Try again later.")
+                }
             }
         }
     }
