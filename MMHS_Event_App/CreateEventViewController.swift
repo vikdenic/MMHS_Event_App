@@ -47,7 +47,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     }
 
 
-    func geocodeLocationAndSetAllData(located : (succeeded : Bool, error : NSError!) -> Void)
+    func geocodeLocationWithBlock(located : (succeeded : Bool, error : NSError!) -> Void)
     {
         var geocode = CLGeocoder()
         geocode.geocodeAddressString(locationTextField.text, completionHandler: { (placemarks, error) -> Void in
@@ -58,7 +58,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
                 located(succeeded: true, error: error)
             }
             else{
-                println("error")
+               self.showErrorAlert("Oops!", message: "Please enter a valid location.")
             }
         })
     }
@@ -74,6 +74,15 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         newEvent.title = titleTextField.text
         newEvent.details = detailsTextField.text
         newEvent.location = location
+        newEvent.date = datePicker.date
+
+        if selectedImage != nil
+        {
+        newEvent.eventPhoto = CKAsset(fileURL: selectedImage?.urlWithImage())
+        }
+        else{
+            showErrorAlert("Oops!", message: "Don't forget to select a photo.")
+        }
 
         newEvent.save { (succeeded, error) -> Void in
             if succeeded
@@ -83,20 +92,32 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
                 })
 
             } else{
-                println("Error saving data")
+                self.showErrorAlert("Oops!", message: "Something didn't work. Try again later.")
             }
         }
     }
 
     @IBAction func onDoneButtonTapped(sender: UIBarButtonItem)
     {
-        geocodeLocationAndSetAllData { (succeeded, error) -> Void in
+        geocodeLocationWithBlock{ (succeeded, error) -> Void in
             self.setDataAndSave()
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
 
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)
     {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    //MARK: Error Handling
+    func showErrorAlert(withTitle : String, message : String)
+    {
+        let alert = UIAlertController(title: withTitle, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+
+        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (var act) -> Void in
+        })
+        alert.addAction(action)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
