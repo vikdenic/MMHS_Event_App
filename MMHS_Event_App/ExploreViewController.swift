@@ -17,18 +17,4 @@ class ExploreViewController: UIViewController {
     {
         super.viewDidLoad()
     }
-
-    func geocodeLocation(location : String)
-    {
-        var geocode = CLGeocoder()
-        geocode.geocodeAddressString(location, completionHandler: { (objects, error) -> Void in
-            if error != nil
-            {
-                println("error")
-            }
-            else{
-
-            }
-        })
-    }
 }

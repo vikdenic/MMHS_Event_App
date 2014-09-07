@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class CreateEventViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -20,7 +21,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     var selectedImage = UIImage?()
     var selectedImagePath = NSURL?()
 
-    var currentUser = Users()
+    var location = CLLocation?()
 
     override func viewDidLoad()
     {
@@ -45,14 +46,41 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
 
+    func setLocation()
+    {
+        geocodeLocation(locationTextField.text)
+    }
+
+    func geocodeLocation(location : String)
+    {
+        var geocode = CLGeocoder()
+        geocode.geocodeAddressString(location, completionHandler: { (placemarks, error) -> Void in
+            if error == nil
+            {
+                let locations : [CLPlacemark]  = placemarks as [CLPlacemark]
+                self.location = locations[0].location
+            }
+            else{
+                println("error")
+            }
+        })
+    }
+    @IBAction func searchButtonTapped(sender: UIButton)
+    {
+        setLocation()
+    }
+
     @IBAction func onDoneButtonTapped(sender: UIBarButtonItem)
     {
         var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-
+//        setLocation()
 //        let currentUser = CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler
 //        eventRecord.setObject("Test Event", forKey: "name")
 
         let newEvent = Event()
+        newEvent.title = titleTextField.text
+        newEvent.details = detailsTextField.text
+        newEvent.location = location
 
         newEvent.save { (succeeded, error) -> Void in
             if succeeded
@@ -71,6 +99,8 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)
     {
         dismissViewControllerAnimated(true, completion: nil)
+
+        geocodeLocation(locationTextField.text)
     }
 
 }
