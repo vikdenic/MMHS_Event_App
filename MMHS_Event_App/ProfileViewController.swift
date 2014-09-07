@@ -25,7 +25,13 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool)
     {
         self.accessUserInfo()
+        retrieveDataAndSetViews()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveDataAndSetViews", name: "savedData", object: nil)
+    }
 
+    func retrieveDataAndSetViews()
+    {
         var theUser = Users()
         theUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
             self.hometownLabel.text = theUser.hometown
@@ -40,8 +46,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
                 self.coverImageView.image = imageFromAsset(theUser.coverPhoto as CKAsset)
             }
         }
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveDataFromCloud", name: "savedData", object: nil)
     }
 
     func accessUserInfo()

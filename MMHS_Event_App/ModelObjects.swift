@@ -99,6 +99,18 @@ class Users
     }
 }
 
+//Compresses Image and returns file path
+func urlWithImage(image : UIImage) -> NSURL
+{
+    let data = UIImageJPEGRepresentation(image, 0.75)
+    let cachesDirectory = NSFileManager.defaultManager().URLForDirectory(NSSearchPathDirectory.CachesDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: true, error: nil)
+    let temporaryName = NSUUID.UUID().description.stringByAppendingPathExtension("jpeg")
+    let localURL = cachesDirectory?.URLByAppendingPathComponent(temporaryName!)
+    data.writeToURL(localURL!, atomically: true)
+
+    return localURL!
+}
+
 //Returns UIImage from filePath of a CKAsset
 func imageFromAsset(asset : CKAsset) -> UIImage
 {

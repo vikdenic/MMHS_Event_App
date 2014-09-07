@@ -55,7 +55,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         let user = Users()
         user.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
 
