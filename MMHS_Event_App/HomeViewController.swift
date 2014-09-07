@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var eventsArray = [CKRecord]()
+    @IBOutlet var tableView: UITableView!
 
     override func viewWillAppear(animated: Bool)
     {
@@ -19,27 +20,33 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         checkForAccountAuthentification()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForAccountAuthentification", name: "opened", object: nil)
 
+        //TODO: Query for all Event records
+        var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+
         let truePredicate = NSPredicate(value: true)
         let eventQuery = CKQuery(recordType: "Event", predicate: truePredicate)
-        let queryOperation = CKQueryOperation(query: eventQuery)
-//        queryOperation.desiredKeys = nil
 
-        queryOperation.recordFetchedBlock = { (record : CKRecord!) in
-            self.eventsArray.append(record)
-            println(self.eventsArray)
+        database.performQuery(eventQuery, inZoneWithID: nil) { (records, error) -> Void in
+            if error != nil{
+                println("error")
+            } else{
+                for record in records
+                {
+                    self.eventsArray.append(record as CKRecord)
+                }
+            }
         }
+
+        let queryOperation = CKQueryOperation(query: eventQuery)
 
         queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
-
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                println(self.eventsArray)
-//            })
+            println("queryCompletionBlock: \(self.eventsArray)")
+            self.tableView.reloadData()
         }
 
-        // Create the database you will retreive information from
-        var database: CKDatabase = CKContainer.defaultContainer().privateCloudDatabase
         database.addOperation(queryOperation)
     }
+
 
     func checkForAccountAuthentification()
     {
@@ -81,12 +88,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 1
+        return eventsArray.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let feedCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedTableViewCell
+//TODO:        let imageAsset = eventsArray[indexPath.row].valueForKey("eventPhoto") as CKAsset
+
         return feedCell
     }
 }
