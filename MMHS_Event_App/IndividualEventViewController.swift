@@ -8,9 +8,25 @@
 
 import UIKit
 
-class IndividualEventViewController: UIViewController {
+class IndividualEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+
+    //MARK: TableView
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("StreamCell") as StreamTableViewCell
+
+        return cell
     }
 }

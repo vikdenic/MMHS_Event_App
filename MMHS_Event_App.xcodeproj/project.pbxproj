@@ -15,6 +15,7 @@
 		933130C719B7B14800ED4CB9 /* AAPLCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */; };
 		933130C919B7BCA500ED4CB9 /* NoUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */; };
 		935A082919B8367200AC4346 /* LighterBlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935A082819B8367200AC4346 /* LighterBlurredImageView.swift */; };
+		93727BAC19BC5D490019D6B2 /* StreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93727BAB19BC5D490019D6B2 /* StreamTableViewCell.swift */; };
 		93CDD0D619B60BE5000122F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0D519B60BE5000122F6 /* AppDelegate.swift */; };
 		93CDD0DB19B60BE5000122F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0D919B60BE5000122F6 /* Main.storyboard */; };
 		93CDD0DD19B60BE5000122F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0DC19B60BE5000122F6 /* Images.xcassets */; };
@@ -50,6 +51,7 @@
 		933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAPLCloudManager.m; path = ../../../../Learning/CloudKitAtlasAnIntroductiontoCloudKit/CloudKitAtlas/AAPLCloudManager.m; sourceTree = "<group>"; };
 		933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoUserViewController.swift; sourceTree = "<group>"; };
 		935A082819B8367200AC4346 /* LighterBlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LighterBlurredImageView.swift; sourceTree = "<group>"; };
+		93727BAB19BC5D490019D6B2 /* StreamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamTableViewCell.swift; sourceTree = "<group>"; };
 		93CDD0D019B60BE5000122F6 /* MMHS_Event_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMHS_Event_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CDD0D419B60BE5000122F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93CDD0D519B60BE5000122F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */,
 				93CDD0F219B629E1000122F6 /* HomeViewController.swift */,
 				93D5F21D19B64FEA008C6218 /* IndividualEventViewController.swift */,
+				93727BAB19BC5D490019D6B2 /* StreamTableViewCell.swift */,
 				93CDD0F419B62A9A000122F6 /* FeedTableViewCell.swift */,
 				93D5F21319B64CF0008C6218 /* CreateEventViewController.swift */,
 				93D5F21519B64D46008C6218 /* InvitesViewController.swift */,
@@ -298,6 +301,7 @@
 				93D5F21E19B64FEA008C6218 /* IndividualEventViewController.swift in Sources */,
 				93CDD0D619B60BE5000122F6 /* AppDelegate.swift in Sources */,
 				933130C919B7BCA500ED4CB9 /* NoUserViewController.swift in Sources */,
+				93727BAC19BC5D490019D6B2 /* StreamTableViewCell.swift in Sources */,
 				93CDD0F519B62A9A000122F6 /* FeedTableViewCell.swift in Sources */,
 				93D5F21819B64EE2008C6218 /* ExploreViewController.swift in Sources */,
 				93CDD0F319B629E1000122F6 /* HomeViewController.swift in Sources */,
