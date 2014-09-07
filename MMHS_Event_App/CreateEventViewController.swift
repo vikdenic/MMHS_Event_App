@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class CreateEventViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateEventViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var detailsTextField: UITextField!
@@ -46,36 +46,29 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
 
-    func setLocation()
-    {
-        geocodeLocation(locationTextField.text)
-    }
 
-    func geocodeLocation(location : String)
+    func geocodeLocationAndSetAllData(located : (succeeded : Bool, error : NSError!) -> Void)
     {
         var geocode = CLGeocoder()
-        geocode.geocodeAddressString(location, completionHandler: { (placemarks, error) -> Void in
+        geocode.geocodeAddressString(locationTextField.text, completionHandler: { (placemarks, error) -> Void in
             if error == nil
             {
                 let locations : [CLPlacemark]  = placemarks as [CLPlacemark]
                 self.location = locations[0].location
+                located(succeeded: true, error: error)
             }
             else{
                 println("error")
             }
         })
     }
-    @IBAction func searchButtonTapped(sender: UIButton)
-    {
-        setLocation()
-    }
 
-    @IBAction func onDoneButtonTapped(sender: UIBarButtonItem)
+    func setDataAndSave()
     {
         var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-//        setLocation()
-//        let currentUser = CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler
-//        eventRecord.setObject("Test Event", forKey: "name")
+        //        setLocation()
+        //        let currentUser = CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler
+        //        eventRecord.setObject("Test Event", forKey: "name")
 
         let newEvent = Event()
         newEvent.title = titleTextField.text
@@ -94,13 +87,16 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
             }
         }
     }
-//TODO:        eventRecord.location = location
+
+    @IBAction func onDoneButtonTapped(sender: UIBarButtonItem)
+    {
+        geocodeLocationAndSetAllData { (succeeded, error) -> Void in
+            self.setDataAndSave()
+        }
+    }
 
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)
     {
         dismissViewControllerAnimated(true, completion: nil)
-
-        geocodeLocation(locationTextField.text)
     }
-
 }
