@@ -20,6 +20,8 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
     var selectedImage = UIImage?()
     var selectedImagePath = NSURL?()
 
+    var currentUser = Users()
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -45,7 +47,15 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
 
     @IBAction func onDoneButtonTapped(sender: UIBarButtonItem)
     {
-        
+        let newEvent = Event()
+        newEvent.eventWithCurrentHost()
+//        eventRecord.host =
+        newEvent.title = titleTextField.text
+        newEvent.details = detailsTextField.text
+        newEvent.date = datePicker.date
+        newEvent.eventPhoto = CKAsset(fileURL: selectedImage?.urlWithImage())
+
+//TODO:        eventRecord.location = location
     }
 
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)

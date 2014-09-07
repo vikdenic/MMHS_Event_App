@@ -88,52 +88,71 @@ class Users
         }
     }
 
-    init(var theCKRecord : CKRecord)
-    {
-        record = theCKRecord
-    }
-    
     init()
     {
         record = nil
     }
+
+    init(var theCKRecord : CKRecord)
+    {
+        record = theCKRecord
+    }
 }
 
-//Returns UIImage from filePath of a CKAsset
-func imageFromAsset(asset : CKAsset) -> UIImage
+class Event
 {
-    var photoAsset = asset
-    return UIImage(contentsOfFile: photoAsset.fileURL.path!)
-}
 
-class EventInvite
-{
-    var event : Event! {
+    var host : CKReference! {
         get {
-            var ckRecordEvent = record.objectForKey("event") as CKRecord!
-            return Event(theCKRecord: ckRecordEvent)
+            return record.objectForKey("host") as CKReference!
         }
         set {
-            record.setValue(newValue, forKey: "event")
+            record.setValue(newValue, forKey: "host")
         }
     }
 
-    var toUser : Users! {
+    var title : String! {
         get {
-            var ckRecordUser = record.objectForKey("toUser") as CKRecord!
-            return Users(theCKRecord: ckRecordUser)
+            return record.objectForKey("title") as String!
         }
         set {
-            record.setValue(newValue, forKey: "toUser")
+            record.setObject(newValue, forKey: "title")
         }
     }
 
-    var statusOfUser : String! {
-        get {
-            return record.objectForKey("statusOfUser") as String!
+    var details : String! {
+        get
+        {
+            return record.objectForKey("details") as String!
         }
         set {
-            record.setObject(newValue, forKey: "statusOfUser")
+            record.setObject(newValue, forKey: "details")
+        }
+    }
+    var date : NSDate! {
+        get {
+            return record.objectForKey("date") as NSDate!
+        }
+        set {
+            record.setObject(newValue, forKey: "date")
+        }
+    }
+
+    var location : CLLocation! {
+        get {
+            return record.objectForKey("location") as CLLocation!
+        }
+        set {
+            record.setObject(newValue, forKey: "location")
+        }
+    }
+
+    var eventPhoto : CKAsset! {
+        get {
+            return record.objectForKey("eventPhoto") as CKAsset!
+        }
+        set {
+            record.setObject(newValue, forKey: "eventPhoto")
         }
     }
 
@@ -143,6 +162,34 @@ class EventInvite
     {
         record = theCKRecord
     }
+
+    func saveInBackground(complete:(succees : Bool) -> Void)
+    {
+        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
+            complete(succees: true)
+        })
+    }
+
+    init()
+    {
+        record = nil
+    }
+
+    func eventWithCurrentHost()
+    {
+        var currentUser = Users()
+        currentUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
+        }
+        host = CKReference(record: currentUser.record, action: CKReferenceAction.None)
+    }
+}
+
+//Returns UIImage from filePath of a CKAsset
+func imageFromAsset(asset : CKAsset) -> UIImage
+{
+    var photoAsset = asset
+    return UIImage(contentsOfFile: photoAsset.fileURL.path!)
 }
 
 class Photo
@@ -222,73 +269,10 @@ class LikeActivity
     {
         record = theCKRecord
     }
-}
 
-class Event
-{
-    var host : Users! {
-        get {
-            var ckRecordUser = record.objectForKey("user") as CKRecord!
-            return Users(theCKRecord: ckRecordUser)
-        }
-        set {
-            record.setValue(newValue, forKey: "host")
-        }
-    }
-
-    var title : String! {
-        get {
-            return record.objectForKey("title") as String!
-        }
-        set {
-            record.setObject(newValue, forKey: "title")
-        }
-    }
-
-    var details : String! {
-        get
-        {
-            return record.objectForKey("details") as String!
-        }
-        set {
-            record.setObject(newValue, forKey: "details")
-        }
-    }
-    var date : NSDate! {
-        get {
-            return record.objectForKey("date") as NSDate!
-        }
-        set {
-            record.setObject(newValue, forKey: "date")
-        }
-    }
-
-    var location : CLLocation! {
-        get {
-            return record.objectForKey("location") as CLLocation!
-        }
-        set {
-            record.setObject(newValue, forKey: "location")
-        }
-    }
-
-    private var record : CKRecord!
-
-    init(var theCKRecord : CKRecord)
+    init()
     {
-        record = theCKRecord
-    }
-    func initNewEvent(var withName: String)
-    {
-        record = CKRecord(recordType: "Event")
-        record.setObject(withName, forKey: "name")
-    }
-    func saveInBackground(complete:(succees : Bool) -> Void)
-    {
-        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-        publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
-            complete(succees: true)
-        })
+        record = nil
     }
 }
 

@@ -38,7 +38,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if discoverable
             {
                 cloudManager.discoverUserInfo({ (user) -> Void in
-                    self.discoveredUserInfo(user)
+                    
                 })
             } else{
                 let alert = UIAlertController(title: "CloudKit", message: "Getting your name using Discoverability requires permission", preferredStyle: UIAlertControllerStyle.Alert)
@@ -50,11 +50,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }
-    }
-
-    func discoveredUserInfo(user : CKDiscoveredUserInfo!)
-    {
-        //code to set data
     }
 
     //MARK: TableView
