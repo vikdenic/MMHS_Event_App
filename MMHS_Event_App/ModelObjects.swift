@@ -236,12 +236,12 @@ class Event
         }
     }
 
-    var name : String! {
+    var title : String! {
         get {
-            return record.objectForKey("name") as String!
+            return record.objectForKey("title") as String!
         }
         set {
-            record.setObject(newValue, forKey: "name")
+            record.setObject(newValue, forKey: "title")
         }
     }
 

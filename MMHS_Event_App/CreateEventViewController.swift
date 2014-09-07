@@ -8,13 +8,31 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController {
+class CreateEventViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    override func viewDidLoad() {
+    @IBOutlet var selectPhotoButton: UIButton!
+    let imagePicker = UIImagePickerController()
+    let selectedImage = UIImage()
+
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePicker.allowsEditing = true
+        selectPhotoButton.layer.cornerRadius = 5
     }
+
+    @IBAction func onSelectPhotoTapped(sender: UIButton)
+    {
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
+    {
+
+    }
+
 
     @IBAction func onCancelButtonTapped(sender: UIBarButtonItem)
     {
