@@ -161,14 +161,6 @@ class Event
         record = theCKRecord
     }
 
-//    func saveInBackground(complete:(succees : Bool) -> Void)
-//    {
-//        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-//        publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
-//            complete(succees: true)
-//        })
-//    }
-
     func initNewEvent(var withName: String)
     {
 
@@ -192,16 +184,6 @@ class Event
             }
         }
     }
-
-//    func eventWithCurrentHost()
-//    {
-//        record = CKRecord(recordType: "Event")
-//
-//        var currentUser = Users()
-//        currentUser.retrieveCurrentUserDataFromCloud { (succeeded, error) -> Void in
-//        }
-//        host = CKReference(record: currentUser.record, action: CKReferenceAction.None)
-//    }
 }
 
 //Returns UIImage from filePath of a CKAsset

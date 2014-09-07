@@ -10,11 +10,35 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    override func viewWillAppear(animated: Bool) {
+    var eventsArray = [CKRecord]()
+
+    override func viewWillAppear(animated: Bool)
+    {
         super.viewWillAppear(true)
 
         checkForAccountAuthentification()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForAccountAuthentification", name: "opened", object: nil)
+
+        let truePredicate = NSPredicate(value: true)
+        let eventQuery = CKQuery(recordType: "Event", predicate: truePredicate)
+        let queryOperation = CKQueryOperation(query: eventQuery)
+//        queryOperation.desiredKeys = nil
+
+        queryOperation.recordFetchedBlock = { (record : CKRecord!) in
+            self.eventsArray.append(record)
+            println(self.eventsArray)
+        }
+
+        queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
+
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                println(self.eventsArray)
+//            })
+        }
+
+        // Create the database you will retreive information from
+        var database: CKDatabase = CKContainer.defaultContainer().privateCloudDatabase
+        database.addOperation(queryOperation)
     }
 
     func checkForAccountAuthentification()
@@ -65,5 +89,4 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let feedCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedTableViewCell
         return feedCell
     }
-
 }
