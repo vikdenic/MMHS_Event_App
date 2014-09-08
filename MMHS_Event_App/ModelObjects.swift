@@ -277,18 +277,18 @@ class LikeActivity
     }
 }
 
-func queryAllRecords(recordType: String!, toArray: [CKRecord], completed: (result: Bool, error: NSError!) -> Void){
+func queryAllRecords(recordType: String!, toArray: NSMutableArray, completed: (result: Bool, error: NSError!) -> Void){
     var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
 
-    var toArray = [CKRecord]()
-    toArray.removeAll(keepCapacity: false)
+//    var toArray = [CKRecord]()
+    toArray.removeAllObjects()
 
     let truePredicate = NSPredicate(value: true)
     let query = CKQuery(recordType: recordType, predicate: truePredicate)
     let queryOperation = CKQueryOperation(query: query)
 
     queryOperation.recordFetchedBlock = { (record : CKRecord!) in
-        toArray.append(record)
+        toArray.addObject(record)
     }
 
     queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
