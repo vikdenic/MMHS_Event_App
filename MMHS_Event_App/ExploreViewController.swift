@@ -12,9 +12,25 @@ import MapKit
 class ExploreViewController: UIViewController {
 
     @IBOutlet var mapView: MKMapView!
+    var eventsArray = NSMutableArray()
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+
+        queryAllRecords("Event", eventsArray) { (result, error) -> Void in
+            for event in self.eventsArray
+            {
+                self.addpin(event as CKRecord)
+            }
+        }
+    }
+
+    func addpin(record : CKRecord)
+    {
+        var pin = MKPointAnnotation()
+        var location = record.valueForKey("location") as CLLocation
+        pin.coordinate = location.coordinate
+        mapView.addAnnotation(pin)
     }
 }

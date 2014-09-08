@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cwz-eF-3aF">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
@@ -38,14 +37,22 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6t-dh-r7x">
                                                     <rect key="frame" x="0.0" y="192" width="320" height="128"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDJ-bp-ULM">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDJ-bp-ULM">
                                                             <rect key="frame" x="113" y="44" width="205" height="27"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="205" id="ttX-3V-9RW"/>
+                                                                <constraint firstAttribute="height" constant="27" id="u3i-uR-Fkf"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOb-NH-1NY">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOb-NH-1NY">
                                                             <rect key="frame" x="111" y="79" width="210" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="YfX-n7-eBp"/>
+                                                                <constraint firstAttribute="width" constant="210" id="bU0-oO-G1b"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -53,8 +60,12 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="cOb-NH-1NY" secondAttribute="bottom" constant="26" id="Cdf-Sv-xtw"/>
                                                         <constraint firstAttribute="width" constant="320" id="FUR-Vx-Z9V"/>
+                                                        <constraint firstItem="cOb-NH-1NY" firstAttribute="leading" secondItem="o6t-dh-r7x" secondAttribute="leading" constant="111" id="Mvz-9M-R0y"/>
+                                                        <constraint firstItem="vDJ-bp-ULM" firstAttribute="leading" secondItem="o6t-dh-r7x" secondAttribute="leading" constant="113" id="U1X-P5-8mk"/>
                                                         <constraint firstAttribute="height" constant="128" id="Wox-TO-Hji"/>
+                                                        <constraint firstItem="cOb-NH-1NY" firstAttribute="top" secondItem="vDJ-bp-ULM" secondAttribute="bottom" constant="8" id="yXt-oR-0qV"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePic" translatesAutoresizingMaskIntoConstraints="NO" id="Yir-za-D3z" customClass="ProfilePicImageView" customModule="MMHS_Event_App" customModuleProvider="target">

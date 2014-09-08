@@ -96,6 +96,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let hostRef = eventRecord.valueForKey("host") as CKReference
         let hostID = hostRef.recordID
         let host = CKRecord(recordType: "Users", recordID: hostID)
+
         if host.valueForKey("profilePic") != nil
         {
             let hostPicAsset = host.valueForKey("profilePic") as CKAsset
