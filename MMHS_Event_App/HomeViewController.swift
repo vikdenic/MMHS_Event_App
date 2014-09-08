@@ -89,6 +89,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //TODO:        let imageAsset = eventsArray[indexPath.row].valueForKey("eventPhoto") as CKAsset
         let eventRecord = eventsArray[indexPath.row] as CKRecord
         feedCell.titleLabel.text = eventRecord.valueForKey("title") as String!
+        
+        let date = eventRecord.valueForKey("date") as NSDate
+        feedCell.dateLabel.text = date.toNiceString()
 
         if eventRecord.valueForKey("eventPhoto") != nil
         {

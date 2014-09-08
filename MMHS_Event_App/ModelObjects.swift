@@ -304,6 +304,16 @@ func queryAllRecords(recordType: String!, toArray: NSMutableArray, completed: (r
     database.addOperation(queryOperation)
 }
 
+extension NSDate{
+    func toNiceString() -> String
+    {
+        //convert to regular looking time
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "cccc, MMM d, hh:mm aa"
+        return dateFormatter.stringFromDate(self)
+    }
+}
+
 extension UIImage{
     func urlWithImage() -> NSURL!
     {
