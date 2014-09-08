@@ -39,13 +39,13 @@
                                                     <rect key="frame" x="0.0" y="192" width="320" height="128"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDJ-bp-ULM">
-                                                            <rect key="frame" x="115" y="44" width="205" height="27"/>
+                                                            <rect key="frame" x="113" y="44" width="205" height="27"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOb-NH-1NY">
-                                                            <rect key="frame" x="112" y="79" width="210" height="23"/>
+                                                            <rect key="frame" x="111" y="79" width="210" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -57,8 +57,8 @@
                                                         <constraint firstAttribute="height" constant="128" id="Wox-TO-Hji"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="profilePic" translatesAutoresizingMaskIntoConstraints="NO" id="Yir-za-D3z" customClass="ProfilePicImageView" customModule="MMHS_Event_App" customModuleProvider="target">
-                                                    <rect key="frame" x="6" y="208" width="100" height="100"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePic" translatesAutoresizingMaskIntoConstraints="NO" id="Yir-za-D3z" customClass="ProfilePicImageView" customModule="MMHS_Event_App" customModuleProvider="target">
+                                                    <rect key="frame" x="5" y="209" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="Ikn-B7-ecg"/>
                                                         <constraint firstAttribute="height" constant="100" id="hO0-5A-tL7"/>
@@ -70,8 +70,8 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="aJ2-i0-aMD" secondAttribute="bottom" constant="-8" id="ULN-kk-lxg"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="o6t-dh-r7x" secondAttribute="bottom" constant="-8" id="WPC-ff-aCu"/>
                                                 <constraint firstItem="o6t-dh-r7x" firstAttribute="leading" secondItem="eog-4g-yYP" secondAttribute="leadingMargin" constant="-8" id="Y6T-7x-aax"/>
-                                                <constraint firstItem="Yir-za-D3z" firstAttribute="leading" secondItem="eog-4g-yYP" secondAttribute="leadingMargin" constant="2" id="pap-cX-kdq"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Yir-za-D3z" secondAttribute="bottom" constant="4" id="yTZ-cK-iDV"/>
+                                                <constraint firstItem="Yir-za-D3z" firstAttribute="leading" secondItem="eog-4g-yYP" secondAttribute="leadingMargin" constant="-3" id="pap-cX-kdq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Yir-za-D3z" secondAttribute="bottom" constant="3" id="yTZ-cK-iDV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

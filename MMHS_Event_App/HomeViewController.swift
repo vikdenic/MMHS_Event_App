@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad()
     {
         retrieveEvents()
+
     }
 
     override func viewWillAppear(animated: Bool)
@@ -25,16 +26,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         checkForAccountAuthentification()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForAccountAuthentification", name: "opened", object: nil)
-
-        retrieveEvents()
     }
 
     func retrieveEvents()
     {
-        queryAllRecords("Event", eventsArray) { (result, error) -> Void in
+            queryAllRecords("Event", eventsArray) { (result, error) -> Void in
 
-            self.tableView.reloadData()
-        }
+                self.tableView.reloadData()
+            }
     }
 
     func checkForAccountAuthentification()
@@ -74,7 +73,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBAction func onRefreshButtonTapped(sender: UIBarButtonItem)
     {
-        retrieveEvents()
+        if eventsArray.count > 0
+        {
+            retrieveEvents()
+        }
     }
 
     //MARK: TableView
@@ -86,8 +88,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let feedCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedTableViewCell
-//TODO:        let imageAsset = eventsArray[indexPath.row].valueForKey("eventPhoto") as CKAsset
+
+
         let eventRecord = eventsArray[indexPath.row] as CKRecord
+        //TODO:        profile pic
+
+        let hostRef = eventRecord.valueForKey("host") as CKReference
+        let hostID = hostRef.recordID
+        let host = CKRecord(recordType: "Users", recordID: hostID)
+        if host.valueForKey("profilePic") != nil
+        {
+            let hostPicAsset = host.valueForKey("profilePic") as CKAsset
+            let hostPic = imageFromAsset(hostPicAsset) as UIImage
+            feedCell.hostImageView.image = hostPic
+        }
+
         feedCell.titleLabel.text = eventRecord.valueForKey("title") as String!
         
         let date = eventRecord.valueForKey("date") as NSDate
