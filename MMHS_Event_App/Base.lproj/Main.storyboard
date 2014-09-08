@@ -499,18 +499,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnc-sW-xM3">
-                                <rect key="frame" x="224" y="128" width="153" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnc-sW-xM3">
+                                <rect key="frame" x="218" y="128" width="165" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Change Profile Picture">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onChangePhotoTapped:" destination="xhf-bW-L8T" eventType="touchUpInside" id="R58-vh-ej1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMm-Ie-KH9">
-                                <rect key="frame" x="228" y="188" width="144" height="30"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMm-Ie-KH9">
+                                <rect key="frame" x="218" y="188" width="165" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Change Cover Photo">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -541,6 +547,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bioTextField" destination="5Rd-fv-UWv" id="8lg-Cy-Z2t"/>
+                        <outlet property="changeCoverPhotoButton" destination="xMm-Ie-KH9" id="pbt-qp-2dt"/>
+                        <outlet property="changeProfPicButton" destination="Nnc-sW-xM3" id="Sn4-Xm-PNm"/>
                         <outlet property="hometownTextField" destination="jUM-Zj-Ovk" id="zeW-BI-pZZ"/>
                         <outlet property="nameTextField" destination="Oj7-ab-2jZ" id="zcG-GJ-0dd"/>
                     </connections>

@@ -14,6 +14,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
     let cloudManager = AAPLCloudManager()
 
+    @IBOutlet var changeProfPicButton: UIButton!
+    @IBOutlet var changeCoverPhotoButton: UIButton!
+
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var hometownTextField: UITextField!
     @IBOutlet var bioTextField: UITextField!
@@ -31,6 +34,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad()
     {
         super.viewDidLoad()
+
+        changeCoverPhotoButton.layer.cornerRadius = 5
+        changeProfPicButton.layer.cornerRadius = 5
 
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         imagePicker.allowsEditing = true
