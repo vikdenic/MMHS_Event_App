@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
@@ -21,6 +22,7 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     {
         super.viewDidLoad()
 
+        locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         mapView.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -34,19 +36,28 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         })
     }
 
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        //
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!)
+    {
+        println(error)
     }
 
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
-        //TODO:
-        locationManager.stopUpdatingLocation()
-        mapView.showsUserLocation = true
-        currentLocation = locationManager.location
+        for location in locations as [CLLocation]
+        {
+            if location.verticalAccuracy < 1000 && location.horizontalAccuracy < 1000
+            {
+                locationManager.stopUpdatingLocation()
+                mapView.setRegion(MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.1, 0.1)), animated: true)
+                println(location)
+            }
+        }
+//        mapView.showsUserLocation = true
+//        currentLocation = locationManager.location
 
-        mapView.region.span = MKCoordinateSpanMake(0.1, 0.1)
-        mapView.setCenterCoordinate(currentLocation.coordinate, animated: true)
+
+//        mapView.region.span = MKCoordinateSpanMake(0.1, 0.1)
+//        mapView.setCenterCoordinate(currentLocation.coordinate, animated: true)
     }
 
     func addpin(record : Event)

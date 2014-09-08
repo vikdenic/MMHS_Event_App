@@ -175,6 +175,11 @@ class Event
 
     }
 
+    func recordValue() -> CKRecord!
+    {
+        return record
+    }
+
     init()
     {
         record = CKRecord(recordType: "Event")
@@ -213,63 +218,44 @@ class Photo
         }
     }
 
-    var event : Event! {
+    var event : CKReference! {
         get {
-            var ckRecordEvent = record.objectForKey("event") as CKRecord!
-            return Event(theCKRecord: ckRecordEvent)
+            return record.objectForKey("event") as CKReference!
         }
         set {
             record.setValue(newValue, forKey: "event")
         }
     }
 
-    var photographer : Users! {
+    var photographer : CKReference! {
         get {
-            var ckRecordUser = record.objectForKey("photographer") as CKRecord!
-            return Users(theCKRecord: ckRecordUser)
+            return record.objectForKey("photographer") as CKReference!
         }
         set {
             record.setValue(newValue, forKey: "photographer")
         }
     }
 
-    var likeActivity : LikeActivity! {
+    var likes : Int! {
         get {
-            var ckRecordLikeActivity = record.objectForKey("likeActivity") as CKRecord!
-            return LikeActivity(theCKRecord: ckRecordLikeActivity)
+            return record.objectForKey("likes") as Int!
         }
         set {
-            record.setValue(newValue, forKey: "likeActivity")
+            record.setValue(newValue, forKey: "likes")
         }
     }
 
-    private var record : CKRecord!
-
-    init(var theCKRecord : CKRecord)
+    func save(complete:(succeeded : Bool, error : NSError!) -> Void)
     {
-        record = theCKRecord
-    }
-}
-
-class LikeActivity
-{
-    var photo : Photo!  {
-        get {
-            var ckRecordPhoto = record.objectForKey("photo") as CKRecord!
-            return Photo(theCKRecord: ckRecordPhoto)
-        }
-        set {
-            record.setValue(newValue, forKey: "photo")
-        }
-    }
-
-    var fromUser : Users! {
-        get {
-            var ckRecordUser = record.objectForKey("fromUser") as CKRecord!
-            return Users(theCKRecord: ckRecordUser)
-        }
-        set {
-            record.setValue(newValue, forKey: "fromUser")
+        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        publicDatabase.saveRecord(record) { (resultRecord, error) -> Void in
+            if error == nil
+            {
+                complete(succeeded: true, error: error)
+            }
+            else {
+                complete(succeeded: false, error: error)
+            }
         }
     }
 
@@ -282,19 +268,9 @@ class LikeActivity
 
     init()
     {
-        record = nil
+        record = CKRecord(recordType: "Photo")
     }
 }
-
-//var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-//
-//publicDatabase.fetchRecordWithID(hostID, completionHandler: { (record, error) -> Void in
-//
-//    let user = Users(theCKRecord: record)
-//    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//        feedCell.hostImageView.image = imageFromAsset(record.valueForKey("profilePic") as CKAsset)
-//    })
-//})
 
 func queryAllRecords(recordType: String!, completed: (records:[Event]!, result: Bool, error: NSError!) -> Void){
     var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase

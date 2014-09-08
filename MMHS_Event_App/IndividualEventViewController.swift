@@ -12,22 +12,21 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBOutlet var tableView: UITableView!
     let imagePicker = UIImagePickerController()
-    var photosArray = NSMutableArray()
+    var photosArray = [Photo]()
 
     var selectedPhoto = UIImage?()
     var selectedPhotoFilePath = NSURL?()
 
     var event = Event?()
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
         imagePicker.delegate = self
-        imagePicker.editing = true
+        imagePicker.allowsEditing = true
 
 //TODO: Photos
-        println(event)
-
+        let photosRef = event?.photos
     }
 
     @IBAction func onCameraButtonTapped(sender: UIBarButtonItem)
@@ -58,21 +57,35 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
     {
         selectedPhoto = info[UIImagePickerControllerEditedImage] as UIImage!
-        selectedPhotoFilePath = self.selectedPhoto?.urlWithImage()
 
-        
+        let photo = Photo()
+
+        var currentUser = Users()
+        currentUser.setRecordToCurrentUsersRecordWithBlock { (succeeded, error) -> Void in
+
+            photo.photographer = CKReference(record: currentUser.record, action: CKReferenceAction.None)
+            photo.event = CKReference(record: self.event?.recordValue(), action: CKReferenceAction.None)
+            photo.image = CKAsset(fileURL: self.selectedPhoto?.urlWithImage())
+            photo.likes = 0
+
+            photo.save({ (succeeded, error) -> Void in
+                self.photosArray.append(photo)
+                self.tableView.reloadData()
+            })
+        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     //MARK: TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 1
+        return photosArray.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("StreamCell") as StreamTableViewCell
-
+//        cell.imageView?.image = photosArray[indexPath.row].image as UIImage
         return cell
     }
 }
