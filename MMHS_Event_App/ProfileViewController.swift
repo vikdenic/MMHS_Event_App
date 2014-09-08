@@ -72,6 +72,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     func discoveredUserInfo(user : CKDiscoveredUserInfo!)
     {
         nameLabel.text = "\(user.firstName) \(user.lastName)"
+        self.title = "\(user.firstName)"
     }
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView)

@@ -13,14 +13,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var eventsArray = [CKRecord]()
     @IBOutlet var tableView: UITableView!
 
+    override func viewDidLoad() {
+        queryForEvents()
+    }
+
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(true)
 
         checkForAccountAuthentification()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForAccountAuthentification", name: "opened", object: nil)
+    }
 
-        //TODO: Query for all Event records
+    func queryForEvents()
+    {
+        self.eventsArray.removeAll(keepCapacity: false)
+
         var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
 
         let truePredicate = NSPredicate(value: true)
@@ -28,7 +36,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         database.performQuery(eventQuery, inZoneWithID: nil) { (records, error) -> Void in
             if error != nil{
-                println("error")
+                
             } else{
                 for record in records
                 {
@@ -40,7 +48,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let queryOperation = CKQueryOperation(query: eventQuery)
 
         queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
-            println("queryCompletionBlock: \(self.eventsArray)")
             self.tableView.reloadData()
         }
 
@@ -70,8 +77,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 cloudManager.discoverUserInfo({ (user) -> Void in
 
-                    self.title = "Hi, \(user.firstName)!"
-                    
+//                    self.title = "Hi, \(user.firstName)!"
+
                 })
             } else{
                 let alert = UIAlertController(title: "CloudKit", message: "Getting your name using Discoverability requires permission", preferredStyle: UIAlertControllerStyle.Alert)
@@ -85,6 +92,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
+    @IBAction func onRefreshButtonTapped(sender: UIBarButtonItem)
+    {
+        queryForEvents()
+    }
+
     //MARK: TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -95,6 +107,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let feedCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedTableViewCell
 //TODO:        let imageAsset = eventsArray[indexPath.row].valueForKey("eventPhoto") as CKAsset
+        let eventRecord = eventsArray[indexPath.row] as CKRecord
+        feedCell.titleLabel.text = eventRecord.valueForKey("title") as String!
+
+        if eventRecord.valueForKey("eventPhoto") != nil
+        {
+        feedCell.eventImageView.image = imageFromAsset(eventRecord.valueForKey("eventPhoto") as CKAsset)
+        }
 
         return feedCell
     }

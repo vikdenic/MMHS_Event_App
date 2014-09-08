@@ -12,6 +12,8 @@ class FeedTableViewCell: UITableViewCell{
 
     @IBOutlet var eventImageView: UIImageView!
     @IBOutlet var hostImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

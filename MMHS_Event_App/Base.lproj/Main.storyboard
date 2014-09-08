@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cwz-eF-3aF">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
@@ -36,6 +37,20 @@
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6t-dh-r7x">
                                                     <rect key="frame" x="0.0" y="192" width="320" height="128"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDJ-bp-ULM">
+                                                            <rect key="frame" x="124" y="17" width="196" height="27"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOb-NH-1NY">
+                                                            <rect key="frame" x="124" y="52" width="196" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="320" id="FUR-Vx-Z9V"/>
@@ -60,8 +75,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateLabel" destination="cOb-NH-1NY" id="Qg7-I5-s4f"/>
                                             <outlet property="eventImageView" destination="aJ2-i0-aMD" id="UUi-wU-JgV"/>
                                             <outlet property="hostImageView" destination="Yir-za-D3z" id="ZK7-qF-qJv"/>
+                                            <outlet property="titleLabel" destination="vDJ-bp-ULM" id="w7x-g0-v4c"/>
                                             <segue destination="6h0-I8-6bp" kind="show" id="utm-jV-PKg"/>
                                         </connections>
                                     </tableViewCell>
@@ -81,6 +98,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Event App" id="YYh-2G-xyB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="442-5o-AXw">
+                            <connections>
+                                <action selector="onRefreshButtonTapped:" destination="BYZ-38-t0r" id="yub-Wu-WgV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ft9-Tv-Qs4">
                             <connections>
                                 <segue destination="ALw-iD-yA0" kind="presentation" id="nma-mn-18t"/>
