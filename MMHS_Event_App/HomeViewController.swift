@@ -12,9 +12,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     var eventsArray = [CKRecord]()
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var refreshButton: UIBarButtonItem!
 
     override func viewDidLoad() {
-        queryForEvents()
+//        queryForEvents()
+//        queryAllRecords("Event", eventsArray) { (result, error) -> Void in
+//
+//            self.tableView.reloadData()
+//        }
     }
 
     override func viewWillAppear(animated: Bool)
@@ -23,31 +28,37 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         checkForAccountAuthentification()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForAccountAuthentification", name: "opened", object: nil)
+
+        queryAllRecords("Event", eventsArray) { (result, error) -> Void in
+
+        self.tableView.reloadData()
+        println("home::::: \(self.eventsArray)")
+        }
     }
 
-    func queryForEvents()
-    {
-        self.eventsArray.removeAll(keepCapacity: false)
-
-        var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-
-        let truePredicate = NSPredicate(value: true)
-        let eventQuery = CKQuery(recordType: "Event", predicate: truePredicate)
-
-        let queryOperation = CKQueryOperation(query: eventQuery)
-
-        queryOperation.recordFetchedBlock = { (record : CKRecord!) in
-            self.eventsArray.append(record)
-            println("recordFetchedBlock: \(self.eventsArray)")
-        }
-
-        queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
-            self.tableView.reloadData()
-            println("complete")
-        }
-
-        database.addOperation(queryOperation)
-    }
+//    func queryForEvents()
+//    {
+//        eventsArray.removeAll(keepCapacity: false)
+//
+//        var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+//
+//        let truePredicate = NSPredicate(value: true)
+//        let eventQuery = CKQuery(recordType: "Event", predicate: truePredicate)
+//
+//        let queryOperation = CKQueryOperation(query: eventQuery)
+//
+//        queryOperation.recordFetchedBlock = { (record : CKRecord!) in
+//            self.eventsArray.append(record)
+//            println("recordFetchedBlock: \(self.eventsArray)")
+//        }
+//
+//        queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
+//            self.tableView.reloadData()
+//            println("complete")
+//        }
+//
+//        database.addOperation(queryOperation)
+//    }
 
 
     func checkForAccountAuthentification()
@@ -89,7 +100,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBAction func onRefreshButtonTapped(sender: UIBarButtonItem)
     {
-        queryForEvents()
+//        queryForEvents()
+        queryAllRecords("Event", eventsArray) { (result, error) -> Void in
+
+            self.tableView.reloadData()
+        }
     }
 
     //MARK: TableView
@@ -102,7 +117,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let feedCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedTableViewCell
 //TODO:        let imageAsset = eventsArray[indexPath.row].valueForKey("eventPhoto") as CKAsset
-        let eventRecord = eventsArray[indexPath.row] as CKRecord
+        let eventRecord = eventsArray[indexPath.row] as CKRecord!
         feedCell.titleLabel.text = eventRecord.valueForKey("title") as String!
 
         if eventRecord.valueForKey("eventPhoto") != nil

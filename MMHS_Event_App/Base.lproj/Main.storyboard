@@ -110,6 +110,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="refreshButton" destination="442-5o-AXw" id="q9G-uS-QHE"/>
                         <outlet property="tableView" destination="Aaa-0m-sWg" id="MbB-Le-Lj3"/>
                         <segue destination="IUl-mA-ldY" kind="presentation" identifier="NoAccountSegue" id="R3A-nL-BID"/>
                     </connections>

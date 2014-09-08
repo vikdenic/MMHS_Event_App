@@ -277,27 +277,27 @@ class LikeActivity
     }
 }
 
-func queryAllRecords(withType : String, storedIn array: [CKRecord], completion:(succeeded : Bool, error : NSError!) -> Void)
-{
+func queryAllRecords(recordType: String!, toArray: [CKRecord], completed: (result: Bool, error: NSError!) -> Void){
     var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
 
-    var array = [CKRecord]()
-    array.removeAll(keepCapacity: false)
+    var toArray = [CKRecord]()
+    toArray.removeAll(keepCapacity: false)
 
     let truePredicate = NSPredicate(value: true)
-    let eventQuery = CKQuery(recordType: "Event", predicate: truePredicate)
-    let queryOperation = CKQueryOperation(query: eventQuery)
+    let query = CKQuery(recordType: recordType, predicate: truePredicate)
+    let queryOperation = CKQueryOperation(query: query)
 
     queryOperation.recordFetchedBlock = { (record : CKRecord!) in
-        array.append(record)
+        toArray.append(record)
     }
 
     queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
         if error != nil{
-            completion(succeeded: false, error: error)
+            completed(result: false, error: error)
 
         } else{
-            completion(succeeded: true, error: error)
+            completed(result: true, error: error)
+            println(toArray)
         }
     }
 
