@@ -34,21 +34,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let truePredicate = NSPredicate(value: true)
         let eventQuery = CKQuery(recordType: "Event", predicate: truePredicate)
 
-        database.performQuery(eventQuery, inZoneWithID: nil) { (records, error) -> Void in
-            if error != nil{
-                
-            } else{
-                for record in records
-                {
-                    self.eventsArray.append(record as CKRecord)
-                }
-            }
-        }
-
         let queryOperation = CKQueryOperation(query: eventQuery)
+
+        queryOperation.recordFetchedBlock = { (record : CKRecord!) in
+            self.eventsArray.append(record)
+            println("recordFetchedBlock: \(self.eventsArray)")
+        }
 
         queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
             self.tableView.reloadData()
+            println("complete")
         }
 
         database.addOperation(queryOperation)
