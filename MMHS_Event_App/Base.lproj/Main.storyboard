@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cwz-eF-3aF">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
@@ -169,7 +170,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Stream" id="RRp-m4-qf0">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="PLi-Yr-D4G"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="PLi-Yr-D4G">
+                            <connections>
+                                <action selector="onCameraButtonTapped:" destination="6h0-I8-6bp" id="jzi-cW-ITx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="wrO-zI-KvZ" id="7lM-1m-7KL"/>
