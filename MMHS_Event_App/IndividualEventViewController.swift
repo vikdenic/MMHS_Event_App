@@ -12,12 +12,22 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBOutlet var tableView: UITableView!
     let imagePicker = UIImagePickerController()
+    var photosArray = NSMutableArray()
+
+    var selectedPhoto = UIImage?()
+    var selectedPhotoFilePath = NSURL?()
+
+    var event = Event?()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         imagePicker.delegate = self
         imagePicker.editing = true
+
+//TODO: Photos
+        println(event)
+
     }
 
     @IBAction func onCameraButtonTapped(sender: UIBarButtonItem)
@@ -38,10 +48,19 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         {
             imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
             presentViewController(imagePicker, animated: true, completion: nil)
-        } else{
+        }
+        else if buttonIndex == 2 {
             imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             presentViewController(imagePicker, animated: true, completion: nil)
         }
+    }
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
+    {
+        selectedPhoto = info[UIImagePickerControllerEditedImage] as UIImage!
+        selectedPhotoFilePath = self.selectedPhoto?.urlWithImage()
+
+        
     }
 
     //MARK: TableView

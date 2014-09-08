@@ -12,7 +12,7 @@ import MapKit
 class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet var mapView: MKMapView!
-    var eventsArray = NSMutableArray()
+    var eventsArray = [Event]()
 
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
@@ -26,13 +26,12 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-
-        queryAllRecords("Event", eventsArray) { (result, error) -> Void in
-            for event in self.eventsArray
+        queryAllRecords("Event", { (records, result, error) -> Void in
+            for event in records
             {
-                self.addpin(event as CKRecord)
+                self.addpin(event)
             }
-        }
+        })
     }
 
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
@@ -41,18 +40,19 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
 
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
+        //TODO:
         locationManager.stopUpdatingLocation()
         mapView.showsUserLocation = true
         currentLocation = locationManager.location
 
-        mapView.region.span = MKCoordinateSpanMake(1.0, 1.0)
+        mapView.region.span = MKCoordinateSpanMake(0.1, 0.1)
         mapView.setCenterCoordinate(currentLocation.coordinate, animated: true)
     }
 
-    func addpin(record : CKRecord)
+    func addpin(record : Event)
     {
         var pin = MKPointAnnotation()
-        var location = record.valueForKey("location") as CLLocation
+        var location = record.location
         pin.coordinate = location.coordinate
         mapView.addAnnotation(pin)
     }

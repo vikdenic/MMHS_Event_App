@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cwz-eF-3aF">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
@@ -91,7 +90,7 @@
                                             <outlet property="eventImageView" destination="aJ2-i0-aMD" id="UUi-wU-JgV"/>
                                             <outlet property="hostImageView" destination="Yir-za-D3z" id="ZK7-qF-qJv"/>
                                             <outlet property="titleLabel" destination="vDJ-bp-ULM" id="w7x-g0-v4c"/>
-                                            <segue destination="6h0-I8-6bp" kind="show" id="utm-jV-PKg"/>
+                                            <segue destination="6h0-I8-6bp" kind="show" identifier="toStream" id="utm-jV-PKg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -426,13 +425,13 @@
                                         <rect key="frame" x="320" y="0.0" width="320" height="320"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HwG-Fp-lW8" userLabel="hometown">
-                                                <rect key="frame" x="27" y="116" width="269" height="27"/>
+                                                <rect key="frame" x="27" y="145" width="269" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gua-9w-pFz">
-                                                <rect key="frame" x="27" y="151" width="269" height="77"/>
+                                                <rect key="frame" x="27" y="180" width="269" height="77"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>

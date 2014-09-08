@@ -186,9 +186,9 @@
 		93D5F21C19B64F12008C6218 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				93ACD95D19B837ED0056F427 /* Custom Views */,
 				93D5F21A19B64F09008C6218 /* ProfileViewController.swift */,
 				933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */,
+				93ACD95D19B837ED0056F427 /* Custom Views */,
 			);
 			name = Profile;
 			sourceTree = "<group>";

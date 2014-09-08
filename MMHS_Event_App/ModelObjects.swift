@@ -154,6 +154,15 @@ class Event
         }
     }
 
+    var photos : CKReference! {
+        get {
+            return record.objectForKey("photos") as CKReference!
+        }
+        set {
+            record.setObject(newValue, forKey: "photos")
+        }
+    }
+
     private var record : CKRecord!
 
     init(var theCKRecord : CKRecord)
@@ -277,27 +286,39 @@ class LikeActivity
     }
 }
 
-func queryAllRecords(recordType: String!, toArray: NSMutableArray, completed: (result: Bool, error: NSError!) -> Void){
+//var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+//
+//publicDatabase.fetchRecordWithID(hostID, completionHandler: { (record, error) -> Void in
+//
+//    let user = Users(theCKRecord: record)
+//    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//        feedCell.hostImageView.image = imageFromAsset(record.valueForKey("profilePic") as CKAsset)
+//    })
+//})
+
+func queryAllRecords(recordType: String!, completed: (records:[Event]!, result: Bool, error: NSError!) -> Void){
     var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
 
-//    var toArray = [CKRecord]()
-    toArray.removeAllObjects()
+    var results = [Event]()
 
     let truePredicate = NSPredicate(value: true)
     let query = CKQuery(recordType: recordType, predicate: truePredicate)
     let queryOperation = CKQueryOperation(query: query)
 
     queryOperation.recordFetchedBlock = { (record : CKRecord!) in
-        toArray.addObject(record)
+        results.append(Event(theCKRecord: record))
     }
 
     queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
         if error != nil{
-            completed(result: false, error: error)
+            completed(records: nil, result: false, error: error)
 
         } else{
-            completed(result: true, error: error)
-            println(toArray)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
+            completed(records: results, result: true, error: error)
+//            println(toArray)
+            })
         }
     }
 

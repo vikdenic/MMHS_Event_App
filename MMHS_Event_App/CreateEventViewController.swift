@@ -46,7 +46,6 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
 
-
     func geocodeLocationWithBlock(located : (succeeded : Bool, error : NSError!) -> Void)
     {
         var geocode = CLGeocoder()
@@ -63,15 +62,8 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
 
-    
-
     func setDataAndSave()
     {
-        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-        //        setLocation()
-        //        let currentUser = CKContainer.defaultContainer().fetchUserRecordIDWithCompletionHandler
-        //        eventRecord.setObject("Test Event", forKey: "name")
-
         let newEvent = Event()
         newEvent.title = titleTextField.text
         newEvent.details = detailsTextField.text

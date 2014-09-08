@@ -10,14 +10,19 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var eventsArray = NSMutableArray()
+    var eventsArray = [Event]()
     @IBOutlet var tableView: UITableView!
     @IBOutlet var refreshButton: UIBarButtonItem!
+    var selectedIndexPath = NSIndexPath()
 
     override func viewDidLoad()
     {
         retrieveEvents()
+        //
+    }
 
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedIndexPath = indexPath
     }
 
     override func viewWillAppear(animated: Bool)
@@ -30,10 +35,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func retrieveEvents()
     {
-            queryAllRecords("Event", eventsArray) { (result, error) -> Void in
-
-                self.tableView.reloadData()
-            }
+        queryAllRecords("Event", { (records, result, error) -> Void in
+            self.eventsArray = records
+            self.tableView.reloadData()
+        })
     }
 
     func checkForAccountAuthentification()
@@ -89,31 +94,40 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let feedCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedTableViewCell
 
-
-        let eventRecord = eventsArray[indexPath.row] as CKRecord
+        let eventRecord = eventsArray[indexPath.row]
         //TODO:        profile pic
 
-        let hostRef = eventRecord.valueForKey("host") as CKReference
+        let hostRef = eventRecord.host
         let hostID = hostRef.recordID
-        let host = CKRecord(recordType: "Users", recordID: hostID)
 
-        if host.valueForKey("profilePic") != nil
-        {
-            let hostPicAsset = host.valueForKey("profilePic") as CKAsset
-            let hostPic = imageFromAsset(hostPicAsset) as UIImage
-            feedCell.hostImageView.image = hostPic
-        }
+        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
 
-        feedCell.titleLabel.text = eventRecord.valueForKey("title") as String!
-        
-        let date = eventRecord.valueForKey("date") as NSDate
+        publicDatabase.fetchRecordWithID(hostID, completionHandler: { (record, error) -> Void in
+
+            let user = Users(theCKRecord: record)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                feedCell.hostImageView.image = imageFromAsset(user.profilePic)
+            })
+        })
+
+        feedCell.eventImageView.image = imageFromAsset(eventRecord.eventPhoto)
+
+        feedCell.titleLabel.text = eventRecord.title
+        let date = eventRecord.date
         feedCell.dateLabel.text = date.toNiceString()
 
-        if eventRecord.valueForKey("eventPhoto") != nil
-        {
-        feedCell.eventImageView.image = imageFromAsset(eventRecord.valueForKey("eventPhoto") as CKAsset)
-        }
-
         return feedCell
+    }
+
+    //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "toStream"
+        {
+        var individualVC = segue.destinationViewController as IndividualEventViewController
+
+        individualVC.event = eventsArray[tableView.indexPathForSelectedRow()!.row]
+            println(individualVC.event)
+        }
     }
 }
