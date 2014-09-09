@@ -29,6 +29,14 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
 //        let predicate = NSPredicate(format: "event == %@", CKReference(record: event?.recordValue(), action: CKReferenceAction.None))
 //        let predicate = NSPredicate(value: true)
 
+        getPhotosForEvent(event!, { (photos, result, error) -> Void in
+            for photo in photos
+            {
+                self.photosArray.append(photo)
+                self.tableView.reloadData()
+            }
+        })
+
         let predicate = NSPredicate(format: "event == %@", event!.recordValue())
 
         queryPhotoRecords("Photo", predicate) { (records, result, error) -> Void in
@@ -88,10 +96,18 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    func onLikeButtonTapped()
-    {
+//    func onLikeButtonTapped()
+//    {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("StreamCell") as StreamTableViewCell
+//
+//    }
 
+    @IBAction func onLikeButtonPressed(sender: UIButton)
+    {
+//        let cell = tableView.cellForRowAtIndexPath(<#indexPath: NSIndexPath#>)
     }
+
+//    StreamTableViewCell *cell = (id)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sender.tag]];
 
     //MARK: TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -112,7 +128,6 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         })
 
         cell.likeButton.tag = indexPath.row
-        cell.likeButton .addTarget(self, action: "onLikeButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
 
         return cell
     }

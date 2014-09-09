@@ -171,6 +171,9 @@
                                                     <state key="normal" image="likeUnselected">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onLikeButtonPressed:" destination="6h0-I8-6bp" eventType="touchUpInside" id="dH9-ag-8JS"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agt-NX-Ril">
                                                     <rect key="frame" x="66" y="346" width="104" height="21"/>

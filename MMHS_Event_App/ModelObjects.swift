@@ -306,6 +306,11 @@ func queryAllRecords(recordType: String!, completed: (records:[Event]!, result: 
     database.addOperation(queryOperation)
 }
 
+func getPhotographerOfPhoto(photo: Photo,completed: (user: Users?, result: Bool, error: NSError!) -> Void)
+{
+
+}
+
 //Convers CKReference to CKRecord to be handled on main thread
 func recordFromReference(reference: CKReference,completed: (record:CKRecord?, result: Bool, error: NSError!) -> Void)
 {
@@ -324,6 +329,11 @@ func recordFromReference(reference: CKReference,completed: (record:CKRecord?, re
             })
         }
     })
+}
+
+func getPhotosForEvent(event : Event, completed: (photos:[Photo]!, result:Bool, error: NSError!) -> Void)
+{
+    
 }
 
 func queryPhotoRecords(recordType: String!, withPredicate : NSPredicate!, completed: (records:[Photo]!, result: Bool, error: NSError!) -> Void){
