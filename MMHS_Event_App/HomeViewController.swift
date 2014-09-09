@@ -98,16 +98,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //TODO:        profile pic
 
         let hostRef = eventRecord.host
-        let hostID = hostRef.recordID
 
-        var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-
-        publicDatabase.fetchRecordWithID(hostID, completionHandler: { (record, error) -> Void in
-
-            let user = Users(theCKRecord: record)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                feedCell.hostImageView.image = imageFromAsset(user.profilePic)
-            })
+        recordFromReference(hostRef, { (record, result, error) -> Void in
+            let user = Users(theCKRecord: record!)
+            feedCell.hostImageView.image = imageFromAsset(user.profilePic)
         })
 
         feedCell.eventImageView.image = imageFromAsset(eventRecord.eventPhoto)

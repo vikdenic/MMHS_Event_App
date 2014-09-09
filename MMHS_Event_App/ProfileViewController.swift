@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UIScrollViewDelegate {
+class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var coverImageView: UIImageView!
@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var hometownLabel: UILabel!
     @IBOutlet var bioLabel: UILabel!
     @IBOutlet var pageControl: UIPageControl!
+
+    @IBOutlet var tableView: UITableView!
 
     var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
     let cloudManager = AAPLCloudManager()
@@ -75,6 +77,10 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         self.title = "\(user.firstName)"
     }
 
+    //MARK: TableView
+    
+
+    //MARK: ScrollView
     func scrollViewDidEndDecelerating(scrollView: UIScrollView)
     {
         let pageNumber = roundf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width))

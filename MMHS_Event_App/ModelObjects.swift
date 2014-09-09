@@ -306,6 +306,7 @@ func queryAllRecords(recordType: String!, completed: (records:[Event]!, result: 
     database.addOperation(queryOperation)
 }
 
+//Convers CKReference to CKRecord to be handled on main thread
 func recordFromReference(reference: CKReference,completed: (record:CKRecord?, result: Bool, error: NSError!) -> Void)
 {
     let recordID = reference.recordID
@@ -344,9 +345,7 @@ func queryPhotoRecords(recordType: String!, withPredicate : NSPredicate!, comple
 
         } else{
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-
                 completed(records: results, result: true, error: error)
-                //            println(toArray)
             })
         }
     }

@@ -84,10 +84,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
                 self.tableView.reloadData()
             })
 
-//            self.event?.photos = CKReference(record: photo.recordValue(), action: CKReferenceAction.None)
-//            event?.save({ (succeeded, error) -> Void in
-//                <#code#>
-//            })
+
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -103,10 +100,12 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         let cell = tableView.dequeueReusableCellWithIdentifier("StreamCell") as StreamTableViewCell
         let photo = photosArray[indexPath.row] as Photo
         cell.streamImageView.image = imageFromAsset(photo.image)
-
         let photographer = photo.photographer
-        let photographerRecord = CKRecord(recordType: "Users", recordID: photographer.recordID)
-        
+        recordFromReference(photographer, { (record, result, error) -> Void in
+            let user = Users(theCKRecord: record!)
+            cell.photographerImageView.image = imageFromAsset(user.profilePic)
+        })
+
         return cell
     }
 
