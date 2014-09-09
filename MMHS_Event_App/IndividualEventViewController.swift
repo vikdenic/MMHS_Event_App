@@ -24,9 +24,20 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-
-//TODO: Photos
         let photosRef = event?.photos
+
+//        let predicate = NSPredicate(format: "event == %@", CKReference(record: event?.recordValue(), action: CKReferenceAction.None))
+//        let predicate = NSPredicate(value: true)
+
+        let predicate = NSPredicate(format: "event == %@", event!.recordValue())
+
+        queryPhotoRecords("Photo", predicate) { (records, result, error) -> Void in
+            for photo in records
+            {
+                self.photosArray.append(photo)
+                self.tableView.reloadData()
+            }
+        }
     }
 
     @IBAction func onCameraButtonTapped(sender: UIBarButtonItem)
@@ -72,6 +83,11 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
                 self.photosArray.append(photo)
                 self.tableView.reloadData()
             })
+
+//            self.event?.photos = CKReference(record: photo.recordValue(), action: CKReferenceAction.None)
+//            event?.save({ (succeeded, error) -> Void in
+//                <#code#>
+//            })
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -85,7 +101,14 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("StreamCell") as StreamTableViewCell
-//        cell.imageView?.image = photosArray[indexPath.row].image as UIImage
+        let photo = photosArray[indexPath.row] as Photo
+        cell.streamImageView.image = imageFromAsset(photo.image)
+
+        let photographer = photo.photographer
+        let photographerRecord = CKRecord(recordType: "Users", recordID: photographer.recordID)
+        
         return cell
     }
+
+
 }

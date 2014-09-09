@@ -10,10 +10,13 @@ import UIKit
 
 class StreamTableViewCell: UITableViewCell {
 
-    
+    @IBOutlet var streamImageView: UIImageView!
+    @IBOutlet var photographerImageView: UIImageView!
+    @IBOutlet var photographerLabel: UILabel!
+    @IBOutlet var likesLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        likesLabel.layer.cornerRadius = 5
     }
 }

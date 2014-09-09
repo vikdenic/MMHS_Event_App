@@ -127,7 +127,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         var individualVC = segue.destinationViewController as IndividualEventViewController
 
         individualVC.event = eventsArray[tableView.indexPathForSelectedRow()!.row]
-            println("HOME: \(individualVC.event?.title)")
         }
     }
 }

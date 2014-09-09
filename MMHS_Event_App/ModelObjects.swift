@@ -259,6 +259,11 @@ class Photo
         }
     }
 
+    func recordValue() -> CKRecord!
+    {
+        return record
+    }
+
     private var record : CKRecord!
 
     init(var theCKRecord : CKRecord)
@@ -298,6 +303,54 @@ func queryAllRecords(recordType: String!, completed: (records:[Event]!, result: 
         }
     }
 
+    database.addOperation(queryOperation)
+}
+
+func recordFromReference(reference: CKReference,completed: (record:CKRecord?, result: Bool, error: NSError!) -> Void)
+{
+    let recordID = reference.recordID
+
+    var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+
+    publicDatabase.fetchRecordWithID(recordID, completionHandler: { (record, error) -> Void in
+
+        if error != nil{
+            completed(record: nil, result: false, error: error)
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                completed(record: record!, result: true, error: error)
+            })
+        }
+    })
+}
+
+func queryPhotoRecords(recordType: String!, withPredicate : NSPredicate!, completed: (records:[Photo]!, result: Bool, error: NSError!) -> Void){
+    var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+
+    var results = [Photo]()
+
+//    let truePredicate = NSPredicate(value: true)
+    let query = CKQuery(recordType: recordType, predicate: withPredicate)
+    let queryOperation = CKQueryOperation(query: query)
+
+    queryOperation.recordFetchedBlock = { (record : CKRecord!) in
+        results.append(Photo(theCKRecord: record))
+    }
+
+    queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
+        if error != nil{
+            completed(records: nil, result: false, error: error)
+
+        } else{
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
+                completed(records: results, result: true, error: error)
+                //            println(toArray)
+            })
+        }
+    }
+    
     database.addOperation(queryOperation)
 }
 
