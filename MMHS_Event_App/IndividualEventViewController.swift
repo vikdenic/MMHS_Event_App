@@ -88,6 +88,11 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    func onLikeButtonTapped()
+    {
+
+    }
+
     //MARK: TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -105,6 +110,9 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
             let user = Users(theCKRecord: record!)
             cell.photographerImageView.image = imageFromAsset(user.profilePic)
         })
+
+        cell.likeButton.tag = indexPath.row
+        cell.likeButton .addTarget(self, action: "onLikeButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
 
         return cell
     }
