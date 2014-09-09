@@ -17,6 +17,7 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
 
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
+    var eventPhotosArray = [UIImage]()
 
     override func viewDidLoad()
     {
@@ -32,10 +33,12 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
             for event in records
             {
                 self.addpin(event)
+                self.eventPhotosArray.append(imageFromAsset(event.eventPhoto))
             }
         })
     }
 
+    //MARK: CLLocation
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!)
     {
         println(error)
@@ -52,12 +55,6 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
                 println(location)
             }
         }
-//        mapView.showsUserLocation = true
-//        currentLocation = locationManager.location
-
-
-//        mapView.region.span = MKCoordinateSpanMake(0.1, 0.1)
-//        mapView.setCenterCoordinate(currentLocation.coordinate, animated: true)
     }
 
     func addpin(record : Event)
@@ -66,5 +63,17 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         var location = record.location
         pin.coordinate = location.coordinate
         mapView.addAnnotation(pin)
+    }
+
+    //MKMapViewDelegate
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+
+        let aview = MKPinAnnotationView()
+
+        for image in eventPhotosArray
+        {
+            aview.image = image
+        }
+        return aview
     }
 }

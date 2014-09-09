@@ -16,6 +16,7 @@
 		933130C919B7BCA500ED4CB9 /* NoUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */; };
 		935A082919B8367200AC4346 /* LighterBlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935A082819B8367200AC4346 /* LighterBlurredImageView.swift */; };
 		93727BAC19BC5D490019D6B2 /* StreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93727BAB19BC5D490019D6B2 /* StreamTableViewCell.swift */; };
+		93B2003419BF587F006D5E74 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2003319BF587F006D5E74 /* ProfileTableViewCell.swift */; };
 		93CDD0D619B60BE5000122F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0D519B60BE5000122F6 /* AppDelegate.swift */; };
 		93CDD0DB19B60BE5000122F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0D919B60BE5000122F6 /* Main.storyboard */; };
 		93CDD0DD19B60BE5000122F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0DC19B60BE5000122F6 /* Images.xcassets */; };
@@ -52,6 +53,7 @@
 		933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoUserViewController.swift; sourceTree = "<group>"; };
 		935A082819B8367200AC4346 /* LighterBlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LighterBlurredImageView.swift; sourceTree = "<group>"; };
 		93727BAB19BC5D490019D6B2 /* StreamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamTableViewCell.swift; sourceTree = "<group>"; };
+		93B2003319BF587F006D5E74 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		93CDD0D019B60BE5000122F6 /* MMHS_Event_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMHS_Event_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CDD0D419B60BE5000122F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93CDD0D519B60BE5000122F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				93CDD0D519B60BE5000122F6 /* AppDelegate.swift */,
 				192213D619B67176006A23BF /* ModelObjects.swift */,
 				93CDD0D919B60BE5000122F6 /* Main.storyboard */,
+				93B2003319BF587F006D5E74 /* ProfileTableViewCell.swift */,
 				93CDD0F619B62AAC000122F6 /* Home */,
 				93D5F21919B64EE6008C6218 /* Explore */,
 				93D5F21C19B64F12008C6218 /* Profile */,
@@ -309,6 +312,7 @@
 				935A082919B8367200AC4346 /* LighterBlurredImageView.swift in Sources */,
 				93D5F21B19B64F09008C6218 /* ProfileViewController.swift in Sources */,
 				9316600019BABEF30085B131 /* ProfilePicImageView.swift in Sources */,
+				93B2003419BF587F006D5E74 /* ProfileTableViewCell.swift in Sources */,
 				93D5F21619B64D46008C6218 /* InvitesViewController.swift in Sources */,
 				192213D719B67176006A23BF /* ModelObjects.swift in Sources */,
 				933130BF19B7908A00ED4CB9 /* BlurredImageView.swift in Sources */,

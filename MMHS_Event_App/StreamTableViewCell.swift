@@ -12,11 +12,13 @@ class StreamTableViewCell: UITableViewCell {
 
     @IBOutlet var streamImageView: UIImageView!
     @IBOutlet var photographerImageView: UIImageView!
-    @IBOutlet var photographerLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
     @IBOutlet var likesLabel: UILabel!
+    @IBOutlet var likeButton: UIButton!
 
-    override func awakeFromNib() {
+    override func awakeFromNib(){
         super.awakeFromNib()
-        likesLabel.layer.cornerRadius = 5
+        photographerImageView.layer.cornerRadius = photographerImageView.frame.size.width / 2
+        photographerImageView.clipsToBounds = true
     }
 }

@@ -84,7 +84,6 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
                 self.tableView.reloadData()
             })
 
-
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -100,6 +99,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         let cell = tableView.dequeueReusableCellWithIdentifier("StreamCell") as StreamTableViewCell
         let photo = photosArray[indexPath.row] as Photo
         cell.streamImageView.image = imageFromAsset(photo.image)
+
         let photographer = photo.photographer
         recordFromReference(photographer, { (record, result, error) -> Void in
             let user = Users(theCKRecord: record!)
@@ -107,6 +107,10 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         })
 
         return cell
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 390
     }
 
 

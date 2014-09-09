@@ -24,6 +24,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
     var publicDatabase : CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
     let cloudManager = AAPLCloudManager()
 
+    var eventsArray = [Event]()
+
     override func viewWillAppear(animated: Bool)
     {
         self.accessUserInfo()
@@ -77,8 +79,38 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
         self.title = "\(user.firstName)"
     }
 
+    func retrieveEvents()
+    {
+        queryAllRecords("Event", { (records, result, error) -> Void in
+            self.eventsArray = records
+            self.tableView.reloadData()
+        })
+    }
+
     //MARK: TableView
-    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventsArray.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as ProfileTableViewCell
+        let eventRecord = eventsArray[indexPath.row]
+        //TODO:        profile pic
+
+        let hostRef = eventRecord.host
+
+        recordFromReference(hostRef, { (record, result, error) -> Void in
+            let user = Users(theCKRecord: record!)
+            cell.userImageView.image = imageFromAsset(user.profilePic)
+        })
+
+        cell.eventImageView.image = imageFromAsset(eventRecord.eventPhoto)
+
+        cell.titleLabel.text = eventRecord.title
+        let date = eventRecord.date
+        cell.dateLabel.text = date.toNiceString()
+        return cell
+    }
 
     //MARK: ScrollView
     func scrollViewDidEndDecelerating(scrollView: UIScrollView)

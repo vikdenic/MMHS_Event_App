@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad()
     {
-        retrieveEvents()
+//        retrieveEvents()
         //
     }
 
@@ -47,6 +47,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if accessibility == CKAccountStatus.Available
             {
                 self.requestDiscoverability()
+                self.retrieveEvents()
             }
             else{
                 self.performSegueWithIdentifier("NoAccountSegue", sender: nil)
@@ -63,6 +64,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 cloudManager.discoverUserInfo({ (user) -> Void in
 
+                    self.discoveredUserInfo(user)
+
                 })
             } else{
                 let alert = UIAlertController(title: "CloudKit", message: "Getting your name using Discoverability requires permission", preferredStyle: UIAlertControllerStyle.Alert)
@@ -74,6 +77,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }
+    }
+
+    func discoveredUserInfo(user : CKDiscoveredUserInfo!)
+    {
+        //code to set data
     }
 
     @IBAction func onRefreshButtonTapped(sender: UIBarButtonItem)
@@ -111,6 +119,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedCell.dateLabel.text = date.toNiceString()
 
         return feedCell
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 320
     }
 
     //MARK: Segue
