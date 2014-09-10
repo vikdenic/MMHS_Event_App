@@ -236,12 +236,12 @@ class Photo
         }
     }
 
-    var likes : Int! {
+    var likesCount : Int! {
         get {
-            return record.objectForKey("likes") as Int!
+            return record.objectForKey("likesCount") as Int!
         }
         set {
-            record.setValue(newValue, forKey: "likes")
+            record.setValue(newValue, forKey: "likesCount")
         }
     }
 
@@ -327,12 +327,6 @@ func recordFromReference(reference: CKReference,completed: (record:CKRecord?, re
 }
 
 //TODO:
-func getPhotosForEvent(event : Event, completed: (photos:[Photo]!, result:Bool, error: NSError!) -> Void)
-{
-
-}
-
-//TODO:
 func getPhotographersProfilePic(fromPhoto photo: Photo, completed: (image: UIImage!, result: Bool, error: NSError!) -> Void)
 {
     let userReference = photo.photographer
@@ -345,6 +339,36 @@ func getPhotographersProfilePic(fromPhoto photo: Photo, completed: (image: UIIma
             completed(image: userImage, result: true, error: nil)
         }
     })
+}
+
+//let predicate = NSPredicate(format: "event == %@", event!.recordValue())
+
+//queryPhotoRecords("Photo", predicate) { (records, result, error) -> Void in
+//    for photo in records
+//    {
+//        self.photosArray.append(photo)
+//        self.tableView.reloadData()
+//    }
+//}
+
+//TODO:
+func getPhotosForEvent(event : Event, completed: (photos:[Photo]!, result:Bool, error: NSError!) -> Void)
+{
+    var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+
+    let predicate = NSPredicate(format: "event == %@", event.recordValue())
+
+    var results = [Photo]()
+
+    let query = CKQuery(recordType: "Photo", predicate: predicate)
+    let queryOperation = CKQueryOperation(query: query)
+
+    queryOperation.recordFetchedBlock = { (record : CKRecord!) in
+        results.append(Photo(theCKRecord: record))
+        completed(photos: results, result: true, error: nil)
+    }
+
+    database.addOperation(queryOperation)
 }
 
 

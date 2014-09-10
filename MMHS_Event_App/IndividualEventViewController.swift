@@ -33,16 +33,6 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
                 self.tableView.reloadData()
             }
         })
-
-        let predicate = NSPredicate(format: "event == %@", event!.recordValue())
-
-        queryPhotoRecords("Photo", predicate) { (records, result, error) -> Void in
-            for photo in records
-            {
-                self.photosArray.append(photo)
-                self.tableView.reloadData()
-            }
-        }
     }
 
     @IBAction func onCameraButtonTapped(sender: UIBarButtonItem) {
@@ -78,7 +68,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
             photo.photographer = CKReference(record: currentUser.record, action: CKReferenceAction.None)
             photo.event = CKReference(record: self.event?.recordValue(), action: CKReferenceAction.None)
             photo.image = CKAsset(fileURL: self.selectedPhoto?.urlWithImage())
-            photo.likes = 0
+            photo.likesCount = 0
 
             photo.save({ (succeeded, error) -> Void in
                 self.photosArray.append(photo)
@@ -92,18 +82,24 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
     @IBAction func onLikeButtonTapped(sender: UIButton){
 
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as StreamTableViewCell
+        let photo = photosArray[sender.tag]
 
         let selectedImage = UIImage(named: "likeSelected")
         let unselectedImage = UIImage(named: "likeUnselected")
 
         if sender.imageView?.image == unselectedImage{
             sender.setImage(UIImage(named: "likeSelected"), forState: UIControlState.Normal)
-            cell.likesCount++
+            photo.likesCount = photo.likesCount + 1
+            photo.save({ (succeeded, error) -> Void in
+                self.tableView.reloadData()
+            })
         } else{
             sender.setImage(UIImage(named: "likeUnselected"), forState: UIControlState.Normal)
-            cell.likesCount--
+            photo.likesCount = photo.likesCount - 1
+            photo.save({ (succeeded, error) -> Void in
+                self.tableView.reloadData()
+            })
         }
-        tableView.reloadData()
     }
 
     //MARK: TableView
@@ -121,7 +117,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
             cell.photographerImageView.image = image
         }
 
-        cell.likesLabel.text = "\(cell.likesCount)"
+        cell.likesLabel.text = "\(photo.likesCount)"
         cell.likeButton.tag = indexPath.row
         return cell
     }
