@@ -91,14 +91,19 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBAction func onLikeButtonTapped(sender: UIButton){
 
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as StreamTableViewCell
+
         let selectedImage = UIImage(named: "likeSelected")
         let unselectedImage = UIImage(named: "likeUnselected")
 
         if sender.imageView?.image == unselectedImage{
             sender.setImage(UIImage(named: "likeSelected"), forState: UIControlState.Normal)
+            cell.likesCount++
         } else{
             sender.setImage(UIImage(named: "likeUnselected"), forState: UIControlState.Normal)
+            cell.likesCount--
         }
+        tableView.reloadData()
     }
 
     //MARK: TableView
@@ -116,6 +121,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
             cell.photographerImageView.image = image
         }
 
+        cell.likesLabel.text = "\(cell.likesCount)"
         cell.likeButton.tag = indexPath.row
         return cell
     }

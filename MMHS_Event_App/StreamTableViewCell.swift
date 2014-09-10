@@ -15,6 +15,7 @@ class StreamTableViewCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var likesLabel: UILabel!
     @IBOutlet var likeButton: UIButton!
+    var likesCount = Int()
 
     override func awakeFromNib(){
         super.awakeFromNib()
