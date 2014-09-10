@@ -81,7 +81,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
 
         let hostRef = eventRecord.host
 
-        userFromReference(hostRef, { (user, result, error) -> Void in
+        getUserFromReference(hostRef, { (user, result, error) -> Void in
             cell.userImageView.image = imageFromAsset(user!.profilePic)
         })
 

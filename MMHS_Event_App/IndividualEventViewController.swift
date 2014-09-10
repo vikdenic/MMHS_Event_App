@@ -69,8 +69,9 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         currentUser.setRecordToCurrentUsersRecordWithBlock { (succeeded, error) -> Void in
 
             photo.photographer = CKReference(record: currentUser.record, action: CKReferenceAction.None)
-            photo.event = CKReference(record: self.event?.recordValue(), action: CKReferenceAction.None)
+            photo.event = CKReference(record: self.event?.recordValue(), action: CKReferenceAction.DeleteSelf)
             photo.image = CKAsset(fileURL: self.selectedPhoto?.urlWithImage())
+            photo.dateTaken = NSDate()
             photo.likesCount = 0
 
             photo.save({ (succeeded, error) -> Void in
@@ -121,6 +122,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
             cell.photographerImageView.image = image
         }
 
+        cell.dateLabel.text = photo.dateTaken.toOtherString()
         cell.likesLabel.text = "\(photo.likesCount)"
         cell.likeButton.tag = indexPath.row
         return cell

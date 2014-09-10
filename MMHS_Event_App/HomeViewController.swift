@@ -58,7 +58,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let hostRef = event.host
 
-        userFromReference(hostRef, { (user, result, error) -> Void in
+        getUserFromReference(hostRef, { (user, result, error) -> Void in
 //            let user = Users(theCKRecord: record!)
             feedCell.hostImageView.image = imageFromAsset(user!.profilePic)
         })

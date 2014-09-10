@@ -236,6 +236,15 @@ class Photo
         }
     }
 
+    var dateTaken : NSDate! {
+        get {
+            return record.objectForKey("dateTaken") as NSDate!
+        }
+        set {
+            record.setValue(newValue, forKey: "dateTaken")
+        }
+    }
+
     var likesCount : Int! {
         get {
             return record.objectForKey("likesCount") as Int!
@@ -307,7 +316,7 @@ func getAllEvents(completed: (events:[Event]!, result: Bool, error: NSError!) ->
 }
 
 //Converts CKReference to instance of Users class, with completion closure
-func userFromReference(reference: CKReference,completed: (user:Users?, result: Bool, error: NSError!) -> Void)
+func getUserFromReference(reference: CKReference,completed: (user:Users?, result: Bool, error: NSError!) -> Void)
 {
     let recordID = reference.recordID
 
@@ -332,7 +341,7 @@ func getPhotographersProfilePic(fromPhoto photo: Photo, completed: (image: UIIma
 {
     let userReference = photo.photographer
 
-    userFromReference(userReference, { (user, result, error) -> Void in
+    getUserFromReference(userReference, { (user, result, error) -> Void in
         if error != nil{
             println("Error retrieving reference.")
         } else{
@@ -367,6 +376,13 @@ extension NSDate{
         //convert to regular looking time
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "cccc, MMM d, hh:mm aa"
+        return dateFormatter.stringFromDate(self)
+    }
+    func toOtherString() -> String
+    {
+        //convert to regular looking time
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM d, hh:mm aa"
         return dateFormatter.stringFromDate(self)
     }
 }
