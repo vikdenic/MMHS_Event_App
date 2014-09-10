@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Event App-->
+        <!--Events-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="MMHS_Event_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -109,7 +109,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Aaa-0m-sWg" secondAttribute="trailing" constant="-16" id="g3d-Ef-mG0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Event App" id="YYh-2G-xyB">
+                    <navigationItem key="navigationItem" title="Events" id="YYh-2G-xyB">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="442-5o-AXw">
                             <connections>
                                 <action selector="onRefreshButtonTapped:" destination="BYZ-38-t0r" id="yub-Wu-WgV"/>
@@ -359,31 +359,6 @@
             </objects>
             <point key="canvasLocation" x="3272" y="-544"/>
         </scene>
-        <!--Invites View Controller-->
-        <scene sceneID="Pir-DY-KBE">
-            <objects>
-                <viewController id="p78-Rq-adk" customClass="InvitesViewController" customModule="MMHS_Event_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="F2z-Rq-ftW"/>
-                        <viewControllerLayoutGuide type="bottom" id="RRf-te-a3O"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="R35-cV-YyY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="6kV-LV-3uj">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="3Sc-5p-AUB">
-                            <connections>
-                                <action selector="onDismissButtonTapped:" destination="p78-Rq-adk" id="rbr-1O-9Qd"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JbT-Sv-YcZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2496" y="-544"/>
-        </scene>
         <!--Home-->
         <scene sceneID="jWX-PZ-o6q">
             <objects>
@@ -404,7 +379,7 @@
             </objects>
             <point key="canvasLocation" x="1048" y="152"/>
         </scene>
-        <!--Explore View Controller-->
+        <!--Explore-->
         <scene sceneID="WEw-ol-TOW">
             <objects>
                 <viewController id="5Bf-YV-Bvn" customClass="ExploreViewController" customModule="MMHS_Event_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -428,7 +403,7 @@
                             <constraint firstItem="MuD-Wr-dFg" firstAttribute="bottom" secondItem="VpJ-fi-FtM" secondAttribute="bottomMargin" id="sjl-HO-Sux"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jPU-RA-oKX"/>
+                    <navigationItem key="navigationItem" title="Explore" id="jPU-RA-oKX"/>
                     <connections>
                         <outlet property="mapView" destination="MuD-Wr-dFg" id="dtY-DV-yJg"/>
                     </connections>
@@ -505,14 +480,14 @@
                                                     <rect key="frame" x="8" y="42" width="100" height="100"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XW-WR-qyh">
-                                                    <rect key="frame" x="126" y="81" width="252" height="21"/>
+                                                    <rect key="frame" x="115" y="81" width="252" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwQ-g2-38r">
-                                                    <rect key="frame" x="126" y="116" width="252" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="115" y="116" width="252" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -707,24 +682,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MxN-oi-Aq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048" y="1652"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="KAb-yJ-AUP">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aKG-ge-Ag8" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Haa-Bs-VJq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="p78-Rq-adk" kind="relationship" relationship="rootViewController" id="NGJ-5V-jmw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zhb-Fo-HbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2468" y="-522"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aal-OK-ljO">
