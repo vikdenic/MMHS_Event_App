@@ -344,8 +344,10 @@ func getPhotographersProfilePic(fromPhoto photo: Photo, completed: (image: UIIma
         if error != nil{
             println("Error retrieving reference.")
         } else{
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
             let userImage = imageFromAsset(user!.profilePic)
             completed(image: userImage, result: true, error: nil)
+            })
         }
     })
 }
@@ -363,7 +365,6 @@ func getPhotosForEvent(event : Event, completed: (photos:[Photo]!, result:Bool, 
 
     queryOperation.recordFetchedBlock = { (record : CKRecord!) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-
             results.append(Photo(theCKRecord: record))
             completed(photos: results, result: true, error: nil)
         })
