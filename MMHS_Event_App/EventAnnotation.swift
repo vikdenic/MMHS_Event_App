@@ -12,5 +12,4 @@ import MapKit
 public class EventAnnotation : MKPointAnnotation {
 
      var pic = UIImage()
-
 }

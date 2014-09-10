@@ -25,7 +25,6 @@
 		93CDD0F519B62A9A000122F6 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0F419B62A9A000122F6 /* FeedTableViewCell.swift */; };
 		93D2173C19BFE10700493B8D /* EventAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D2173B19BFE10700493B8D /* EventAnnotation.swift */; };
 		93D5F21419B64CF0008C6218 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F21319B64CF0008C6218 /* CreateEventViewController.swift */; };
-		93D5F21619B64D46008C6218 /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F21519B64D46008C6218 /* InvitesViewController.swift */; };
 		93D5F21819B64EE2008C6218 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F21719B64EE2008C6218 /* ExploreViewController.swift */; };
 		93D5F21B19B64F09008C6218 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F21A19B64F09008C6218 /* ProfileViewController.swift */; };
 		93D5F21E19B64FEA008C6218 /* IndividualEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F21D19B64FEA008C6218 /* IndividualEventViewController.swift */; };
@@ -67,7 +66,6 @@
 		93CDD0F419B62A9A000122F6 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		93D2173B19BFE10700493B8D /* EventAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAnnotation.swift; sourceTree = "<group>"; };
 		93D5F21319B64CF0008C6218 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
-		93D5F21519B64D46008C6218 /* InvitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
 		93D5F21719B64EE2008C6218 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		93D5F21A19B64F09008C6218 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		93D5F21D19B64FEA008C6218 /* IndividualEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualEventViewController.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				93CDD0D519B60BE5000122F6 /* AppDelegate.swift */,
 				192213D619B67176006A23BF /* ModelObjects.swift */,
 				93CDD0D919B60BE5000122F6 /* Main.storyboard */,
-				93B2003319BF587F006D5E74 /* ProfileTableViewCell.swift */,
 				93CDD0F619B62AAC000122F6 /* Home */,
 				93D5F21919B64EE6008C6218 /* Explore */,
 				93D5F21C19B64F12008C6218 /* Profile */,
@@ -171,11 +168,10 @@
 			children = (
 				933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */,
 				93CDD0F219B629E1000122F6 /* HomeViewController.swift */,
+				93CDD0F419B62A9A000122F6 /* FeedTableViewCell.swift */,
 				93D5F21D19B64FEA008C6218 /* IndividualEventViewController.swift */,
 				93727BAB19BC5D490019D6B2 /* StreamTableViewCell.swift */,
-				93CDD0F419B62A9A000122F6 /* FeedTableViewCell.swift */,
 				93D5F21319B64CF0008C6218 /* CreateEventViewController.swift */,
-				93D5F21519B64D46008C6218 /* InvitesViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -193,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				93D5F21A19B64F09008C6218 /* ProfileViewController.swift */,
+				93B2003319BF587F006D5E74 /* ProfileTableViewCell.swift */,
 				933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */,
 				93ACD95D19B837ED0056F427 /* Custom Views */,
 			);
@@ -317,7 +314,6 @@
 				9316600019BABEF30085B131 /* ProfilePicImageView.swift in Sources */,
 				93D2173C19BFE10700493B8D /* EventAnnotation.swift in Sources */,
 				93B2003419BF587F006D5E74 /* ProfileTableViewCell.swift in Sources */,
-				93D5F21619B64D46008C6218 /* InvitesViewController.swift in Sources */,
 				192213D719B67176006A23BF /* ModelObjects.swift in Sources */,
 				933130BF19B7908A00ED4CB9 /* BlurredImageView.swift in Sources */,
 				933130BD19B776B900ED4CB9 /* EditProfileViewController.swift in Sources */,

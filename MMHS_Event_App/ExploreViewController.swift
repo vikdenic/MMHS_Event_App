@@ -32,7 +32,7 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
 
     override func viewWillAppear(animated: Bool)
     {
-        queryAllEvents({ (records, result, error) -> Void in
+        getAllEvents({ (records, result, error) -> Void in
             for event in records
             {
                 self.addpins(ofRecord: event, image: imageFromAsset(event.eventPhoto))

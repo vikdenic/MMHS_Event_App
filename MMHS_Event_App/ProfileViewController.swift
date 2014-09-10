@@ -26,14 +26,24 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
 
     var eventsArray = [Event]()
 
+    //MARK: View Loading
     override func viewWillAppear(animated: Bool)
     {
         self.accessUserInfo()
         retrieveDataAndSetViews()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveDataAndSetViews", name: "updatedProfile", object: nil)
+
+        retrieveEvents()
+        tableView.reloadData()
     }
 
+    override func viewDidLayoutSubviews()
+    {
+        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 2, 320)
+    }
+
+    //MARK: Helpers
     func retrieveDataAndSetViews()
     {
         var theUser = Users()
@@ -52,6 +62,49 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
         }
     }
 
+    func retrieveEvents()
+    {
+        getAllEvents { (events, result, error) -> Void in
+            self.eventsArray = events
+            self.tableView.reloadData()
+        }
+    }
+
+    //MARK: TableView
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventsArray.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as ProfileTableViewCell
+        let eventRecord = eventsArray[indexPath.row]
+
+        let hostRef = eventRecord.host
+
+        userFromReference(hostRef, { (user, result, error) -> Void in
+            cell.userImageView.image = imageFromAsset(user!.profilePic)
+        })
+
+        cell.eventImageView.image = imageFromAsset(eventRecord.eventPhoto)
+
+        cell.titleLabel.text = eventRecord.title
+        let date = eventRecord.date
+        cell.dateLabel.text = date.toNiceString()
+        return cell
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 320
+    }
+
+    //MARK: ScrollView
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView)
+    {
+        let pageNumber = roundf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width))
+        self.pageControl.currentPage = Int(pageNumber)
+    }
+
+    //MARK: Check for iCloud user
     func accessUserInfo()
     {
         cloudManager.requestDiscoverabilityPermission { (discoverable) -> Void in
@@ -77,50 +130,5 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
     {
         nameLabel.text = "\(user.firstName) \(user.lastName)"
         self.title = "\(user.firstName)"
-    }
-
-    func retrieveEvents()
-    {
-        queryAllRecords("Event", { (records, result, error) -> Void in
-            self.eventsArray = records
-            self.tableView.reloadData()
-        })
-    }
-
-    //MARK: TableView
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventsArray.count
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as ProfileTableViewCell
-        let eventRecord = eventsArray[indexPath.row]
-        //TODO:        profile pic
-
-        let hostRef = eventRecord.host
-
-        recordFromReference(hostRef, { (record, result, error) -> Void in
-            let user = Users(theCKRecord: record!)
-            cell.userImageView.image = imageFromAsset(user.profilePic)
-        })
-
-        cell.eventImageView.image = imageFromAsset(eventRecord.eventPhoto)
-
-        cell.titleLabel.text = eventRecord.title
-        let date = eventRecord.date
-        cell.dateLabel.text = date.toNiceString()
-        return cell
-    }
-
-    //MARK: ScrollView
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView)
-    {
-        let pageNumber = roundf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width))
-        self.pageControl.currentPage = Int(pageNumber)
-    }
-
-    override func viewDidLayoutSubviews()
-    {
-        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 2, 320)
     }
 }

@@ -27,8 +27,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: Helpers
     func retrieveEvents()
     {
-        queryAllEvents { (records, result, error) -> Void in
-            self.eventsArray = records
+        getAllEvents { (events, result, error) -> Void in
+            self.eventsArray = events
             self.tableView.reloadData()
         }
     }
@@ -56,10 +56,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let hostRef = event.host
 
-        recordFromReference(hostRef, { (record, result, error) -> Void in
-            let user = Users(theCKRecord: record!)
-            feedCell.hostImageView.image = imageFromAsset(user.profilePic)
+        userFromReference(hostRef, { (user, result, error) -> Void in
+//            let user = Users(theCKRecord: record!)
+            feedCell.hostImageView.image = imageFromAsset(user!.profilePic)
         })
+
+//        recordFromReference(hostRef, { (record, result, error) -> Void in
+//            let user = Users(theCKRecord: record!)
+//            feedCell.hostImageView.image = imageFromAsset(user.profilePic)
+//        })
 
         feedCell.eventImageView.image = imageFromAsset(event.eventPhoto)
 

@@ -277,7 +277,7 @@ class Photo
     }
 }
 
-func queryAllEvents(completed: (records:[Event]!, result: Bool, error: NSError!) -> Void){
+func getAllEvents(completed: (events:[Event]!, result: Bool, error: NSError!) -> Void){
     var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
 
     var results = [Event]()
@@ -292,12 +292,12 @@ func queryAllEvents(completed: (records:[Event]!, result: Bool, error: NSError!)
 
     queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
         if error != nil{
-            completed(records: nil, result: false, error: error)
+            completed(events: nil, result: false, error: error)
 
         } else{
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
-                completed(records: results, result: true, error: error)
+                completed(events: results, result: true, error: error)
                 //            println(toArray)
             })
         }
@@ -306,37 +306,8 @@ func queryAllEvents(completed: (records:[Event]!, result: Bool, error: NSError!)
     database.addOperation(queryOperation)
 }
 
-func queryAllRecords(recordType: String!, completed: (records:[Event]!, result: Bool, error: NSError!) -> Void){
-    var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-
-    var results = [Event]()
-
-    let truePredicate = NSPredicate(value: true)
-    let query = CKQuery(recordType: recordType, predicate: truePredicate)
-    let queryOperation = CKQueryOperation(query: query)
-
-    queryOperation.recordFetchedBlock = { (record : CKRecord!) in
-        results.append(Event(theCKRecord: record))
-    }
-
-    queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
-        if error != nil{
-            completed(records: nil, result: false, error: error)
-
-        } else{
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-
-            completed(records: results, result: true, error: error)
-//            println(toArray)
-            })
-        }
-    }
-
-    database.addOperation(queryOperation)
-}
-
-//Convers CKReference to CKRecord to be handled on main thread
-func recordFromReference(reference: CKReference,completed: (record:CKRecord?, result: Bool, error: NSError!) -> Void)
+//Converts CKReference to instance of Users class, with completion closure
+func userFromReference(reference: CKReference,completed: (user:Users?, result: Bool, error: NSError!) -> Void)
 {
     let recordID = reference.recordID
 
@@ -344,43 +315,33 @@ func recordFromReference(reference: CKReference,completed: (record:CKRecord?, re
 
     publicDatabase.fetchRecordWithID(recordID, completionHandler: { (record, error) -> Void in
 
+        let userFromRef = Users(theCKRecord: record!)
+
         if error != nil{
-            completed(record: nil, result: false, error: error)
+            completed(user: nil, result: false, error: error)
         }
         else{
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                completed(record: record!, result: true, error: error)
+                completed(user: userFromRef, result: true, error: error)
             })
         }
     })
 }
 
-//TODO:
 func getPhotographersProfilePic(fromPhoto photo: Photo, completed: (image: UIImage!, result: Bool, error: NSError!) -> Void)
 {
     let userReference = photo.photographer
-    recordFromReference(userReference, { (record, result, error) -> Void in
+
+    userFromReference(userReference, { (user, result, error) -> Void in
         if error != nil{
             println("Error retrieving reference.")
         } else{
-            let userObject = Users(theCKRecord: record!)
-            let userImage = imageFromAsset(userObject.profilePic)
+            let userImage = imageFromAsset(user!.profilePic)
             completed(image: userImage, result: true, error: nil)
         }
     })
 }
 
-//let predicate = NSPredicate(format: "event == %@", event!.recordValue())
-
-//queryPhotoRecords("Photo", predicate) { (records, result, error) -> Void in
-//    for photo in records
-//    {
-//        self.photosArray.append(photo)
-//        self.tableView.reloadData()
-//    }
-//}
-
-//TODO:
 func getPhotosForEvent(event : Event, completed: (photos:[Photo]!, result:Bool, error: NSError!) -> Void)
 {
     var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
@@ -397,35 +358,6 @@ func getPhotosForEvent(event : Event, completed: (photos:[Photo]!, result:Bool, 
         completed(photos: results, result: true, error: nil)
     }
 
-    database.addOperation(queryOperation)
-}
-
-
-
-func queryPhotoRecords(recordType: String!, withPredicate : NSPredicate!, completed: (records:[Photo]!, result: Bool, error: NSError!) -> Void){
-    var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
-
-    var results = [Photo]()
-
-//    let truePredicate = NSPredicate(value: true)
-    let query = CKQuery(recordType: recordType, predicate: withPredicate)
-    let queryOperation = CKQueryOperation(query: query)
-
-    queryOperation.recordFetchedBlock = { (record : CKRecord!) in
-        results.append(Photo(theCKRecord: record))
-    }
-
-    queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
-        if error != nil{
-            completed(records: nil, result: false, error: error)
-
-        } else{
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                completed(records: results, result: true, error: error)
-            })
-        }
-    }
-    
     database.addOperation(queryOperation)
 }
 
