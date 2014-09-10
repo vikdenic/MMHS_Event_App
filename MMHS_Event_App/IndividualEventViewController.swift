@@ -35,6 +35,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         })
     }
 
+    //Action Sheet
     @IBAction func onCameraButtonTapped(sender: UIBarButtonItem) {
         actionSheet()
     }
@@ -57,6 +58,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
 
+    //MARK: UIImagePickerController
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         selectedPhoto = info[UIImagePickerControllerEditedImage] as UIImage!
 
@@ -79,6 +81,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    //MARK: Other Actions
     @IBAction func onLikeButtonTapped(sender: UIButton){
 
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as StreamTableViewCell
@@ -102,7 +105,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
 
-    //MARK: TableView
+    //MARK: UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photosArray.count
     }
@@ -125,22 +128,4 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 390
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

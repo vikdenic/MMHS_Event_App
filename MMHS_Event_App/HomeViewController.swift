@@ -15,16 +15,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var refreshButton: UIBarButtonItem!
     var selectedIndexPath = NSIndexPath()
 
-    override func viewDidLoad()
-    {
-//        retrieveEvents()
-        //
-    }
-
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedIndexPath = indexPath
-    }
-
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(true)
@@ -33,14 +23,72 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForAccountAuthentification", name: "opened", object: nil)
     }
 
+    //MARK: Helpers
     func retrieveEvents()
     {
-        queryAllRecords("Event", { (records, result, error) -> Void in
+        queryAllEvents { (records, result, error) -> Void in
             self.eventsArray = records
             self.tableView.reloadData()
-        })
+        }
     }
 
+    //MARK: Actions
+    @IBAction func onRefreshButtonTapped(sender: UIBarButtonItem)
+    {
+        if eventsArray.count > 0
+        {
+            retrieveEvents()
+        }
+    }
+
+    //MARK: TableView
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return eventsArray.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let feedCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedTableViewCell
+
+        let event = eventsArray[indexPath.row]
+
+        let hostRef = event.host
+
+        recordFromReference(hostRef, { (record, result, error) -> Void in
+            let user = Users(theCKRecord: record!)
+            feedCell.hostImageView.image = imageFromAsset(user.profilePic)
+        })
+
+        feedCell.eventImageView.image = imageFromAsset(event.eventPhoto)
+
+        feedCell.titleLabel.text = event.title
+        let date = event.date
+        feedCell.dateLabel.text = date.toNiceString()
+
+        return feedCell
+    }
+
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedIndexPath = indexPath
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 320
+    }
+
+    //MARK: Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "toStream"
+        {
+        var individualVC = segue.destinationViewController as IndividualEventViewController
+
+        individualVC.event = eventsArray[tableView.indexPathForSelectedRow()!.row]
+        }
+    }
+
+    //MARK: Check for iCloud user
     func checkForAccountAuthentification()
     {
         var currentiCloudAccountStatus : Void = CKContainer.defaultContainer().accountStatusWithCompletionHandler { (accessibility, error) -> Void in
@@ -64,8 +112,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 cloudManager.discoverUserInfo({ (user) -> Void in
 
-                    self.discoveredUserInfo(user)
-
                 })
             } else{
                 let alert = UIAlertController(title: "CloudKit", message: "Getting your name using Discoverability requires permission", preferredStyle: UIAlertControllerStyle.Alert)
@@ -76,63 +122,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 alert.addAction(action)
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-        }
-    }
-
-    func discoveredUserInfo(user : CKDiscoveredUserInfo!)
-    {
-        //code to set data
-    }
-
-    @IBAction func onRefreshButtonTapped(sender: UIBarButtonItem)
-    {
-        if eventsArray.count > 0
-        {
-            retrieveEvents()
-        }
-    }
-
-    //MARK: TableView
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return eventsArray.count
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        let feedCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedTableViewCell
-
-        let eventRecord = eventsArray[indexPath.row]
-        //TODO:        profile pic
-
-        let hostRef = eventRecord.host
-
-        recordFromReference(hostRef, { (record, result, error) -> Void in
-            let user = Users(theCKRecord: record!)
-            feedCell.hostImageView.image = imageFromAsset(user.profilePic)
-        })
-
-        feedCell.eventImageView.image = imageFromAsset(eventRecord.eventPhoto)
-
-        feedCell.titleLabel.text = eventRecord.title
-        let date = eventRecord.date
-        feedCell.dateLabel.text = date.toNiceString()
-
-        return feedCell
-    }
-
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 320
-    }
-
-    //MARK: Segue
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        if segue.identifier == "toStream"
-        {
-        var individualVC = segue.destinationViewController as IndividualEventViewController
-
-        individualVC.event = eventsArray[tableView.indexPathForSelectedRow()!.row]
         }
     }
 }

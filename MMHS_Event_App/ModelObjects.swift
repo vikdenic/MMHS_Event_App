@@ -277,6 +277,35 @@ class Photo
     }
 }
 
+func queryAllEvents(completed: (records:[Event]!, result: Bool, error: NSError!) -> Void){
+    var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
+
+    var results = [Event]()
+
+    let truePredicate = NSPredicate(value: true)
+    let query = CKQuery(recordType: "Event", predicate: truePredicate)
+    let queryOperation = CKQueryOperation(query: query)
+
+    queryOperation.recordFetchedBlock = { (record : CKRecord!) in
+        results.append(Event(theCKRecord: record))
+    }
+
+    queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor!, error : NSError!) in
+        if error != nil{
+            completed(records: nil, result: false, error: error)
+
+        } else{
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
+                completed(records: results, result: true, error: error)
+                //            println(toArray)
+            })
+        }
+    }
+    
+    database.addOperation(queryOperation)
+}
+
 func queryAllRecords(recordType: String!, completed: (records:[Event]!, result: Bool, error: NSError!) -> Void){
     var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase
 
