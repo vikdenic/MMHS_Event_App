@@ -307,7 +307,6 @@ func getAllEvents(completed: (events:[Event]!, result: Bool, error: NSError!) ->
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
                 completed(events: results, result: true, error: error)
-                //            println(toArray)
             })
         }
     }
@@ -363,8 +362,11 @@ func getPhotosForEvent(event : Event, completed: (photos:[Photo]!, result:Bool, 
     let queryOperation = CKQueryOperation(query: query)
 
     queryOperation.recordFetchedBlock = { (record : CKRecord!) in
-        results.append(Photo(theCKRecord: record))
-        completed(photos: results, result: true, error: nil)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
+            results.append(Photo(theCKRecord: record))
+            completed(photos: results, result: true, error: nil)
+        })
     }
 
     database.addOperation(queryOperation)
