@@ -160,23 +160,23 @@
                                                     <rect key="frame" x="8" y="332" width="50" height="50"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nG8-KO-4Ke">
-                                                    <rect key="frame" x="268" y="361" width="52" height="21"/>
+                                                    <rect key="frame" x="256" y="361" width="52" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hac-qd-tTv">
-                                                    <rect key="frame" x="280" y="328" width="28" height="28"/>
+                                                    <rect key="frame" x="268" y="332" width="28" height="28"/>
                                                     <state key="normal" image="likeUnselected">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="onLikeButtonPressed:" destination="6h0-I8-6bp" eventType="touchUpInside" id="dH9-ag-8JS"/>
+                                                        <action selector="onLikeButtonTapped:" destination="6h0-I8-6bp" eventType="touchUpInside" id="RhN-JB-YGZ"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agt-NX-Ril">
-                                                    <rect key="frame" x="66" y="346" width="104" height="21"/>
+                                                    <rect key="frame" x="66" y="363" width="130" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>

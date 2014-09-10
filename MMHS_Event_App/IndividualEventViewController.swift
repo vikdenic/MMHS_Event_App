@@ -26,9 +26,6 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         imagePicker.allowsEditing = true
         let photosRef = event?.photos
 
-//        let predicate = NSPredicate(format: "event == %@", CKReference(record: event?.recordValue(), action: CKReferenceAction.None))
-//        let predicate = NSPredicate(value: true)
-
         getPhotosForEvent(event!, { (photos, result, error) -> Void in
             for photo in photos
             {
@@ -48,20 +45,17 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
 
-    @IBAction func onCameraButtonTapped(sender: UIBarButtonItem)
-    {
+    @IBAction func onCameraButtonTapped(sender: UIBarButtonItem) {
         actionSheet()
     }
 
-    func actionSheet()
-    {
+    func actionSheet() {
         let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil, otherButtonTitles: "Camera", "Library")
 
         actionSheet.showInView(view)
     }
 
-    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int)
-    {
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex == 1
         {
             imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
@@ -73,8 +67,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
-    {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         selectedPhoto = info[UIImagePickerControllerEditedImage] as UIImage!
 
         let photo = Photo()
@@ -96,44 +89,52 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-//    func onLikeButtonTapped()
-//    {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("StreamCell") as StreamTableViewCell
-//
-//    }
+    @IBAction func onLikeButtonTapped(sender: UIButton){
 
-    @IBAction func onLikeButtonPressed(sender: UIButton)
-    {
-//        let cell = tableView.cellForRowAtIndexPath(<#indexPath: NSIndexPath#>)
+        let selectedImage = UIImage(named: "likeSelected")
+        let unselectedImage = UIImage(named: "likeUnselected")
+
+        if sender.imageView?.image == unselectedImage{
+            sender.setImage(UIImage(named: "likeSelected"), forState: UIControlState.Normal)
+        } else{
+            sender.setImage(UIImage(named: "likeUnselected"), forState: UIControlState.Normal)
+        }
     }
 
-//    StreamTableViewCell *cell = (id)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sender.tag]];
-
     //MARK: TableView
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photosArray.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StreamCell") as StreamTableViewCell
+
         let photo = photosArray[indexPath.row] as Photo
+        cell.streamImageView.image = imageFromAsset(photo.image)
 
         getPhotographersProfilePic(fromPhoto: photo) { (image, result, error) -> Void in
             cell.photographerImageView.image = image
         }
 
         cell.likeButton.tag = indexPath.row
-//        cell.photographerImageView.image = imageFromAsset(image)
-
-
         return cell
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 390
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
