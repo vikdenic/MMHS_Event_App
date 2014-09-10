@@ -23,6 +23,7 @@
 		93CDD0E919B60BE5000122F6 /* MMHS_Event_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0E819B60BE5000122F6 /* MMHS_Event_AppTests.swift */; };
 		93CDD0F319B629E1000122F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0F219B629E1000122F6 /* HomeViewController.swift */; };
 		93CDD0F519B62A9A000122F6 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0F419B62A9A000122F6 /* FeedTableViewCell.swift */; };
+		93D2173C19BFE10700493B8D /* EventAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D2173B19BFE10700493B8D /* EventAnnotation.swift */; };
 		93D5F21419B64CF0008C6218 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F21319B64CF0008C6218 /* CreateEventViewController.swift */; };
 		93D5F21619B64D46008C6218 /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F21519B64D46008C6218 /* InvitesViewController.swift */; };
 		93D5F21819B64EE2008C6218 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F21719B64EE2008C6218 /* ExploreViewController.swift */; };
@@ -64,6 +65,7 @@
 		93CDD0E819B60BE5000122F6 /* MMHS_Event_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHS_Event_AppTests.swift; sourceTree = "<group>"; };
 		93CDD0F219B629E1000122F6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		93CDD0F419B62A9A000122F6 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		93D2173B19BFE10700493B8D /* EventAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAnnotation.swift; sourceTree = "<group>"; };
 		93D5F21319B64CF0008C6218 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		93D5F21519B64D46008C6218 /* InvitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
 		93D5F21719B64EE2008C6218 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				93D5F21719B64EE2008C6218 /* ExploreViewController.swift */,
+				93D2173B19BFE10700493B8D /* EventAnnotation.swift */,
 			);
 			name = Explore;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				935A082919B8367200AC4346 /* LighterBlurredImageView.swift in Sources */,
 				93D5F21B19B64F09008C6218 /* ProfileViewController.swift in Sources */,
 				9316600019BABEF30085B131 /* ProfilePicImageView.swift in Sources */,
+				93D2173C19BFE10700493B8D /* EventAnnotation.swift in Sources */,
 				93B2003419BF587F006D5E74 /* ProfileTableViewCell.swift in Sources */,
 				93D5F21619B64D46008C6218 /* InvitesViewController.swift in Sources */,
 				192213D719B67176006A23BF /* ModelObjects.swift in Sources */,

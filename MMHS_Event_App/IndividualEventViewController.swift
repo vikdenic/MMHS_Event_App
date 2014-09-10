@@ -119,15 +119,14 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("StreamCell") as StreamTableViewCell
         let photo = photosArray[indexPath.row] as Photo
-        cell.streamImageView.image = imageFromAsset(photo.image)
 
-        let photographer = photo.photographer
-        recordFromReference(photographer, { (record, result, error) -> Void in
-            let user = Users(theCKRecord: record!)
-            cell.photographerImageView.image = imageFromAsset(user.profilePic)
-        })
+        getPhotographersProfilePic(fromPhoto: photo) { (image, result, error) -> Void in
+            cell.photographerImageView.image = image
+        }
 
         cell.likeButton.tag = indexPath.row
+//        cell.photographerImageView.image = imageFromAsset(image)
+
 
         return cell
     }
@@ -135,6 +134,10 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 390
     }
+
+
+
+
 
 
 }

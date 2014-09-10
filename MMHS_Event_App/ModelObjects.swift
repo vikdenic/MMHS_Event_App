@@ -306,11 +306,6 @@ func queryAllRecords(recordType: String!, completed: (records:[Event]!, result: 
     database.addOperation(queryOperation)
 }
 
-func getPhotographerOfPhoto(photo: Photo,completed: (user: Users?, result: Bool, error: NSError!) -> Void)
-{
-
-}
-
 //Convers CKReference to CKRecord to be handled on main thread
 func recordFromReference(reference: CKReference,completed: (record:CKRecord?, result: Bool, error: NSError!) -> Void)
 {
@@ -331,10 +326,28 @@ func recordFromReference(reference: CKReference,completed: (record:CKRecord?, re
     })
 }
 
+//TODO:
 func getPhotosForEvent(event : Event, completed: (photos:[Photo]!, result:Bool, error: NSError!) -> Void)
 {
-    
+
 }
+
+//TODO:
+func getPhotographersProfilePic(fromPhoto photo: Photo, completed: (image: UIImage!, result: Bool, error: NSError!) -> Void)
+{
+    let userReference = photo.photographer
+    recordFromReference(userReference, { (record, result, error) -> Void in
+        if error != nil{
+            println("Error retrieving reference.")
+        } else{
+            let userObject = Users(theCKRecord: record!)
+            let userImage = imageFromAsset(userObject.profilePic)
+            completed(image: userImage, result: true, error: nil)
+        }
+    })
+}
+
+
 
 func queryPhotoRecords(recordType: String!, withPredicate : NSPredicate!, completed: (records:[Photo]!, result: Bool, error: NSError!) -> Void){
     var database: CKDatabase = CKContainer.defaultContainer().publicCloudDatabase

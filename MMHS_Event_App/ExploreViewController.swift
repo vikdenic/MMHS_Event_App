@@ -17,10 +17,8 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
 
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
-    var eventPhotosArray = [UIImage]()
 
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         locationManager.requestAlwaysAuthorization()
@@ -29,11 +27,13 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+    }
+
+    override func viewWillAppear(animated: Bool) {
         queryAllRecords("Event", { (records, result, error) -> Void in
             for event in records
             {
-                self.addpin(event)
-                self.eventPhotosArray.append(imageFromAsset(event.eventPhoto))
+                self.addpins(ofRecord: event, image: imageFromAsset(event.eventPhoto))
             }
         })
     }
@@ -57,23 +57,27 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         }
     }
 
-    func addpin(record : Event)
+    func addpins(ofRecord record: Event, image : UIImage)
     {
-        var pin = MKPointAnnotation()
-        var location = record.location
-        pin.coordinate = location.coordinate
+        var pin = EventAnnotation()
+        pin.coordinate = record.location.coordinate
+        pin.pic = image
         mapView.addAnnotation(pin)
     }
 
     //MKMapViewDelegate
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
 
-        let aview = MKPinAnnotationView()
+        let annot = annotation as EventAnnotation
+        let annotview = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
 
-        for image in eventPhotosArray
-        {
-            aview.image = image
-        }
-        return aview
+        var scaleSize = CGSizeMake(65, 65)
+        UIGraphicsBeginImageContextWithOptions(scaleSize, false, 0.0)
+        annot.pic.drawInRect(CGRectMake(0, 0, scaleSize.width, scaleSize.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        annotview.image = resizedImage
+        annotview.layer.cornerRadius = annotview.image.size.width / 2
+        annotview.clipsToBounds = true
+        return annotview
     }
 }
