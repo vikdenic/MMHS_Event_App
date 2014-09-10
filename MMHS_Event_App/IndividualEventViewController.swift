@@ -19,6 +19,7 @@ class IndividualEventViewController: UIViewController, UITableViewDelegate, UITa
 
     var event = Event?()
 
+    //MARK: View Loading
     override func viewDidLoad()
     {
         super.viewDidLoad()

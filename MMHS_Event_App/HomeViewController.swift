@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var refreshButton: UIBarButtonItem!
     var selectedIndexPath = NSIndexPath()
 
+    //MARK: View Loading
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(true)

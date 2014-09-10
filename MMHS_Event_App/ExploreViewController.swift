@@ -18,7 +18,8 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
         locationManager.requestAlwaysAuthorization()
@@ -29,8 +30,9 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         locationManager.startUpdatingLocation()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        queryAllRecords("Event", { (records, result, error) -> Void in
+    override func viewWillAppear(animated: Bool)
+    {
+        queryAllEvents({ (records, result, error) -> Void in
             for event in records
             {
                 self.addpins(ofRecord: event, image: imageFromAsset(event.eventPhoto))
@@ -57,16 +59,9 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         }
     }
 
-    func addpins(ofRecord record: Event, image : UIImage)
-    {
-        var pin = EventAnnotation()
-        pin.coordinate = record.location.coordinate
-        pin.pic = image
-        mapView.addAnnotation(pin)
-    }
-
     //MKMapViewDelegate
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView!
+    {
 
         let annot = annotation as EventAnnotation
         let annotview = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
@@ -79,5 +74,13 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         annotview.layer.cornerRadius = annotview.image.size.width / 2
         annotview.clipsToBounds = true
         return annotview
+    }
+
+    func addpins(ofRecord record: Event, image : UIImage)
+    {
+        var pin = EventAnnotation()
+        pin.coordinate = record.location.coordinate
+        pin.pic = image
+        mapView.addAnnotation(pin)
     }
 }

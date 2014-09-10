@@ -23,6 +23,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
 
     var location = CLLocation?()
 
+    //MARK: View Loading
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -32,11 +33,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         selectPhotoButton.layer.cornerRadius = 5
     }
 
-    @IBAction func onSelectPhotoTapped(sender: UIButton)
-    {
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
-
+    //MARK: UIImagePickerController
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
     {
         dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -46,6 +43,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
 
+    //MARK: Geocoding
     func geocodeLocationWithBlock(located : (succeeded : Bool, error : NSError!) -> Void)
     {
         var geocode = CLGeocoder()
@@ -62,6 +60,7 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
 
+    //MARK: Helpers
     func setDataAndSave()
     {
         let newEvent = Event()
@@ -94,6 +93,12 @@ class CreateEventViewController: UIViewController, UIImagePickerControllerDelega
                 }
             }
         }
+    }
+
+    //MARK: Actions
+    @IBAction func onSelectPhotoTapped(sender: UIButton)
+    {
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
 
     @IBAction func onDoneButtonTapped(sender: UIBarButtonItem)

@@ -20,5 +20,4 @@ class InvitesViewController: UIViewController {
     {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
 }
