@@ -20,6 +20,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         super.viewWillAppear(true)
 
+        tabBarController?.tabBar.tintColor = UIColor.purpleColor()
+
         checkForAccountAuthentification()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkForAccountAuthentification", name: "opened", object: nil)
     }

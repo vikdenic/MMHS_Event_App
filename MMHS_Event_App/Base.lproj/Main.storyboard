@@ -388,11 +388,12 @@
         <scene sceneID="jWX-PZ-o6q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M9K-WU-fbC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="lga-UH-qiu"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="homeTab" id="lga-UH-qiu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4lb-lI-Bz9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -655,7 +656,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="4Wg-Yo-8rt">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="M9K-WU-fbC" kind="relationship" relationship="viewControllers" id="hQl-gk-gea"/>
@@ -671,11 +672,12 @@
         <scene sceneID="Oxz-Dt-jdJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a8g-ee-MsS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Explore" id="8N7-x7-mWY"/>
+                    <tabBarItem key="tabBarItem" title="Explore" image="exploreTab" id="8N7-x7-mWY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4p9-2Y-oGK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -690,11 +692,12 @@
         <scene sceneID="3Ub-Hb-72K">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="db1-2D-vUI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="C3R-BF-Xxs"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profileTab" id="C3R-BF-Xxs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8fJ-6o-oQX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -767,6 +770,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G36-WJ-g8p">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -782,8 +786,12 @@
         <image name="backgroundImage" width="798" height="798"/>
         <image name="cloudsImage" width="320" height="568"/>
         <image name="eventImage" width="160" height="160"/>
+        <image name="exploreTab" width="34" height="28"/>
+        <image name="homeTab" width="32" height="32"/>
         <image name="icloudImage" width="124" height="84"/>
         <image name="likeUnselected" width="39" height="39"/>
         <image name="profilePic" width="100" height="100"/>
+        <image name="profileTab" width="29" height="22"/>
     </resources>
+    <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
