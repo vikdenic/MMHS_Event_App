@@ -448,23 +448,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eventImage" translatesAutoresizingMaskIntoConstraints="NO" id="dm2-gw-1Sp" customClass="BlurredImageView" customModule="MMHS_Event_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="dm2-gw-1Sp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="252"/>
                             </imageView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="dVd-SX-fFA">
+                                <rect key="frame" x="140" y="215" width="39" height="37"/>
+                            </pageControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81e-O9-rnC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="252"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HxV-lH-BcO" userLabel="View1">
                                         <rect key="frame" x="320" y="0.0" width="320" height="320"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HwG-Fp-lW8" userLabel="hometown">
-                                                <rect key="frame" x="27" y="145" width="269" height="27"/>
+                                                <rect key="frame" x="27" y="119" width="269" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gua-9w-pFz">
-                                                <rect key="frame" x="27" y="180" width="269" height="77"/>
+                                                <rect key="frame" x="27" y="134" width="269" height="77"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -472,16 +475,10 @@
                                         </subviews>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sb3-UW-fU7" userLabel="View1">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Last" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjG-XD-872">
-                                                <rect key="frame" x="26" y="103" width="269" height="43"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profilePic" translatesAutoresizingMaskIntoConstraints="NO" id="5Qf-Em-Gbt" customClass="ProfilePicImageView" customModule="MMHS_Event_App" customModuleProvider="target">
-                                                <rect key="frame" x="110" y="168" width="100" height="100"/>
+                                                <rect key="frame" x="110" y="110" width="100" height="100"/>
                                             </imageView>
                                         </subviews>
                                     </view>
@@ -490,33 +487,30 @@
                                     <outlet property="delegate" destination="9fn-GX-EyB" id="a0t-gN-esP"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="dVd-SX-fFA">
-                                <rect key="frame" x="140" y="287" width="39" height="37"/>
-                            </pageControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="153" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hHd-df-F2K">
-                                <rect key="frame" x="0.0" y="328" width="600" height="272"/>
+                                <rect key="frame" x="0.0" y="254" width="600" height="346"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="320" id="3Xj-i7-g7q" customClass="ProfileTableViewCell" customModule="MMHS_Event_App" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="160" id="3Xj-i7-g7q" customClass="ProfileTableViewCell" customModule="MMHS_Event_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Xj-i7-g7q" id="8M4-73-bJI">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VmM-Lh-ofq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="389.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VmM-Lh-ofq" customClass="BlurredImageView" customModule="MMHS_Event_App" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hqe-ls-3th">
-                                                    <rect key="frame" x="8" y="99" width="100" height="100"/>
+                                                    <rect key="frame" x="8" y="42" width="100" height="100"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XW-WR-qyh">
-                                                    <rect key="frame" x="203" y="99" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XW-WR-qyh">
+                                                    <rect key="frame" x="126" y="81" width="252" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwQ-g2-38r">
-                                                    <rect key="frame" x="203" y="138" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwQ-g2-38r">
+                                                    <rect key="frame" x="126" y="116" width="252" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -550,7 +544,6 @@
                         <outlet property="bioLabel" destination="Gua-9w-pFz" id="aEq-5I-me6"/>
                         <outlet property="coverImageView" destination="dm2-gw-1Sp" id="rg2-Sa-BXL"/>
                         <outlet property="hometownLabel" destination="HwG-Fp-lW8" id="jUX-BH-bYh"/>
-                        <outlet property="nameLabel" destination="DjG-XD-872" id="R54-b1-cJq"/>
                         <outlet property="pageControl" destination="dVd-SX-fFA" id="uht-sE-w5g"/>
                         <outlet property="profileImageView" destination="5Qf-Em-Gbt" id="JBW-vG-oiq"/>
                         <outlet property="scrollView" destination="81e-O9-rnC" id="qiV-1I-PIg"/>
@@ -573,6 +566,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Je-Jt-R5c" customClass="BlurredImageView" customModule="MMHS_Event_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="605" height="600"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oj7-ab-2jZ">
                                 <rect key="frame" x="211" y="248" width="178" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -618,6 +614,10 @@
                             <constraint firstAttribute="centerX" secondItem="Oj7-ab-2jZ" secondAttribute="centerX" id="Cta-ei-a3w"/>
                             <constraint firstAttribute="centerX" secondItem="jUM-Zj-Ovk" secondAttribute="centerX" id="E9G-gz-eTh"/>
                             <constraint firstAttribute="centerX" secondItem="xMm-Ie-KH9" secondAttribute="centerX" id="FBT-b0-CHz"/>
+                            <constraint firstItem="9Je-Jt-R5c" firstAttribute="leading" secondItem="ZeH-X1-gHh" secondAttribute="leadingMargin" constant="-16" id="RVs-e6-lZx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Je-Jt-R5c" secondAttribute="trailing" constant="-21" id="Y01-Kk-tP1"/>
+                            <constraint firstItem="oeU-TU-FoP" firstAttribute="top" secondItem="9Je-Jt-R5c" secondAttribute="bottom" id="f6u-HD-BtD"/>
+                            <constraint firstItem="9Je-Jt-R5c" firstAttribute="top" secondItem="ZeH-X1-gHh" secondAttribute="topMargin" id="hDz-VI-J3C"/>
                             <constraint firstAttribute="centerX" secondItem="5Rd-fv-UWv" secondAttribute="centerX" id="hha-od-0GZ"/>
                             <constraint firstAttribute="centerX" secondItem="Nnc-sW-xM3" secondAttribute="centerX" id="sOU-nV-azb"/>
                         </constraints>
@@ -635,6 +635,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backgroundImage" destination="9Je-Jt-R5c" id="omY-FM-0KC"/>
                         <outlet property="bioTextField" destination="5Rd-fv-UWv" id="8lg-Cy-Z2t"/>
                         <outlet property="changeCoverPhotoButton" destination="xMm-Ie-KH9" id="pbt-qp-2dt"/>
                         <outlet property="changeProfPicButton" destination="Nnc-sW-xM3" id="Sn4-Xm-PNm"/>
@@ -778,6 +779,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="backgroundImage" width="798" height="798"/>
         <image name="cloudsImage" width="320" height="568"/>
         <image name="eventImage" width="160" height="160"/>
         <image name="icloudImage" width="124" height="84"/>

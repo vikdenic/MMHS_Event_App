@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
 
     override func viewDidLayoutSubviews()
     {
-        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 2, 320)
+        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 2, 160)
     }
 
     //MARK: Helpers
@@ -94,7 +94,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 320
+        return 160
     }
 
     //MARK: ScrollView
@@ -128,7 +128,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
 
     func discoveredUserInfo(user : CKDiscoveredUserInfo!)
     {
-        nameLabel.text = "\(user.firstName) \(user.lastName)"
         self.title = "\(user.firstName)"
     }
 }

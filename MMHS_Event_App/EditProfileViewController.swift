@@ -23,6 +23,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     let imagePicker = UIImagePickerController()
 
+    @IBOutlet var backgroundImage: UIImageView!
+
     var selectedProfilePic = UIImage?()
     var selectedCoverPhoto = UIImage?()
 
@@ -68,6 +70,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
             self.bioTextField.text = user.bio
             self.hometownTextField.text = user.hometown
+            self.backgroundImage.image = imageFromAsset(user.coverPhoto)
         }
     }
 
