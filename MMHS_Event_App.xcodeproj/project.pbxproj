@@ -12,10 +12,10 @@
 		933130BD19B776B900ED4CB9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130BC19B776B900ED4CB9 /* EditProfileViewController.swift */; };
 		933130BF19B7908A00ED4CB9 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */; };
 		933130C319B7AEE200ED4CB9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933130C219B7AEE200ED4CB9 /* CloudKit.framework */; };
-		933130C719B7B14800ED4CB9 /* AAPLCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */; };
 		933130C919B7BCA500ED4CB9 /* NoUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */; };
 		935A082919B8367200AC4346 /* LighterBlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935A082819B8367200AC4346 /* LighterBlurredImageView.swift */; };
 		93727BAC19BC5D490019D6B2 /* StreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93727BAB19BC5D490019D6B2 /* StreamTableViewCell.swift */; };
+		93A59A4B1AEE7A9000223F16 /* AAPLCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A59A4A1AEE7A9000223F16 /* AAPLCloudManager.m */; };
 		93B2003419BF587F006D5E74 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2003319BF587F006D5E74 /* ProfileTableViewCell.swift */; };
 		93CDD0D619B60BE5000122F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDD0D519B60BE5000122F6 /* AppDelegate.swift */; };
 		93CDD0DB19B60BE5000122F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CDD0D919B60BE5000122F6 /* Main.storyboard */; };
@@ -48,11 +48,11 @@
 		933130BE19B7908A00ED4CB9 /* BlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredImageView.swift; sourceTree = "<group>"; };
 		933130C219B7AEE200ED4CB9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		933130C419B7B14800ED4CB9 /* MMHS_Event_App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMHS_Event_App-Bridging-Header.h"; sourceTree = "<group>"; };
-		933130C519B7B14800ED4CB9 /* AAPLCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAPLCloudManager.h; path = ../../../../Learning/CloudKitAtlasAnIntroductiontoCloudKit/CloudKitAtlas/AAPLCloudManager.h; sourceTree = "<group>"; };
-		933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAPLCloudManager.m; path = ../../../../Learning/CloudKitAtlasAnIntroductiontoCloudKit/CloudKitAtlas/AAPLCloudManager.m; sourceTree = "<group>"; };
 		933130C819B7BCA500ED4CB9 /* NoUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoUserViewController.swift; sourceTree = "<group>"; };
 		935A082819B8367200AC4346 /* LighterBlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LighterBlurredImageView.swift; sourceTree = "<group>"; };
 		93727BAB19BC5D490019D6B2 /* StreamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamTableViewCell.swift; sourceTree = "<group>"; };
+		93A59A491AEE7A9000223F16 /* AAPLCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCloudManager.h; sourceTree = "<group>"; };
+		93A59A4A1AEE7A9000223F16 /* AAPLCloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCloudManager.m; sourceTree = "<group>"; };
 		93B2003319BF587F006D5E74 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		93CDD0D019B60BE5000122F6 /* MMHS_Event_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMHS_Event_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CDD0D419B60BE5000122F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				192213D319B657A4006A23BF /* MMHS_Event_App.entitlements */,
-				933130C519B7B14800ED4CB9 /* AAPLCloudManager.h */,
-				933130C619B7B14800ED4CB9 /* AAPLCloudManager.m */,
+				93A59A491AEE7A9000223F16 /* AAPLCloudManager.h */,
+				93A59A4A1AEE7A9000223F16 /* AAPLCloudManager.m */,
 				93CDD0D519B60BE5000122F6 /* AppDelegate.swift */,
 				192213D619B67176006A23BF /* ModelObjects.swift */,
 				93CDD0D919B60BE5000122F6 /* Main.storyboard */,
@@ -308,7 +308,6 @@
 				93CDD0F519B62A9A000122F6 /* FeedTableViewCell.swift in Sources */,
 				93D5F21819B64EE2008C6218 /* ExploreViewController.swift in Sources */,
 				93CDD0F319B629E1000122F6 /* HomeViewController.swift in Sources */,
-				933130C719B7B14800ED4CB9 /* AAPLCloudManager.m in Sources */,
 				935A082919B8367200AC4346 /* LighterBlurredImageView.swift in Sources */,
 				93D5F21B19B64F09008C6218 /* ProfileViewController.swift in Sources */,
 				9316600019BABEF30085B131 /* ProfilePicImageView.swift in Sources */,
@@ -318,6 +317,7 @@
 				933130BF19B7908A00ED4CB9 /* BlurredImageView.swift in Sources */,
 				933130BD19B776B900ED4CB9 /* EditProfileViewController.swift in Sources */,
 				93D5F21419B64CF0008C6218 /* CreateEventViewController.swift in Sources */,
+				93A59A4B1AEE7A9000223F16 /* AAPLCloudManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
